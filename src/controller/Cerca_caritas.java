@@ -275,6 +275,9 @@ import javax.swing.text.Position;
 	    /** Check button for click marker */
 	    @FXML
 	    private CheckBox checkClickMarker;
+	    
+	    
+	    private Marker markerSelected;
 
 	    /** the first CoordinateLine */
 	 //   private CoordinateLine trackMagenta;
@@ -507,6 +510,11 @@ import javax.swing.text.Position;
 	        buttonAllLocations.setOnAction(event -> mapView.setExtent(extentAllLocations));
 	        logger.trace("location buttons done");
 
+	        buttonDonazione.setVisible(false);
+	        buttonTurnoVolontariato.setVisible(false);
+	        buttonBacheca.setVisible(false);
+	        buttonEvento.setVisible(false);
+	        buttonAllLocations.setVisible(false);
 	        // wire the zoom button and connect the slider to the map's zoom
 	        buttonZoom.setOnAction(event -> mapView.setZoom(ZOOM_DEFAULT));
 	        sliderZoom.valueProperty().bindBidirectional(mapView.zoomProperty());
@@ -698,9 +706,17 @@ import javax.swing.text.Position;
 	            labelExtent.setText(event.getExtent().toString());
 	        });
 
-	        mapView.addEventHandler(MapViewEvent.MAP_RIGHTCLICKED, event -> {
+	        mapView.addEventHandler(MapViewEvent.MAP_CLICKED, event -> {
 	            event.consume();
 	            labelEvent.setText("Event: map right clicked at: " + event.getCoordinate());
+	            buttonDonazione.setVisible(false);
+     	        buttonTurnoVolontariato.setVisible(false);
+     	        buttonBacheca.setVisible(false);
+     	        buttonEvento.setVisible(false);
+     	        buttonAllLocations.setVisible(false);
+     	       
+     	     
+     	       
 	        });
 	        
 	        mapView.addEventHandler(MarkerEvent.MARKER_CLICKED, event -> {
@@ -710,7 +726,14 @@ import javax.swing.text.Position;
 	            for(int i = 0; i<count; i++) {
 	            if ( marker.getId().equals(markerCaritas[i].getId()) ){
 	            	 logger.debug("HAi cliccato sul castello.");
-	            	 buttonDonazione.setVisible(false);
+	            	 buttonDonazione.setVisible(true);
+	     	        buttonTurnoVolontariato.setVisible(true);
+	     	        buttonBacheca.setVisible(true);
+	     	        buttonEvento.setVisible(true);
+	     	        buttonAllLocations.setVisible(true);
+	     	      
+	     	   
+	     	 
 	            }
 	            }
 	            labelEvent.setText("Event: marker clicked: " + marker.getId());
@@ -718,6 +741,7 @@ import javax.swing.text.Position;
 	        mapView.addEventHandler(MarkerEvent.MARKER_RIGHTCLICKED, event -> {
 	            event.consume();
 	            labelEvent.setText("Event: marker right clicked: " + event.getMarker().getId());
+	            
 	        });
 	        mapView.addEventHandler(MapLabelEvent.MAPLABEL_CLICKED, event -> {
 	            event.consume();

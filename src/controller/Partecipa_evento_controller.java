@@ -1,4 +1,6 @@
 package controller;
+import entity.VolunteerUser;
+import entity.ShopUser;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -13,8 +15,6 @@ public class Partecipa_evento_controller {
     @FXML
     private ResourceBundle resources;
 
-    @FXML
-    private URL location;
 
     @FXML
     private TextField importo;
@@ -38,6 +38,8 @@ public class Partecipa_evento_controller {
 
     @FXML
     void partecipa_evento(ActionEvent event) {
+    	
+    	
 
     }
 
