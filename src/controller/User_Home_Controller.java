@@ -8,7 +8,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import com.sothawo.mapjfx.Projection;
-import com.sothawo.mapjfxdemo.Controller;
+//import com.sothawo.mapjfxdemo.Controller;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -172,24 +172,8 @@ public class User_Home_Controller extends Application implements Initializable{
     void searchCaritasButtonPressed(ActionEvent event) {
     	
     	try {
-		/*	//FXMLLoader loader = new FXMLLoader(getClass().getResource("/boundary/Cerca_caritas.fxml"));
-		//	Parent root = loader.load();
-			
-			//home.setScene(new Scene(root, 1000, 750));
-			String fxmlFile = "/boundary/Cerca_caritas.fxml";
-	     
-	        FXMLLoader fxmlLoader = new FXMLLoader();
-	        Parent rootNode = fxmlLoader.load(getClass().getResourceAsStream(fxmlFile));
-	       
-			final Cerca_caritas controller = loader.getController();
-		    final Projection projection = Projection.WGS_84;//getParameters().getUnnamed().contains("wgs84")? Projection.WGS_84 : Projection.WEB_MERCATOR;
-		    
-			 controller.initMapAndControls(projection);
-			home.show();
-			
-			*/
-    		
-    		
+
+    	    		
     	        String fxmlFile = "/boundary/Cerca_caritas.fxml";
     	      
     	        FXMLLoader fxmlLoader = new FXMLLoader();

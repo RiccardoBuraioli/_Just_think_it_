@@ -409,45 +409,7 @@ import java.sql.SQLException;
 	        	markerCaritas[count].setVisible(false);
 	        	count++;
 	        };
-	        /*System.out.println(rs.next());
-	       while (rs.next()) {
-        	 Coordinate caritas_coordinate = new Coordinate(Double.parseDouble(rs.getString("latitudine")),Double.parseDouble(rs.getString("longitudine")));
-        	 markerCaritas[count] = Marker.createProvided(Marker.Provided.RED).setPosition(caritas_coordinate)
-     	            .setVisible(true);
-        	 
-        	 count++;
-        	 
-	       }*/
-	       
-	       //int count =0;
-	      /* String sql = "Call assegna_marker()";
-	       ResultSet rs = null;
-	       try (Connection conn = connector.getConnection();
-	            PreparedStatement pstmt = conn.prepareStatement(sql)) {
-
-	          
-		           rs = pstmt.executeQuery();
-
-	           while (rs.next()) {
-	        	 System.out.println(rs.getString("latitudine") + rs.getString("longitudine"));
-	          	 Coordinate caritas_coordinate = new Coordinate(Double.parseDouble(rs.getString("latitudine")),Double.parseDouble(rs.getString("longitudine")));
-	          	 markerCaritas[count] = Marker.createProvided(Marker.Provided.RED).setPosition(caritas_coordinate).setVisible(true);
-	          	 
-	          	 count++;
-	          	 
-	           } 
-
-	       } catch (SQLException ex) {
-	           System.out.println(ex.getMessage());
-	       } finally {
-	           try {
-	               if (rs != null) rs.close();
-	           } catch (SQLException e) {
-	               System.out.println(e.getMessage());
-	           }
-	       }*/
-	
-	        
+	      
 	        
 	        // camvbiare cooordinate di tutte le label.
 	        
@@ -799,21 +761,7 @@ import java.sql.SQLException;
 	     * @param event
 	     *     event with coordinates
 	     */
-	   /* private void handlePolygonClick(MapViewEvent event) {
-	        final List<Coordinate> coordinates = new ArrayList<>();
-	        if (polygonLine != null) {
-	            polygonLine.getCoordinateStream().forEach(coordinates::add);
-	            mapView.removeCoordinateLine(polygonLine);
-	            polygonLine = null;
-	        }
-	        coordinates.add(event.getCoordinate());
-	        polygonLine = new CoordinateLine(coordinates)
-	            .setColor(Color.DODGERBLUE)
-	            .setFillColor(Color.web("lawngreen", 0.4))
-	            .setClosed(true);
-	        mapView.addCoordinateLine(polygonLine);
-	        polygonLine.setVisible(true);
-	    }*/
+	 
 
 	    /**
 	     * enables / disables the different controls

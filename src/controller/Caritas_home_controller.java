@@ -8,7 +8,6 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import entity.CaritasUser;
-import entity.VolunteerUser;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
