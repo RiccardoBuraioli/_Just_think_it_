@@ -34,7 +34,10 @@ import javafx.scene.text.Text;
 
 public class User_Home_Controller extends Application implements Initializable{
 	
-	VolunteerUser currentUser;
+	private VolunteerUser currentUser;
+	
+	
+	private int idUtente;
 	
 	//Images slideshow
 	private Image img1 = new Image("file:/C:/Users/PRX/Desktop/TZEDAKAH/DragoInizio/DragoForestain.PNG");
@@ -196,6 +199,7 @@ public class User_Home_Controller extends Application implements Initializable{
     	        final Projection projection = /*getParameters().getUnnamed().contains("wgs84")
     	            ? Projection.WGS_84 : */Projection.WEB_MERCATOR;
     	        controller.initMapAndControls(projection);
+    	        controller.setIdUtente(this.idUtente);
 
     	        Scene scene = new Scene(rootNode);
     	        Stage primaryStage = (Stage) searchCaritasButton.getScene().getWindow();
@@ -266,6 +270,11 @@ public class User_Home_Controller extends Application implements Initializable{
 	@Override
 	public void start(Stage arg0) throws Exception {
 		// TODO Auto-generated method stub
+		
+	}
+
+	public void setIdUtente(int id_utente) {
+		this.idUtente = id_utente;
 		
 	}
 

@@ -26,14 +26,14 @@ package controller;
 	import com.sothawo.mapjfx.event.MapViewEvent;
 	import com.sothawo.mapjfx.event.MarkerEvent;
 	import com.sothawo.mapjfx.offline.OfflineCache;
-	import com.sothawo.mapjfxdemo.Controller;
 
-import connector.Connector;
+//import connector.Connector;
 import dao.Cerca_caritas_dao;
-import javafx.animation.AnimationTimer;
-	import javafx.animation.Transition;
+import dao.CoordinateDao;
+//import javafx.animation.AnimationTimer;
+//	import javafx.animation.Transition;
 	import javafx.beans.binding.Bindings;
-	import javafx.beans.value.ChangeListener;
+//	import javafx.beans.value.ChangeListener;
 	import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -50,9 +50,9 @@ import javafx.scene.control.Accordion;
 	import javafx.scene.image.Image;
 	import javafx.scene.image.ImageView;
 	import javafx.scene.layout.HBox;
-	import javafx.scene.paint.Color;
+//	import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import javafx.util.Duration;
+//import javafx.util.Duration;
 	import org.slf4j.Logger;
 	import org.slf4j.LoggerFactory;
 
@@ -61,18 +61,18 @@ import javafx.util.Duration;
 	import java.io.InputStreamReader;
 	import java.net.URL;
 	import java.nio.charset.StandardCharsets;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+//import java.sql.Connection;
+//import java.sql.PreparedStatement;
+//import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
-	import java.util.List;
+//import java.sql.Statement;
+//import java.util.ArrayList;
+	//import java.util.List;
 	import java.util.Optional;
 	import java.util.stream.Collectors;
 	import java.util.stream.Stream;
 
-import javax.swing.text.Position;
+//import javax.swing.text.Position;
 
 	/**
 	 * Controller for the FXML defined code.
@@ -81,17 +81,19 @@ import javax.swing.text.Position;
 	 */
 	public class Cerca_caritas {
 		
+		private int idUtente;
+		
 		int count=0;
 		int countE=0;
 		int countD=0;
 		
-		 private Connector connector;
+		 
 		 
 	
 
 
 	    /** logger for the class. */
-	    private static final Logger logger = LoggerFactory.getLogger(Controller.class);
+	    private static final Logger logger = LoggerFactory.getLogger(Cerca_caritas.class);
 
 	    /* some coordinates from around town.   Da cambiare con una chiamata sql*/
 	   private static final Coordinate coordKarlsruheCastle = new Coordinate(49.013517, 8.404435);
@@ -316,6 +318,7 @@ import javax.swing.text.Position;
 	    
 	    }
 
+
 	    
 	    private void apriDonazione() {
 	    	try {
@@ -373,8 +376,8 @@ import javax.swing.text.Position;
 	    
 	    public Cerca_caritas() throws NumberFormatException, SQLException {
 	        // a couple of markers using the provided ones
-	    	 this.connector = new Connector("jdbc:mysql://127.0.0.1:3306/Justthinkit", "root", "password");
-	    	Cerca_caritas_dao marker = new Cerca_caritas_dao(connector);
+	    	 
+	    	Cerca_caritas_dao marker = new Cerca_caritas_dao();
 	    	
 	    	//chiamata sql per coordinate evento
 	    	
@@ -507,8 +510,14 @@ import javax.swing.text.Position;
 	        buttonBacheca.setOnAction(event -> vediNecessità());
 	        buttonEvento.setOnAction(event -> partecipaEvento());
 
-	        buttonAllLocations.setOnAction(event -> mapView.setExtent(extentAllLocations));
+	        buttonAllLocations.setOnAction(event -> {
+	        	CoordinateDao c = new CoordinateDao(idUtente);
+	        	logger.trace(c.getCoordinate().toString());
+	        });
 	        logger.trace("location buttons done");
+	      
+	        
+	        
 
 	        buttonDonazione.setVisible(false);
 	        buttonTurnoVolontariato.setVisible(false);
@@ -604,6 +613,7 @@ import javax.swing.text.Position;
 	        }
 	        checkClickMarker.selectedProperty().bindBidirectional(markerClick.visibleProperty());
 	        logger.trace("marker checks done");
+	        
 
 	        // load two coordinate lines
 	/*     trackMagenta = loadCoordinateLine(getClass().getResource("/M1.csv")).orElse(new CoordinateLine
@@ -876,6 +886,13 @@ import javax.swing.text.Position;
 	        }
 	        return Optional.empty();
 	    }
+
+
+
+		public void setIdUtente(int idUtente) {
+			this.idUtente = idUtente;
+			
+		}
 	}
 
 	

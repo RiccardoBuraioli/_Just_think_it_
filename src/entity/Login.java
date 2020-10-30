@@ -3,19 +3,15 @@ package entity;
 
 import java.sql.*;
 
-import controller.Connector;
+//import controller.Connector;
+//import dao.login_dao;
 //import dao.Login_dao;
 
 public class Login {
 
-    private final Connector connector;
+    
     public int tableUser;
 
-
-    public Login(Connector connector) {
-        this.connector = connector;
-
-    }
     
     public int getTableUser() {
         return this.tableUser;
@@ -25,6 +21,10 @@ public class Login {
         this.tableUser = num;
     }
 
+    
+   // login_dao login = new login_dao();
+    
+  /*  
     public int checkLogin(String email, String password) {
         String sqlUser = "SELECT Codice FROM utenti WHERE Email = ? AND Password = ?";
       
@@ -107,7 +107,7 @@ public class Login {
     	return ID;
     	
     }
-
+*/
     
     //Probabilmente sbagliata
     //Serve a ritornare l'ID della mail corrispondente (nel sistema non ci possono essere due mail uguali)

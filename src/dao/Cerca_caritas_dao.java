@@ -16,12 +16,19 @@ import connector.Connector;
 
 
 
+
+
+
+
+
+
+
 public class Cerca_caritas_dao {
 	
 	 private final Connector connector;
 	 
-	 public Cerca_caritas_dao(Connector connector) {
-		    this.connector = connector;
+	 public Cerca_caritas_dao() {
+		    this.connector =  new Connector("jdbc:mysql://127.0.0.1:3306/Justthinkit", "root", "password");;
 		}
 
 	 

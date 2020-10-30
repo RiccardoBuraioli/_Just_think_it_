@@ -2,6 +2,10 @@ package controller;
 
 import java.io.IOException;
 
+import dao.CaritasRepository;
+import dao.ShopRepository;
+import dao.VolunteerRepository;
+import dao.login_dao;
 import entity.CaritasUser;
 import entity.Login;
 import entity.ShopUser;
@@ -33,8 +37,8 @@ public class Login_Controller {
     @FXML
     void loginPressed(ActionEvent event) {
     	
-    	Connector connector = new Connector("jdbc:mysql://127.0.0.1:3306/Justthinkit", "root", "password");
-    	Login login = new Login(connector);
+    
+    	login_dao login = new login_dao();
     	int loginResult = login.checkLogin(usernameField.getText(), passwordField.getText());
     	if (loginResult>0) {
     		
@@ -45,7 +49,7 @@ public class Login_Controller {
     		//Volontario
     		if (login.getTableUser() == 1) {
     			
-    			VolunteerRepository vrep = new VolunteerRepository(connector);
+    			VolunteerRepository vrep = new VolunteerRepository();
     			
     			int userID = login.returnID(usernameField.getText(), 1);
     			System.out.println(userID);
@@ -62,6 +66,7 @@ public class Login_Controller {
         			Parent root = loader.load();
         			User_Home_Controller userHomeController = loader.getController();
         			userHomeController.initData(loggedUser);
+        			userHomeController.setIdUtente(userID);
         			Stage home = (Stage) loginButton.getScene().getWindow();
         			home.setScene(new Scene(root, 800, 600));
         			
@@ -74,7 +79,7 @@ public class Login_Controller {
     		//Caritas
     		else if (login.getTableUser() == 2) {
     			
-    			ShopRepository srep = new ShopRepository(connector); 
+    			ShopRepository srep = new ShopRepository(); 
 
     			int userID = login.returnID(usernameField.getText(), 1);
     			System.out.println(userID);
@@ -102,7 +107,7 @@ public class Login_Controller {
     		
     		//Negozio
     		else if (login.getTableUser() == 3) {
-     			CaritasRepository srep = new CaritasRepository(connector); 
+     			CaritasRepository srep = new CaritasRepository(); 
 
     			int userID = login.returnID(usernameField.getText(), 1);
     			System.out.println(userID);

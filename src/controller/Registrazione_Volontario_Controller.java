@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import dao.VolunteerRepository;
 import entity.VolunteerUser;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -91,11 +92,11 @@ public class Registrazione_Volontario_Controller implements Initializable {
 
     	
     	if (checker() == 0) {
-    		Connector connector = new Connector("jdbc:mysql://127.0.0.1:3306/justthinkit", "root", "password");
+    		
     		//Crea nuova istanza VolunteerUser?? 
     		Date date2 = java.sql.Date.valueOf( Date.getValue());
         	VolunteerUser newUser = new VolunteerUser(nome.getText(), cognome.getText(), passwordVolontario.getText(), via.getText(), telefono.getText(), email.getText(), null,date2,cittadiResidenza.getText() );
-        	VolunteerRepository vrep = new VolunteerRepository(connector);
+        	VolunteerRepository vrep = new VolunteerRepository();
         	int id = vrep.insertVolunteer(newUser);
         	newUser.setID(id);
         	

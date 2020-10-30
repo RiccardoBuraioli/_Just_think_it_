@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-
+import dao.ShopRepository;
 import entity.ShopUser;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -101,19 +101,18 @@ public class Registration_Shop_Manager_Controller implements Initializable {
     	int resCheck = checker();
     	if (resCheck == 0) {
     	
-    		Connector connector = new Connector("jdbc:mysql://127.0.0.1:3306/Justthinkit", "root", "password");
     		ShopUser shop = new ShopUser( nomeNegzio.getText(), passwordNeg.getText(),  viaNeg.getText() + " "+civicoNeg.getText() ,  tipo,  telNeg.getText(),  mailNeg.getText(),  cittaResNeg.getText());
     		
-        	ShopRepository crep = new  ShopRepository(connector);
+        	ShopRepository crep = new  ShopRepository();
         	int id = crep.insertShop(shop);
         	shop.setId(id);
         	}
         	
         	else if ( resCheck == 1) {
-        		Connector connector = new Connector("jdbc:mysql://127.0.0.1:3306/Justthinkit", "root", "password");
+        		
         		ShopUser shop = new ShopUser( nomeNegzio.getText(), passwordNeg.getText(),  viaNeg.getText() + " "+civicoNeg.getText() ,  tipo,  telNeg.getText(),  mailNeg.getText(),  cittaResNeg.getText());
         		
-        		ShopRepository crep = new  ShopRepository(connector);
+        		ShopRepository crep = new  ShopRepository();
             	int id = crep.insertShop(shop);
             	shop.setId(id);
         		

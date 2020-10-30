@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ResourceBundle;
 
+import dao.CaritasRepository;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -27,7 +28,7 @@ import javafx.stage.Stage;
 
 public class Registrazione_Caritas_Controller implements Initializable{
 	
-	Connector connector;
+	
 	
 	TextField[] textFields;
 	
@@ -104,19 +105,19 @@ public class Registrazione_Caritas_Controller implements Initializable{
     	int resCheck = checker();
     	if (resCheck == 0) {
     		System.out.println(via.getText() +" "+ civico.getText());
-    		Connector connector = new Connector("jdbc:mysql://127.0.0.1:3306/Justthinkit", "root", "password");
+    		
     		CaritasUser newUser = new CaritasUser(nomeCaritas.getText(), passwordCaritas.getText(), via.getText() +" "+ civico.getText(), tipo ,telefono.getText(), email.getText(), cittadiResidenza.getText());
     		
-        	CaritasRepository crep = new  CaritasRepository(connector);
+        	CaritasRepository crep = new  CaritasRepository();
         	int id = crep.insertCaritas(newUser);
         	newUser.setId(id);
         	}
         	
         	else if ( resCheck == 1) {
-        		Connector connector = new Connector("jdbc:mysql://127.0.0.1:3306/Justthinkit", "root", "password");
+        		
         		CaritasUser newUser = new CaritasUser(nomeCaritas.getText(), passwordCaritas.getText(), via.getText() +" "+ civico.getText(),tipo2 ,telefono.getText(), email.getText(),cittadiResidenza.getText());
         		
-            	CaritasRepository crep = new  CaritasRepository(connector);
+            	CaritasRepository crep = new  CaritasRepository();
             	int id = crep.insertCaritas(newUser);
             	newUser.setId(id);
         		
