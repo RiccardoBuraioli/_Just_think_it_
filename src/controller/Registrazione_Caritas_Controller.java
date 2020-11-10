@@ -34,7 +34,7 @@ public class Registrazione_Caritas_Controller implements Initializable{
 	
 	CaritasUser caritas;
 	
-	int tipo, tipo2;
+	int tipo;
 	
 	@FXML
     private TextField cittadiResidenza;
@@ -113,15 +113,7 @@ public class Registrazione_Caritas_Controller implements Initializable{
         	newUser.setId(id);
         	}
         	
-        	else if ( resCheck == 1) {
-        		
-        		CaritasUser newUser = new CaritasUser(nomeCaritas.getText(), passwordCaritas.getText(), via.getText() +" "+ civico.getText(),tipo2 ,telefono.getText(), email.getText(),cittadiResidenza.getText());
-        		
-            	CaritasRepository crep = new  CaritasRepository();
-            	int id = crep.insertCaritas(newUser);
-            	newUser.setId(id);
-        		
-        	}
+      
     	
     	
     	
@@ -164,10 +156,10 @@ public class Registrazione_Caritas_Controller implements Initializable{
 	    		
 	    		
 			}else if(type2.isSelected()) {
-				tipo2 = 2;
+				tipo = 2;
 				passwordMatch.setText("Alcuni campi sono vuoti 2");
 				passwordMatch.setVisible(true);
-				return 1; //Almeno uno dei tipi deve essere selezionato
+				return 0; //Almeno uno dei tipi deve essere selezionato
 			}
 		}
     	

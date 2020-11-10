@@ -30,6 +30,7 @@ package controller;
 //import connector.Connector;
 import dao.Cerca_caritas_dao;
 import dao.CoordinateDao;
+import entity.marker_id;
 //import javafx.animation.AnimationTimer;
 //	import javafx.animation.Transition;
 	import javafx.beans.binding.Bindings;
@@ -82,15 +83,13 @@ import java.sql.SQLException;
 	public class Cerca_caritas {
 		
 		private int idUtente;
+		private int idCaritas;
+		Donation_controller dono = new Donation_controller();
 		
 		int count=0;
 		int countE=0;
 		int countD=0;
 		
-		 
-		 
-	
-
 
 	    /** logger for the class. */
 	    private static final Logger logger = LoggerFactory.getLogger(Cerca_caritas.class);
@@ -117,19 +116,12 @@ import java.sql.SQLException;
 
 	    /** the markers. */
 	    
+	    marker_id markerC = new marker_id();
 	    
 	    public Marker[] markerCaritas = {null,null,null,null,null,null,null};
+	    int[] id_caritas;
 	    
-	  
-	
-	    	
-	
-	    	
-	    	
-	    
-	    
-	    
-	    
+
 	    
 	    
 	    public  Marker[] markerEvento={null,null,null,null,null,null,null};
@@ -320,7 +312,7 @@ import java.sql.SQLException;
 
 
 	    
-	    private void apriDonazione() {
+	    private void apriDonazione(int id_car, int id_ut) {
 	    	try {
     	/*		FXMLLoader loader = new FXMLLoader(getClass().getResource("/boundary/donation.fxml"));
     			Parent root = loader.load();
@@ -332,10 +324,15 @@ import java.sql.SQLException;
     			home.show();
     	*/		Parent root = FXMLLoader.load(getClass().getResource("/boundary/donation.fxml"));
 	    		Stage stage = new Stage();
-	    		stage.setTitle("Main");
+	    		
+	    		stage.setTitle("Donazione");
 	    		stage.setScene(new Scene(root, 800, 500));
 	    		stage.setResizable(false);
 	    		stage.show();
+	    		
+	    		dono.setData(id_car, id_ut);
+	    		
+	    		
     		} catch (IOException e) {
     			e.printStackTrace();
     		}
@@ -403,13 +400,21 @@ import java.sql.SQLException;
 	        
 	        
 	        
+	       Cerca_caritas_dao prova = new Cerca_caritas_dao();
+	       markerC = prova.assegna_marker();
+	       int i = 0;
+	     
 	       
-	        markerCaritas =  marker.assegna_marker();//.marker.assegna_marker();
+	       while(markerC.getMarker(i)!=null) {
+	       id_caritas =  markerC.id_marker(i);//.marker.assegna_marker();
+	       markerCaritas[i] = markerC.getMarker(i);
+	       i++;
+	       }
 	        while(markerCaritas[count]!=null) {
-	        	markerCaritas[count].setVisible(false);
+	        	markerCaritas[count].setVisible(true);
 	        	count++;
 	        };
-	      
+
 	        
 	        // camvbiare cooordinate di tutte le label.
 	        
@@ -467,7 +472,7 @@ import java.sql.SQLException;
 	        
 	        
 	        // wire up the location buttons
-	        buttonDonazione.setOnAction(event -> apriDonazione());
+	        buttonDonazione.setOnAction(event -> apriDonazione(idCaritas,idUtente ));
 	        buttonTurnoVolontariato.setOnAction(event ->prenotaTurno());
 	        buttonBacheca.setOnAction(event -> vediNecessità());
 	        buttonEvento.setOnAction(event -> partecipaEvento());
@@ -686,6 +691,7 @@ import java.sql.SQLException;
      	        buttonBacheca.setVisible(false);
      	        buttonEvento.setVisible(false);
      	        buttonAllLocations.setVisible(false);
+     	      
      	       
      	     
      	       
@@ -699,10 +705,11 @@ import java.sql.SQLException;
 	            if ( marker.getId().equals(markerCaritas[i].getId()) ){
 	            	 logger.debug("HAi cliccato sul castello.");
 	            	 buttonDonazione.setVisible(true);
-	     	        buttonTurnoVolontariato.setVisible(true);
-	     	        buttonBacheca.setVisible(true);
-	     	        buttonEvento.setVisible(true);
-	     	        buttonAllLocations.setVisible(true);
+	            	 buttonTurnoVolontariato.setVisible(true);
+	            	 buttonBacheca.setVisible(true);
+	            	 buttonEvento.setVisible(true);
+	            	 buttonAllLocations.setVisible(true);
+	            	 idCaritas = id_caritas[i];
 	     	      
 	     	   
 	     	 
