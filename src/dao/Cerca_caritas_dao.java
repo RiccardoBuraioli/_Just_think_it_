@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import com.sothawo.mapjfx.Coordinate;
 import com.sothawo.mapjfx.Marker;
 
-import entity.CaritasUser;
+import entity.marker_id;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import connector.Connector;
@@ -18,14 +18,10 @@ import connector.Connector;
 
 
 
-
-
-
-
-
 public class Cerca_caritas_dao {
 	
-	 private final Connector connector;
+//	private static final Marker[]  = null;
+	private final Connector connector;
 	 
 	 public Cerca_caritas_dao() {
 		    this.connector =  new Connector("jdbc:mysql://127.0.0.1:3306/Justthinkit", "root", "password");;
@@ -33,39 +29,46 @@ public class Cerca_caritas_dao {
 
 	 
 	
-	public Marker[] assegna_marker() {
+	public marker_id assegna_marker() {
 		
-	Marker[] markerCaritas = {null,null,null,null,null,null,null};
-	
-	 String sql = "Call assegna_marker()";
-     ResultSet rs = null;
-     int count = 0;
+		Marker[] markerCaritas = {null,null,null,null,null,null,null};
+		int id[] = {0,0,0,0,0,0,0,0};
+		String sql = "Call assegna_marker()";
+		ResultSet rs = null;
+		int count = 0;
+		marker_id markerC = new marker_id();
 
-     try (Connection conn = connector.getConnection();
-          PreparedStatement pstmt = conn.prepareStatement(sql)) {
+		
+		try (Connection conn = connector.getConnection();
+				PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
         
-         rs = pstmt.executeQuery();
+			rs = pstmt.executeQuery();
 
-         while (rs.next()) {
-        	 Coordinate caritas_coordinate = new Coordinate(Double.parseDouble(rs.getString("latitudine")),Double.parseDouble(rs.getString("longitudine")));
-        	 markerCaritas[count] = Marker.createProvided(Marker.Provided.RED).setPosition(caritas_coordinate);
+			while (rs.next()) {
+				Coordinate caritas_coordinate = new Coordinate(Double.parseDouble(rs.getString("latitudine")),Double.parseDouble(rs.getString("longitudine")));
+				markerC.setMarker(count, Marker.createProvided(Marker.Provided.RED).setPosition(caritas_coordinate));
+				markerC.setID(count,  rs.getInt("CodiceCaritas"));
+				count++;
         	 
-        	 count++;
-        	 
-         } 
-
-     } catch (SQLException ex) {
-         System.out.println(ex.getMessage());
-     } finally {
-         try {
-             if (rs != null) rs.close();
-         } catch (SQLException e) {
-             System.out.println(e.getMessage());
-         }
-     } return markerCaritas;
-	}
+	         } 
+		
+			
+			
 	
+	     } catch (SQLException ex) {
+	         System.out.println(ex.getMessage());
+	     } finally {
+	         try {
+	             if (rs != null) rs.close();
+	         } catch (SQLException e) {
+	             System.out.println(e.getMessage());
+	         }
+	     } 
+		
+		return markerC;
+		}
+		
 	
 	public Marker[] assegna_marker_evento() {
 		
@@ -84,7 +87,7 @@ public class Cerca_caritas_dao {
 	         while (rs.next()) {
 	        	 Coordinate evento_coordinate = new Coordinate(Double.parseDouble(rs.getString("latitudine")),Double.parseDouble(rs.getString("longitudine")));
 	        	 markerEvento[count] = Marker.createProvided(Marker.Provided.BLUE).setPosition(evento_coordinate);
-	        	 
+	        	
 	        	 count++;
 	        	 
 	         } 
