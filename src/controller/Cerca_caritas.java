@@ -84,11 +84,11 @@ import java.sql.SQLException;
 		
 		private int idUtente;
 		private int idCaritas;
-		Donation_controller dono = new Donation_controller();
+		Donation_controller donationController;
 		
-		int count=0;
-		int countE=0;
-		int countD=0;
+		private int countCaritas;
+		private int countEvent;
+		private int countDonation;
 		
 
 	    /** logger for the class. */
@@ -316,21 +316,34 @@ import java.sql.SQLException;
 	    	try {
     	/*		FXMLLoader loader = new FXMLLoader(getClass().getResource("/boundary/donation.fxml"));
     			Parent root = loader.load();
-    			Donation_controller donazione_controller = loader.getController();
+    			
     			
     			Stage home = (Stage) buttonDonazione.getScene().getWindow();
     			home.setScene(new Scene(root, 800, 600));
     			
     			home.show();
-    	*/		Parent root = FXMLLoader.load(getClass().getResource("/boundary/donation.fxml"));
-	    		Stage stage = new Stage();
+    	*/	//	Parent root = FXMLLoader.load(getClass().getResource("/boundary/donation.fxml"));
+    			//Donation_controller donazione_controller =root.getController();
+	    		//Stage stage = new Stage();
 	    		
+	    		
+	    		
+	    		
+	    		//String fxmlFile = "/boundary/Cerca_caritas.fxml";
+	    	      
+    	        FXMLLoader fxmlLoader = new FXMLLoader();
+    	        Parent rootNode = fxmlLoader.load(getClass().getResourceAsStream("/boundary/donation.fxml"));
+    	       
+    	        donationController = fxmlLoader.getController();
+    	        
+    	        Stage stage = new Stage();
 	    		stage.setTitle("Donazione");
-	    		stage.setScene(new Scene(root, 800, 500));
+	    		donationController.setData(id_car, id_ut);
+	    		stage.setScene(new Scene(rootNode, 800, 500));
 	    		stage.setResizable(false);
 	    		stage.show();
 	    		
-	    		dono.setData(id_car, id_ut);
+	    		
 	    		
 	    		
     		} catch (IOException e) {
@@ -375,23 +388,27 @@ import java.sql.SQLException;
 	        // a couple of markers using the provided ones
 	    	 
 	    	Cerca_caritas_dao marker = new Cerca_caritas_dao();
-	    	
+
+			 countCaritas=0;
+			 countEvent=0;
+			 countDonation=0;
 	    	//chiamata sql per coordinate evento
-	    	
+	    	//donationController = new Donation_controller();
+			
 	       
 			
 	        markerEvento=marker.assegna_marker_evento();
-	        while(markerEvento[countE]!= null) {
-	        markerEvento[countE].setVisible(false);
+	        while(markerEvento[countEvent]!= null) {
+	        markerEvento[countEvent].setVisible(false);
 	           
-	        countE++;
+	        countEvent++;
 	        };
 	        //chiamata sql per coordinante donazioni
 	        
 	        markerDonazione= marker.assegna_marker_donazione();
-	        while(markerDonazione[countD]!=null) {
-	        markerDonazione[countD].setVisible(false);
-	        countD++;
+	        while(markerDonazione[countDonation]!=null) {
+	        markerDonazione[countDonation].setVisible(false);
+	        countDonation++;
 	        };
 	        // no position for click marker yet
 	        markerClick = Marker.createProvided(Marker.Provided.ORANGE).setVisible(false);
@@ -410,9 +427,9 @@ import java.sql.SQLException;
 	       markerCaritas[i] = markerC.getMarker(i);
 	       i++;
 	       }
-	        while(markerCaritas[count]!=null) {
-	        	markerCaritas[count].setVisible(true);
-	        	count++;
+	        while(markerCaritas[countCaritas]!=null) {
+	        	markerCaritas[countCaritas].setVisible(true);
+	        	countCaritas++;
 	        };
 
 	        
@@ -554,17 +571,17 @@ import java.sql.SQLException;
 	        setupEventHandlers();
 
 	        // add the graphics to the checkboxes
-	       for (int i =0;i<countE;i++) {
+	       for (int i =0;i<countEvent;i++) {
 	        checkEventoMarker.setGraphic(
 	            new ImageView(new Image(markerEvento[i].getImageURL().toExternalForm(), 16.0, 16.0, true, true)));
 	       }
-	        for(int i = 0; i<count; i++) {
+	        for(int i = 0; i<countCaritas; i++) {
 	        checkCaritasMarker.setGraphic(
 	            new ImageView(new Image(markerCaritas[i].getImageURL().toExternalForm(), 16.0, 16.0, true, true)));
 	        
 	        checkCaritasMarker.selectedProperty().bindBidirectional(markerCaritas[i].visibleProperty());
 	        }
-	        for(int i=0; i<countD; i++) {
+	        for(int i=0; i<countDonation; i++) {
 	        checkDonazioneMarker.setGraphic(
 	            new ImageView(new Image(markerDonazione[i].getImageURL().toExternalForm(), 16.0, 16.0, true, true)));
 	        }
@@ -572,10 +589,10 @@ import java.sql.SQLException;
 	            new ImageView(new Image(markerClick.getImageURL().toExternalForm(), 16.0, 16.0, true, true)));
 
 	        // bind the checkboxes to the markers visibility
-	        for (int i =0;i<countE;i++) {
+	        for (int i =0;i<countEvent;i++) {
 	        checkEventoMarker.selectedProperty().bindBidirectional(markerEvento[i].visibleProperty());
 	        }
-	        for (int i =0;i<countD;i++) {
+	        for (int i =0;i<countDonation;i++) {
 	        checkDonazioneMarker.selectedProperty().bindBidirectional(markerDonazione[i].visibleProperty());
 	        }
 	        checkClickMarker.selectedProperty().bindBidirectional(markerClick.visibleProperty());
@@ -701,7 +718,7 @@ import java.sql.SQLException;
 	            event.consume();
 	            Marker marker = event.getMarker();
 	            posMarker = marker.getPosition();
-	            for(int i = 0; i<count; i++) {
+	            for(int i = 0; i<countCaritas; i++) {
 	            if ( marker.getId().equals(markerCaritas[i].getId()) ){
 	            	 logger.debug("HAi cliccato sul castello.");
 	            	 buttonDonazione.setVisible(true);
@@ -792,14 +809,14 @@ import java.sql.SQLException;
 	        mapView.setCenter(RomaCentro);
 	        // add the markers to the map - they are still invisible
 	       
-	        for (int i =0;i<countE;i++) {
+	        for (int i =0;i<countEvent;i++) {
 	        mapView.addMarker(markerEvento[i]);
 	        }
-	        for (int i = 0; i< count;i++) {
+	        for (int i = 0; i< countCaritas;i++) {
 	        mapView.addMarker(markerCaritas[i]);
 	        }
 	        
-	        for (int i =0;i<countD;i++) {
+	        for (int i =0;i<countDonation;i++) {
 	        mapView.addMarker(markerDonazione[i]);
 	        }
 	        // can't add the markerClick at this moment, it has no position, so it would not be added to the map

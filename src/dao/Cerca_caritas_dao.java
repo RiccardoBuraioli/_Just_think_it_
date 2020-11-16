@@ -9,13 +9,7 @@ import com.sothawo.mapjfx.Coordinate;
 import com.sothawo.mapjfx.Marker;
 
 import entity.marker_id;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import connector.Connector;
-
-
-
-
 
 
 public class Cerca_caritas_dao {
@@ -31,8 +25,8 @@ public class Cerca_caritas_dao {
 	
 	public marker_id assegna_marker() {
 		
-		Marker[] markerCaritas = {null,null,null,null,null,null,null};
-		int id[] = {0,0,0,0,0,0,0,0};
+		//Marker[] markerCaritas = {null,null,null,null,null,null,null};
+		// id[] = {0,0,0,0,0,0,0,0};
 		String sql = "Call assegna_marker()";
 		ResultSet rs = null;
 		int count = 0;

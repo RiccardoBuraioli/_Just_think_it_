@@ -8,15 +8,10 @@ import dao.Donation_dao;
 import entity.Donazione;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
+
 import javafx.scene.input.MouseEvent;
-import javafx.stage.Stage;
 
-
-import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
@@ -27,6 +22,7 @@ public class Donation_controller implements Initializable {
 	private int id_caritas;
 	private int id_utente;
 	private int tipo;
+	Donazione dono;
 
     @FXML
     private RadioButton vestiti;
@@ -41,10 +37,10 @@ public class Donation_controller implements Initializable {
     private Button indietro;
 
     @FXML
-    private TextField descrizione;
+    private TextField indirizzo;
 
     @FXML
-    private TextField indirizzo;
+    private TextArea descrizione;
 
     @FXML
     void Back(MouseEvent event) {
@@ -52,7 +48,19 @@ public class Donation_controller implements Initializable {
     }
 
     
-  public int checker() {
+    
+   
+    
+  public Donation_controller() {
+		super();
+		dono = new Donazione();
+	}
+
+
+
+
+
+public int checker() {
     	
     	//Controlla che non ci siano campi lasciati vuoti
     	for (int i = 0; i < textFields.length; i++) {
@@ -80,13 +88,16 @@ public class Donation_controller implements Initializable {
     @FXML
     public int creaDonazione(ActionEvent event) {
     	int error;
-    	
+    	Donation_dao donosql = new Donation_dao();
     	error = checker();
     	
-    	Donazione dono = new Donazione(descrizione.getText(), indirizzo.getText(),id_caritas, id_utente, null, tipo);
+    
+    	dono.setIndirizzo(indirizzo.getText());
+    	dono.setDescrizione(descrizione.getText());
     	
-    	Donation_dao donosql = new Donation_dao();
-    	
+    	dono.setId_caritas(id_caritas);
+    	dono.setId_utente(id_utente);
+    	dono.setTipologia(tipo);
     	error = donosql.crea_donazione(dono);
     	
     	return error;
@@ -98,8 +109,6 @@ public class Donation_controller implements Initializable {
     public void setData(int id_car, int id_ute) {
     	this.id_caritas = id_car;
     	this.id_utente = id_ute;
-    	System.out.println(id_ute);
-    	System.out.println(id_car);
     }
     
     
@@ -107,7 +116,7 @@ public class Donation_controller implements Initializable {
 public void initialize(URL location, ResourceBundle resources) {
 		
 		
-		textFields = new TextField[] {descrizione, indirizzo};
+		textFields = new TextField[] {indirizzo};
 		
 		
 	}

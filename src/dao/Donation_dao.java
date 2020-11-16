@@ -31,13 +31,12 @@ public class Donation_dao {
 
               try (Connection conn = connector.getConnection();
                    PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-            	  pstmt.setInt(1, dono.getID_caritas() );
-            	  pstmt.setInt(2, dono.getID_utente());
-            	  pstmt.setInt(3, dono.getTipo());
+            	  pstmt.setInt(1, dono.getId_caritas() );
+            	  pstmt.setInt(2, dono.getId_utente());
+            	  pstmt.setInt(3, dono.getTipologia());
             	  pstmt.setString(4,dono.getDescrizione());
             	  pstmt.setString(5, dono.getIndirizzo());
               	
-               
               
                   rowAffected = pstmt.executeUpdate();
 
