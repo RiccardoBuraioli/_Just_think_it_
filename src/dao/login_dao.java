@@ -7,31 +7,31 @@ import java.sql.SQLException;
 
 import controller.Connector;
 
-public class login_dao {
+public class Login_dao {
 	final Connector connector;
-    public int tableUser;
+    public String tableUser;
 	
-	  public int getTableUser() {
+	  public String getTableUser() {
 	        return tableUser;
 	    }
 	  
-	  public void setTableUser(int a) {
+	  public void setTableUser(String a) {
 		  this.tableUser = a;
 	  }
 	
 	
-	public login_dao() {
+	public Login_dao() {
 		
 		this.connector = new Connector("jdbc:mysql://127.0.0.1:3306/Justthinkit", "root", "password");
 	}
 	
 	
 	
-	  public int checkLogin(String email, String password) {
-	        String sqlUser = "SELECT Codice FROM utenti WHERE Email = ? AND Password = ?";
+	  public String checkLogin(String email, String password) {
+	        String sqlUser = "SELECT Tipo FROM utenti WHERE Email = ? AND Password = ?";
 	      
 	        ResultSet res = null;
-	        int returnePriv = 0;
+	        String returnePriv = null;
 
 	        //Cerca nei volontari
 	        try (Connection conn = connector.getConnection();
@@ -42,7 +42,7 @@ public class login_dao {
 	            res = stmt.executeQuery();
 
 	            while (res.next()) {
-	                int priv = res.getInt("Codice");
+	                String priv = res.getString("Tipo");
 	                returnePriv = priv;
 	              
 	            }
@@ -55,21 +55,9 @@ public class login_dao {
 	                System.out.println(e.getMessage());
 	            }
 	        }			
-       	 if( returnePriv == 3) {
- 			setTableUser(3);
- 			
- 		}
- 		
- 	 else if( returnePriv == 2) {
- 		setTableUser(2);
- 		
- 	}
- 	
- 	
-  else if( returnePriv == 1) {
- 	setTableUser(1);
- 
- }
+       	 if( returnePriv != null) {
+ 			setTableUser(returnePriv);
+       	 }
 				return returnePriv;
 	    }
 

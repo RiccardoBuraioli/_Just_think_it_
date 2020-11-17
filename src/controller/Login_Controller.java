@@ -5,7 +5,7 @@ import java.io.IOException;
 import dao.CaritasRepository;
 import dao.ShopRepository;
 import dao.VolunteerRepository;
-import dao.login_dao;
+import dao.Login_dao;
 import entity.CaritasUser;
 import entity.Login;
 import entity.ShopUser;
@@ -38,16 +38,16 @@ public class Login_Controller {
     void loginPressed(ActionEvent event) {
     	
     
-    	login_dao login = new login_dao();
-    	int loginResult = login.checkLogin(usernameField.getText(), passwordField.getText());
-    	if (loginResult>0) {
+    	Login_dao login = new Login_dao();
+    	String loginResult = login.checkLogin(usernameField.getText(), passwordField.getText());
+    	if (loginResult!= null) {
     		
     		//OK MANDA ALLA HOME CORRETTA
     		System.out.println("Login succesfull");
     		System.out.println(login.getTableUser());
     		
     		//Volontario
-    		if (login.getTableUser() == 1) {
+    		if (login.getTableUser().equals("Volontario") == true) {
     			
     			VolunteerRepository vrep = new VolunteerRepository();
     			
@@ -77,7 +77,7 @@ public class Login_Controller {
     		}
     		
     		//Caritas
-    		else if (login.getTableUser() == 2) {
+    		else if (login.getTableUser().equals("Negozio") == true) {
     			
     			ShopRepository srep = new ShopRepository(); 
 
@@ -106,7 +106,7 @@ public class Login_Controller {
     		}
     		
     		//Negozio
-    		else if (login.getTableUser() == 3) {
+    		else if (login.getTableUser().equals("Caritas") == true) {
      			CaritasRepository srep = new CaritasRepository(); 
 
     			int userID = login.returnID(usernameField.getText(), 1);

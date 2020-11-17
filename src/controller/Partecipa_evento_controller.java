@@ -9,7 +9,7 @@ import java.util.ResourceBundle;
 
 import dao.Donation_dao;
 import dao.Evento_dao;
-import dao.prenota_dao;
+import dao.Prenota_dao;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;

@@ -85,7 +85,7 @@ import java.sql.SQLException;
 		private int idUtente;
 		private int idCaritas;
 		Donation_controller donationController;
-		
+		Prenota_turno_controller prenotaController;
 		private int countCaritas;
 		private int countEvent;
 		private int countDonation;
@@ -332,7 +332,7 @@ import java.sql.SQLException;
 	    		//String fxmlFile = "/boundary/Cerca_caritas.fxml";
 	    	      
     	        FXMLLoader fxmlLoader = new FXMLLoader();
-    	        Parent rootNode = fxmlLoader.load(getClass().getResourceAsStream("/boundary/donation.fxml"));
+    	        Parent rootNode = fxmlLoader.load(getClass().getResourceAsStream("/boundary/Donation.fxml"));
     	       
     	        donationController = fxmlLoader.getController();
     	        
@@ -353,14 +353,23 @@ import java.sql.SQLException;
 	   
 	    }
 	    
-	    private void prenotaTurno() {
+	    private void prenotaTurno(int id_car, int id_ut) {
 	    	try {
-	    	Parent root = FXMLLoader.load(getClass().getResource("/boundary/Prenota_turno_volontariato.fxml"));
-    		Stage stage = new Stage();
-    		stage.setTitle("Main");
-    		stage.setScene(new Scene(root, 600, 500));
-    		stage.setResizable(false);
-    		stage.show();
+	    	    
+    	        FXMLLoader fxmlLoader = new FXMLLoader();
+    	        Parent rootNode = fxmlLoader.load(getClass().getResourceAsStream("/boundary/Prenota_turno_volontariato.fxml"));
+    	       
+    	        prenotaController = fxmlLoader.getController();
+    	        
+    	        Stage stage = new Stage();
+	    		stage.setTitle("Prenota Turno");
+	    		prenotaController.setData(id_car, id_ut);
+	    		stage.setScene(new Scene(rootNode, 575, 400));
+	    		stage.setResizable(false);
+	    		stage.show();
+	    		
+	    		 
+	    		
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -490,7 +499,7 @@ import java.sql.SQLException;
 	        
 	        // wire up the location buttons
 	        buttonDonazione.setOnAction(event -> apriDonazione(idCaritas,idUtente ));
-	        buttonTurnoVolontariato.setOnAction(event ->prenotaTurno());
+	        buttonTurnoVolontariato.setOnAction(event ->prenotaTurno(idCaritas,idUtente ));
 	        buttonBacheca.setOnAction(event -> vediNecessità());
 	        buttonEvento.setOnAction(event -> partecipaEvento());
 

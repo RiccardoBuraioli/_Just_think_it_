@@ -1,7 +1,12 @@
 package controller;
 
+
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import dao.Evento_dao;
+import dao.Prenota_dao;
+import entity.Partecipa;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -10,11 +15,20 @@ import javafx.scene.control.TextField;
 
 public class Prenota_turno_controller {
 
+	private int id_utente;
+
+	private int id_caritas;
+
+	private TextField textFields[];
+	
+	private Partecipa partecipazione;
+	
     @FXML
     private ResourceBundle resources;
 
     @FXML
     private URL location;
+
     @FXML
     private ChoiceBox<?> Turni;
 
@@ -33,18 +47,59 @@ public class Prenota_turno_controller {
     @FXML
     private Button prenota;
 
+
     @FXML
     void indietro(ActionEvent event) {
 
     }
 
+    
+ public boolean checker() {
+    	
+    	 
+		//Controlla che non ci siano campi lasciati vuoti
+    	for (int i = 0; i < textFields.length; i++) {
+			if (textFields[i].getText().isEmpty()) {
+				
+				return false;
+			}
+	
+		}
+		return true;
+    	
+  }
+    
+    
+    
+    
     @FXML
-    void prenota_turno(ActionEvent event) {
+    boolean prenota_turno(ActionEvent event) {
+	boolean error;
+    	
+    	error = checker();
+    	
+    	
+    	
+    	
+   
+    	
+    	Prenota_dao partecipazione = new Prenota_dao();
+    	
+    	
+    	
+    	return error;
 
-    	
-    	
-    	
+  
+
     }
+    
+    
+    
+  public void setData(int id_car, int id_ute) {
+  	this.id_caritas = id_car;
+  	this.id_utente = id_ute;
+  }
+  
 
     @FXML
     void initialize() {
@@ -57,3 +112,7 @@ public class Prenota_turno_controller {
 
     }
 }
+
+
+
+

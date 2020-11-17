@@ -9,7 +9,7 @@ import java.sql.Statement;
 import controller.Connector;
 import entity.Turno;
 
-public class prenota_dao {
+public class Prenota_dao {
 
     private final Connector connector;
     private static final String SUCCESS = "Voce modificata con successo!";
@@ -18,7 +18,7 @@ public class prenota_dao {
 	
 	
 	
-	public prenota_dao() {
+	public Prenota_dao() {
 		
         this.connector =  new Connector("jdbc:mysql://127.0.0.1:3306/Justthinkit", "root", "password");;
 
