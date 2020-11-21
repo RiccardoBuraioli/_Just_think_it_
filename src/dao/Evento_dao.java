@@ -8,7 +8,7 @@ import java.sql.Statement;
 
 import controller.Connector;
 import entity.Evento;
-import entity.partecipazione;
+import entity.partecipa_evento;
 
 public class Evento_dao {
 
@@ -61,7 +61,7 @@ public class Evento_dao {
     	
     }
     
-   public partecipazione Crea_partecipazione(partecipazione partepaEvento) {
+   public partecipa_evento Crea_partecipazione(partecipa_evento partepaEvento) {
 	   int rowAffected;
   		ResultSet rs = null;
 

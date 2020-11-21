@@ -1,6 +1,6 @@
 package controller;
 import entity.VolunteerUser;
-import entity.partecipazione;
+import entity.partecipa_evento;
 import entity.Donazione;
 import entity.ShopUser;
 
@@ -18,7 +18,7 @@ import javafx.scene.image.ImageView;
 
 public class Partecipa_evento_controller {
 	TextField[] textFields;
-	partecipazione partecipaz;
+	partecipa_evento partecipaz;
 	
 	
     @FXML
@@ -85,7 +85,7 @@ public class Partecipa_evento_controller {
     
     
     public void setData(int id_evento, int id_volontario) {
-    	partecipazione partecipaz =  new partecipazione(id_evento,id_volontario);
+    	 partecipaz =  new partecipa_evento(id_evento,id_volontario);
 
     	
     }

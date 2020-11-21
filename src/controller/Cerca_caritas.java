@@ -84,8 +84,11 @@ import java.sql.SQLException;
 		
 		private int idUtente;
 		private int idCaritas;
-		Donation_controller donationController;
-		Prenota_turno_controller prenotaController;
+		private int idEvento;
+		private Donation_controller donationController;
+		private Prenota_turno_controller prenotaController;
+		private Partecipa_evento_controller partecipaEvent;
+		private Bacheca_Controller bacheca;
 		private int countCaritas;
 		private int countEvent;
 		private int countDonation;
@@ -306,8 +309,42 @@ import java.sql.SQLException;
 	            "'Tiles &copy; <a href=\"https://services.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer\">ArcGIS</a>'");
 
 	    
-	    private void vediNecessità(){
 	    
+	    
+	    
+	    
+	    
+	    private void vediNecessità(int id_car){
+	    	try {     
+		        FXMLLoader fxmlLoader = new FXMLLoader();
+
+		  
+		       
+		       
+		        
+		        Parent rootNode = fxmlLoader.load(getClass().getResourceAsStream("/boundary/Bacheca.fxml"));
+	
+		        
+		        Stage stage = new Stage();
+	    		stage.setTitle("Bacheca");
+	    		
+	    		stage.setScene(new Scene(rootNode, 800, 500));
+	    		stage.setResizable(false);
+	    		
+	    		
+	    		 bacheca = fxmlLoader.getController();
+	
+	    		 bacheca.loadForm(id_car);
+	    		 
+	    		stage.show();
+	    		
+	    		
+	    		
+	    		
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+	    	
 	    }
 
 
@@ -376,14 +413,19 @@ import java.sql.SQLException;
 	    
 	    }
 	    
-	    private void partecipaEvento() {
+	    private void partecipaEvento(int id_event, int id_ut) {
 	    	try {
-	    	Parent root = FXMLLoader.load(getClass().getResource("/boundary/Partecipa_evento.fxml"));
-    		Stage stage = new Stage();
-    		stage.setTitle("Main");
-    		stage.setScene(new Scene(root, 800, 500));
-    		stage.setResizable(false);
-    		stage.show();
+	  	        FXMLLoader fxmlLoader = new FXMLLoader();
+    	        Parent rootNode = fxmlLoader.load(getClass().getResourceAsStream("/boundary/Partecipa_evento.fxml"));
+    	       
+    	        partecipaEvent = fxmlLoader.getController();
+    	        
+    	        Stage stage = new Stage();
+	    		stage.setTitle("Prenota Turno");
+	    		partecipaEvent.setData(id_event, id_ut);
+	    		stage.setScene(new Scene(rootNode, 575, 400));
+	    		stage.setResizable(false);
+	    		stage.show();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -500,8 +542,8 @@ import java.sql.SQLException;
 	        // wire up the location buttons
 	        buttonDonazione.setOnAction(event -> apriDonazione(idCaritas,idUtente ));
 	        buttonTurnoVolontariato.setOnAction(event ->prenotaTurno(idCaritas,idUtente ));
-	        buttonBacheca.setOnAction(event -> vediNecessità());
-	        buttonEvento.setOnAction(event -> partecipaEvento());
+	        buttonBacheca.setOnAction(event -> vediNecessità(idCaritas));
+	        buttonEvento.setOnAction(event -> partecipaEvento(idEvento, idUtente));
 
 	        buttonAllLocations.setOnAction(event -> {
 	        	CoordinateDao c = new CoordinateDao(idUtente);
@@ -737,7 +779,7 @@ import java.sql.SQLException;
 	            	 buttonAllLocations.setVisible(true);
 	            	 idCaritas = id_caritas[i];
 	     	      
-	     	   
+	       
 	     	 
 	            }
 	            }

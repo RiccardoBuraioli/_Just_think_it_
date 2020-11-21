@@ -2,11 +2,14 @@ package controller;
 
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import dao.Evento_dao;
 import dao.Prenota_dao;
-import entity.Partecipa;
+import entity.Orario;
+import entity.Turno;
+import entity.partecipa_turno;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -18,10 +21,16 @@ public class Prenota_turno_controller {
 	private int id_utente;
 
 	private int id_caritas;
+	
+	private String[] giorni;
+	
+	private Orario[] ora;
 
+	private Prenota_dao check_turni_possibili;
+	
 	private TextField textFields[];
 	
-	private Partecipa partecipazione;
+	private partecipa_turno partecipazione;
 	
     @FXML
     private ResourceBundle resources;
@@ -30,13 +39,13 @@ public class Prenota_turno_controller {
     private URL location;
 
     @FXML
-    private ChoiceBox<?> Turni;
+    private ChoiceBox<String> Turni;
 
     @FXML
-    private ChoiceBox<?> ora_inizio;
+    private ChoiceBox<String> cb_ora_inizio;
 
     @FXML
-    private ChoiceBox<?> ora_fine;
+    private ChoiceBox<String> cb_ora_fine;
 
     @FXML
     private TextField CV;
@@ -47,6 +56,8 @@ public class Prenota_turno_controller {
     @FXML
     private Button prenota;
 
+	private List<Orario> oraArrayList;
+
 
     @FXML
     void indietro(ActionEvent event) {
@@ -54,7 +65,17 @@ public class Prenota_turno_controller {
     }
 
     
- public boolean checker() {
+    
+    public Prenota_turno_controller() {}
+
+
+
+
+
+
+
+
+public boolean checker() {
     	
     	 
 		//Controlla che non ci siano campi lasciati vuoti
@@ -77,13 +98,14 @@ public class Prenota_turno_controller {
 	boolean error;
     	
     	error = checker();
+    	//partecipazione = new partecipa_turno(id_utente, id_turno, id_caritas);
     	
-    	
+    	check_turni_possibili.partecipazione_turno(partecipazione);
     	
     	
    
     	
-    	Prenota_dao partecipazione = new Prenota_dao();
+    	
     	
     	
     	
@@ -103,13 +125,42 @@ public class Prenota_turno_controller {
 
     @FXML
     void initialize() {
-        assert Turni != null : "fx:id=\"Turni\" was not injected: check your FXML file 'Prenota_turno_volontariato.fxml'.";
+    	this.giorni = new String[8];
+	
+    	
+    	int a = 0;
+    	check_turni_possibili = new Prenota_dao();
+    	giorni = check_turni_possibili.visualizza_giorni();
+   
+    	
+    	for(int i=0; i<8; i++) {
+    		Turni.getItems().add(giorni[i]);
+    	}
+    	
+    	
+    	oraArrayList = check_turni_possibili.visualizza_orario2();
+    	//ora = (Orario[]) oraArrayList.toArray();
+    	
+    	int i = 0;
+    	while(i<oraArrayList.size()) {
+    
+	    	cb_ora_inizio.getItems().add(oraArrayList.get(i).getOra_fine());
+	    	
+	    	cb_ora_fine.getItems().add(oraArrayList.get(i).getOra_inizio());
+	    	
+	    	i++;
+	    	
+    	}
+    	
+    	
+    	
+      /*  assert Turni != null : "fx:id=\"Turni\" was not injected: check your FXML file 'Prenota_turno_volontariato.fxml'.";
         assert ora_inizio != null : "fx:id=\"ora_inizio\" was not injected: check your FXML file 'Prenota_turno_volontariato.fxml'.";
         assert ora_fine != null : "fx:id=\"ora_fine\" was not injected: check your FXML file 'Prenota_turno_volontariato.fxml'.";
         assert CV != null : "fx:id=\"CV\" was not injected: check your FXML file 'Prenota_turno_volontariato.fxml'.";
         assert indietro != null : "fx:id=\"indietro\" was not injected: check your FXML file 'Prenota_turno_volontariato.fxml'.";
         assert prenota != null : "fx:id=\"prenota\" was not injected: check your FXML file 'Prenota_turno_volontariato.fxml'.";
-
+*/
     }
 }
 
