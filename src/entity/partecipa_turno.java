@@ -4,16 +4,29 @@ public class partecipa_turno {
 	private int codice_volontario;
 	private int codice_turno;
 	private int codice_caritas; 
+	private String curriculum;
 	
-	
-	public partecipa_turno(int cod_v, int cod_t, int cod_c) {
+	public partecipa_turno(int cod_v, int cod_t, int cod_c, String CV) {
 		this.codice_caritas = cod_c;
 		this.codice_turno = cod_t;
 		this.codice_volontario= cod_v;
+		this.curriculum = CV;
 	}
 	
 	
 	
+	public String getCurriculum() {
+		return curriculum;
+	}
+
+
+
+	public void setCurriculum(String curriculum) {
+		this.curriculum = curriculum;
+	}
+
+
+
 	public int getCodice_volontario() {
 		return codice_volontario;
 	}

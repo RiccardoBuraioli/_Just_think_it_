@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import ch.qos.logback.classic.Logger;
 import controller.Connector;
 import entity.partecipa_turno;
 import entity.Orario;
@@ -18,8 +19,8 @@ public class Prenota_dao {
     private final Connector connector;
     private static final String SUCCESS = "Voce modificata con successo!";
     private static final String FAILED = "Operazione non riuscita.";
-    private int id_turno;
-	private Turno[] turno = {null, null, null, null, null, null, null, null, null, null};
+
+
 	private String[] resGiorno = {null, null, null, null, null, null, null, null};
 	private Orario[] ora;
 	private List<Orario> oraArrayList;
@@ -29,57 +30,8 @@ public class Prenota_dao {
         
 	}
 	
-	
-	
-	
-	@Deprecated
-	public Turno[] turni() {
 		
 		
-		
-		String sql;
-		String resGiorno = null;
-		String resOra_in= null;
-		String resOra_fin = null;
-		int id;
-		int i=0;
-		
-	  	sql = "call ";
-	
-		ResultSet res = null;
-		try (Connection conn = connector.getConnection();
-	            PreparedStatement stmt = conn.prepareStatement(sql)) {
-	
-	           res = stmt.executeQuery();
-	           
-	          
-	
-	           while (res.next()) {
-	        	   resGiorno= res.getString("Giorno");
-	        	   resOra_in = res.getString("ora_inizio");
-	        	   resOra_fin = res.getString("ora_fine");
-	        	   id = res.getInt("id_turno");
-	        	   turno[i]= new Turno(id,resGiorno, resOra_in, resOra_fin);
-	        	   i++;
-	           }
-	       } catch (SQLException ex) {
-	           System.out.println(ex.getMessage());
-	       } finally {
-	           try {
-	               if (res != null) res.close();
-	           } catch (SQLException e) {
-	               System.out.println(e.getMessage());
-	           }
-	       }
-		
-		
-		
-		
-		
-		return turno;
-		
-	}
-	
 	
 	
 	public String[] visualizza_giorni() {
@@ -184,20 +136,20 @@ public class Prenota_dao {
 	
 	
 	
-	public partecipa_turno partecipazione_turno(partecipa_turno turno) {
+	public boolean partecipazione_turno(partecipa_turno turno) {
 	
     	int rowAffected;
    		ResultSet rs = null;
    		
       	//Registra Caritas
-  	    String sql = "call prenota_turno(?,?,?)";
+  	    String sql = "call prenota_turno(?,?,?, ?)";
 
           try (Connection conn = connector.getConnection();
                PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-        	  pstmt.setInt(1, turno.getCodice_caritas());
-        	  pstmt.setInt(2, turno.getCodice_volontario());
-        	  pstmt.setInt(3, turno.getCodice_Turno());
-        	
+        	  pstmt.setInt(3, turno.getCodice_caritas());
+        	  pstmt.setInt(1, turno.getCodice_volontario());
+        	  pstmt.setInt(2, turno.getCodice_Turno());
+        	  pstmt.setString(4, turno.getCurriculum());
            
           
               rowAffected = pstmt.executeUpdate();
@@ -211,18 +163,18 @@ public class Prenota_dao {
               System.out.println((ex.getMessage()));
           }
 		    	
-    	
-    	return turno;
+   
+    	return true;
     	
 	}
 	
 	
 	public int trova_turno(Turno turno ) {
 		String sql;
-		String resID = null;
-		int ID;
 		
-	   	sql = "call trova_turno(?.?.?)";
+		int ID = 0;
+		
+	   	sql = "call trova_id_turno(?,?,?)";
 	
 		ResultSet res = null;
 		try (Connection conn = connector.getConnection();
@@ -234,7 +186,7 @@ public class Prenota_dao {
 	           res = stmt.executeQuery();
 	
 	           while (res.next()) {
-	        	   resID = res.getString("codice_turno");
+	        	  ID = res.getInt("id_turno");
 	           }
 	       } catch (SQLException ex) {
 	           System.out.println(ex.getMessage());
@@ -245,8 +197,7 @@ public class Prenota_dao {
 	               System.out.println(e.getMessage());
 	           }
 	       }
-		
-		ID = Integer.parseInt(resID);
+
 		return ID;
 		
 	}

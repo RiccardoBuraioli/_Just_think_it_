@@ -330,11 +330,11 @@ import java.sql.SQLException;
 	    		
 	    		stage.setScene(new Scene(rootNode, 800, 500));
 	    		stage.setResizable(false);
-	    		
+	    	
 	    		
 	    		 bacheca = fxmlLoader.getController();
 	
-	    		 bacheca.loadForm(id_car);
+	    		 bacheca.loadForm(id_car, idUtente);
 	    		 
 	    		stage.show();
 	    		
@@ -351,23 +351,7 @@ import java.sql.SQLException;
 	    
 	    private void apriDonazione(int id_car, int id_ut) {
 	    	try {
-    	/*		FXMLLoader loader = new FXMLLoader(getClass().getResource("/boundary/donation.fxml"));
-    			Parent root = loader.load();
-    			
-    			
-    			Stage home = (Stage) buttonDonazione.getScene().getWindow();
-    			home.setScene(new Scene(root, 800, 600));
-    			
-    			home.show();
-    	*/	//	Parent root = FXMLLoader.load(getClass().getResource("/boundary/donation.fxml"));
-    			//Donation_controller donazione_controller =root.getController();
-	    		//Stage stage = new Stage();
-	    		
-	    		
-	    		
-	    		
-	    		//String fxmlFile = "/boundary/Cerca_caritas.fxml";
-	    	      
+
     	        FXMLLoader fxmlLoader = new FXMLLoader();
     	        Parent rootNode = fxmlLoader.load(getClass().getResourceAsStream("/boundary/Donation.fxml"));
     	       

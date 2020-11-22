@@ -13,11 +13,11 @@ public class Turno {
 		this.id_turno = 0;
 	}
 	
-	public Turno(int id_turn,String Giorno, String ora_in, String ora_fin) {
+	public Turno(String Giorno, String ora_in, String ora_fin) {
 		this.giorno = Giorno;
 		this.ora_fine = ora_fin;
 		this.ora_inizio = ora_in;
-		this.id_turno = id_turn;
+	
 	}
 	
 	public String getOrai() {

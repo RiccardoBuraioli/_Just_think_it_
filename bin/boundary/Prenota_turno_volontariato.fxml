@@ -15,8 +15,8 @@
             <Font size="13.0" />
          </font>
       </Text>
-      <ChoiceBox fx:id="ora_inizio" layoutX="116.0" layoutY="257.0" prefHeight="25.0" prefWidth="88.0" />
-      <ChoiceBox fx:id="ora_fine" layoutX="227.0" layoutY="257.0" prefHeight="25.0" prefWidth="88.0" />
+      <ChoiceBox fx:id="cb_ora_inizio" layoutX="116.0" layoutY="257.0" prefHeight="25.0" prefWidth="88.0" />
+      <ChoiceBox fx:id="cb_ora_fine" layoutX="227.0" layoutY="257.0" prefHeight="25.0" prefWidth="88.0" />
       <Text layoutX="221.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Just Think It">
          <font>
             <Font size="30.0" />

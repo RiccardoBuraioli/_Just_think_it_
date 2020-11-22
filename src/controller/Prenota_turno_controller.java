@@ -79,13 +79,11 @@ public boolean checker() {
     	
     	 
 		//Controlla che non ci siano campi lasciati vuoti
-    	for (int i = 0; i < textFields.length; i++) {
-			if (textFields[i].getText().isEmpty()) {
+    	
+			if (CV.getText().isEmpty()) {
 				
 				return false;
 			}
-	
-		}
 		return true;
     	
   }
@@ -95,23 +93,24 @@ public boolean checker() {
     
     @FXML
     boolean prenota_turno(ActionEvent event) {
-	boolean error;
-    	
-    	error = checker();
-    	//partecipazione = new partecipa_turno(id_utente, id_turno, id_caritas);
-    	
-    	check_turni_possibili.partecipazione_turno(partecipazione);
-    	
-    	
-   
-    	
-    	
-    	
-    	
-    	
-    	return error;
+		boolean error;
 
-  
+		error = checker();
+
+		int id_turno = 0;
+
+		Turno turno = new Turno(Turni.getValue().toString(), cb_ora_inizio.getValue().toString(), cb_ora_fine.getValue().toString());
+		
+		id_turno = check_turni_possibili.trova_turno(turno);
+
+		partecipazione = new partecipa_turno(id_utente, id_turno, id_caritas, CV.getText());
+
+		error = check_turni_possibili.partecipazione_turno(partecipazione);
+
+		
+		
+		
+		return error;
 
     }
     
