@@ -4,7 +4,10 @@ package controller;
 import java.io.IOException;
 import java.util.List;
 
+import bean.DonationBoundary;
+import bean.EmailBoundary;
 import dao.Bacheca_dao;
+import entity.Bacheca_entity;
 import entity.Necessità;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -19,35 +22,32 @@ public class Bacheca_Controller  {
 
 	private int id_caritas;
 	private int id_utente;
-	private Donation_controller donationController;
+	private DonationBoundary donationBoundary;
 	private List<Necessità> necessità;
 	private Bacheca_dao bacheca;
-	private Email_controller email_c;
+	private EmailBoundary email_c;
+	
+	private Bacheca_entity bacheca_entity;
+	
 
-	@FXML
-	private Text nomeCaritas;
+	
+	public Bacheca_Controller() {
+		this.email_c = new EmailBoundary();
+	}
+	
 
-	@FXML
-	private TextArea cibo;
-
-	@FXML
-	private TextArea varie;
-
-	@FXML
-	private TextArea vestiti;
-
-	@FXML
-	void crea_donazione(ActionEvent event) {
+	
+	public void crea_donazione() {
 		try {
 
 	        FXMLLoader fxmlLoader = new FXMLLoader();
 	        Parent rootNode = fxmlLoader.load(getClass().getResourceAsStream("/boundary/Donation.fxml"));
 	       
-	        donationController = fxmlLoader.getController();
+	        donationBoundary = fxmlLoader.getController();
 	        
 	        Stage stage = new Stage();
     		stage.setTitle("Donazione");
-    		donationController.setData(id_caritas, id_utente);
+    		donationBoundary.initBoundary(id_caritas, id_utente);
     		stage.setScene(new Scene(rootNode, 800, 500));
     		stage.setResizable(false);
     		stage.show();
@@ -61,8 +61,7 @@ public class Bacheca_Controller  {
 
 	}
 
-	@FXML
-	void crea_email(ActionEvent event) {
+	public void crea_email() {
     	try {     
 	        FXMLLoader fxmlLoader = new FXMLLoader();
 
@@ -91,47 +90,19 @@ public class Bacheca_Controller  {
 		
 	}
 
-	@FXML
-	void indietro(ActionEvent event) {
 
-	}
 
-	@FXML
-	void initialize() {
 
+	
+	public List<Necessità> loadForm(int id_car, int id_ute) {
 		bacheca = new Bacheca_dao();
-		
-	}
-
-
-	
-	
-	public void loadForm(int id_car, int id_ute) {
+		bacheca_entity = new Bacheca_entity();
 		necessità = bacheca.visualizza_necessità(id_car);
+		bacheca_entity.setNecessità(necessità);
 		this.id_caritas = id_car;
 		this.id_utente = id_ute;
+		return bacheca_entity.getNecessità();
 			
-		for (int i = 0; i < necessità.size(); i++) {
-			Necessità tmp = necessità.get(i);
-			
-			switch (tmp.getTipologia()) {
-				case "Vestiti":
-					vestiti.setText(tmp.getDescrizione());
-					break;
-	
-				case "Cibo":
-					cibo.setText(tmp.getDescrizione());
-	
-				case "Varie":
-					varie.setText(tmp.getDescrizione());
-					break;
-	
-				default:
-					break;
-
-			}
-
+		
 		}
-
-	}
 }

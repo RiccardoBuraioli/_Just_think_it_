@@ -8,7 +8,7 @@ import java.sql.Statement;
 
 import com.sothawo.mapjfx.Coordinate;
 
-import controller.Connector;
+import connector.Connector;
 import entity.Donazione;
 
 public class Donation_dao {
@@ -47,6 +47,7 @@ public class Donation_dao {
 
               } catch (SQLException ex) {
                   System.out.println((ex.getMessage()));
+           
               }
 			return 0;
              

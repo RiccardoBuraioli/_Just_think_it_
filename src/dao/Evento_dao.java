@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import controller.Connector;
+import connector.Connector;
 import entity.Evento;
 import entity.partecipa_evento;
 

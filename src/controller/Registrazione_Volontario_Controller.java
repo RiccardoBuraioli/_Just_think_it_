@@ -67,7 +67,9 @@ public class Registrazione_Volontario_Controller implements Initializable {
 
     
 
-
+    public Registrazione_Volontario_Controller() {
+    	
+    }
 
 
 

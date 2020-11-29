@@ -10,8 +10,7 @@ public class RicercaCaritasNegozioController {
 	
 	Stage primary;
 	
-	
-	
+
 	
 	public RicercaCaritasNegozioController() {
 		primary = new Stage();

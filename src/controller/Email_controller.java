@@ -13,29 +13,12 @@ public class Email_controller {
 
 	private Email_dao email_d;
 	private Email_entity email_e;
-	private int id_caritas;
-	private int id_utente;
+
 	
-    @FXML
-    private TextArea messaggio;
-
-    @FXML
-    private TextField oggetto;
-
-    @FXML
-    private TextField destinatario;
-
-    @FXML
-    private TextField mittente;
-
-    @FXML
-    private Button invia;
-
-    @FXML
-    public int send_message(ActionEvent event) {
+    public int send_message_controller(String mit, String dest, String mess, String ogg) {
     	
     	int i=0;
-    	email_e = new Email_entity(destinatario.getText(), destinatario.getText(), messaggio.getText(), oggetto.getText());
+    	email_e = new Email_entity(mit, dest, mess, ogg);
 
     	email_d = new Email_dao();
     	i = email_d.invia_email(email_e);

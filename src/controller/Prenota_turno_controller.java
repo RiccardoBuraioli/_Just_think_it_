@@ -24,11 +24,9 @@ public class Prenota_turno_controller {
 	
 	private String[] giorni;
 	
-	private Orario[] ora;
 
 	private Prenota_dao check_turni_possibili;
 	
-	private TextField textFields[];
 	
 	private partecipa_turno partecipazione;
 	
@@ -66,7 +64,9 @@ public class Prenota_turno_controller {
 
     
     
-    public Prenota_turno_controller() {}
+    public Prenota_turno_controller() {
+    	
+    }
 
 
 
@@ -126,8 +126,6 @@ public boolean checker() {
     void initialize() {
     	this.giorni = new String[8];
 	
-    	
-    	int a = 0;
     	check_turni_possibili = new Prenota_dao();
     	giorni = check_turni_possibili.visualizza_giorni();
    

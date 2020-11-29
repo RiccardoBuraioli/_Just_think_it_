@@ -27,6 +27,8 @@ package controller;
 	import com.sothawo.mapjfx.event.MarkerEvent;
 	import com.sothawo.mapjfx.offline.OfflineCache;
 
+import bean.BachecaBoundary;
+import bean.DonationBoundary;
 //import connector.Connector;
 import dao.Cerca_caritas_dao;
 import dao.CoordinateDao;
@@ -85,10 +87,9 @@ import java.sql.SQLException;
 		private int idUtente;
 		private int idCaritas;
 		private int idEvento;
-		private Donation_controller donationController;
 		private Prenota_turno_controller prenotaController;
 		private Partecipa_evento_controller partecipaEvent;
-		private Bacheca_Controller bacheca;
+		private BachecaBoundary bacheca;
 		private int countCaritas;
 		private int countEvent;
 		private int countDonation;
@@ -334,7 +335,7 @@ import java.sql.SQLException;
 	    		
 	    		 bacheca = fxmlLoader.getController();
 	
-	    		 bacheca.loadForm(id_car, idUtente);
+	    		 bacheca.loadFormBoundary(id_car, idUtente);
 	    		 
 	    		stage.show();
 	    		
@@ -355,11 +356,14 @@ import java.sql.SQLException;
     	        FXMLLoader fxmlLoader = new FXMLLoader();
     	        Parent rootNode = fxmlLoader.load(getClass().getResourceAsStream("/boundary/Donation.fxml"));
     	       
-    	        donationController = fxmlLoader.getController();
+    	       // donationController = fxmlLoader.getController();
+    	        DonationBoundary donationBoundary = fxmlLoader.getController();
     	        
     	        Stage stage = new Stage();
 	    		stage.setTitle("Donazione");
-	    		donationController.setData(id_car, id_ut);
+	    		
+	    		donationBoundary.initBoundary(id_car, id_ut);
+	    		
 	    		stage.setScene(new Scene(rootNode, 800, 500));
 	    		stage.setResizable(false);
 	    		stage.show();

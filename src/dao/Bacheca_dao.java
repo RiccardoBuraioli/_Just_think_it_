@@ -1,6 +1,6 @@
 package dao;
 
-import controller.Connector;
+import connector.Connector;
 import entity.Necessità;
 import entity.Orario;
 
@@ -18,6 +18,7 @@ public class Bacheca_dao {
 	List<Necessità> necessità;
 	
 	public Bacheca_dao() {
+		
 		
     	connector = new Connector("jdbc:mysql://127.0.0.1:3306/Justthinkit", "root", "password");
     	necessità = new ArrayList();
@@ -49,13 +50,7 @@ public class Bacheca_dao {
 	           }
 	       }
 		
-		
-		
-		
-		
-		
-		
-		return necessità;
+	return necessità;
 		
 		
 		

@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ch.qos.logback.classic.Logger;
-import controller.Connector;
+import connector.Connector;
 import entity.partecipa_turno;
 import entity.Orario;
 import entity.Turno;

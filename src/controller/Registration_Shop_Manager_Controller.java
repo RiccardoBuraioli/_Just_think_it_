@@ -78,6 +78,11 @@ public class Registration_Shop_Manager_Controller implements Initializable {
     @FXML
     private PasswordField confermaPassNeg;
     
+    
+    public Registration_Shop_Manager_Controller() {
+    	
+    }
+    
 
   
     @FXML

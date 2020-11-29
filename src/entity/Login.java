@@ -9,18 +9,7 @@ import java.sql.*;
 
 public class Login {
 
-    
-    public int tableUser;
-
-    
-    public int getTableUser() {
-        return this.tableUser;
-    }
- 
-    public void setTableUser(int num) {
-        this.tableUser = num;
-    }
-
+   
     
    // login_dao login = new login_dao();
     

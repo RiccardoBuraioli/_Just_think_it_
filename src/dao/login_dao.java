@@ -5,7 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import controller.Connector;
+import connector.Connector;
 
 public class Login_dao {
 	final Connector connector;

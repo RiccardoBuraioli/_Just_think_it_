@@ -18,22 +18,32 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import javafx.stage.Window;
 
-public class Login_Controller {
-	private Login_dao login;
-	private VolunteerRepository vrep;
+public class Login_Controller2 {
 	
-	public Login_Controller() {
-		this.login = new Login_dao();
-		this.vrep = new VolunteerRepository();
+	
+	public Login_Controller2() {
+		
 	}
 	
-   public void LoginAccess(Window window, String user, String pass) {
+	@FXML
+    private TextField usernameField;
+
+    @FXML
+    private TextField passwordField;
+
+    @FXML
+    private Button loginButton;
+
+    @FXML
+    private Button registerButton;
+    
+    @FXML
+    void loginPressed(ActionEvent event) {
     	
     
-    	
-    	String loginResult = login.checkLogin(user,pass);
+    	Login_dao login = new Login_dao();
+    	String loginResult = login.checkLogin(usernameField.getText(), passwordField.getText());
     	if (loginResult!= null) {
     		
     		//OK MANDA ALLA HOME CORRETTA
@@ -43,9 +53,9 @@ public class Login_Controller {
     		//Volontario
     		if (login.getTableUser().equals("Volontario") == true) {
     			
-    		
+    			VolunteerRepository vrep = new VolunteerRepository();
     			
-    			int userID = login.returnID(user, 1);
+    			int userID = login.returnID(usernameField.getText(), 1);
     			System.out.println(userID);
     			if (userID == -1) {
     				System.out.println("Errore nel ritornare l'ID");
@@ -61,7 +71,7 @@ public class Login_Controller {
         			User_Home_Controller userHomeController = loader.getController();
         			userHomeController.initData(loggedUser);
         			userHomeController.setIdUtente(userID);
-        			Stage home = (Stage) window.getScene().getWindow();
+        			Stage home = (Stage) loginButton.getScene().getWindow();
         			home.setScene(new Scene(root, 800, 600));
         			
         			home.show();
@@ -75,7 +85,7 @@ public class Login_Controller {
     			
     			ShopRepository srep = new ShopRepository(); 
 
-    			int userID = login.returnID(user, 1);
+    			int userID = login.returnID(usernameField.getText(), 1);
     			System.out.println(userID);
     			if (userID == -1) {
     				System.out.println("Errore nel ritornare l'ID");
@@ -89,7 +99,7 @@ public class Login_Controller {
         			Parent root = loader.load();
         			Shop_home_controller ShopHomeController = loader.getController();
         			ShopHomeController.initData(loggedShop);
-        			Stage home = (Stage) window.getScene().getWindow();
+        			Stage home = (Stage) loginButton.getScene().getWindow();
         			home.setScene(new Scene(root, 800, 600));
         			
         			home.show();
@@ -103,7 +113,7 @@ public class Login_Controller {
     		else if (login.getTableUser().equals("Caritas") == true) {
      			CaritasRepository srep = new CaritasRepository(); 
 
-    			int userID = login.returnID(user, 1);
+    			int userID = login.returnID(usernameField.getText(), 1);
     			System.out.println(userID);
     			if (userID == -1) {
     				System.out.println("Errore nel ritornare l'ID");
@@ -117,7 +127,7 @@ public class Login_Controller {
         			Parent root = loader.load();
         			Caritas_home_controller CaritasHomeController = loader.getController();
         			CaritasHomeController.initData(loggedShop);
-        			Stage home = (Stage) window.getScene().getWindow();
+        			Stage home = (Stage) loginButton.getScene().getWindow();
         			home.setScene(new Scene(root, 800, 600));
         			
         			home.show();
@@ -137,12 +147,12 @@ public class Login_Controller {
     	}
     }
 
-  
-    public void registrazionePressed(Window window) {
+    @FXML
+    void registrazionePressed(ActionEvent event) {
     	
     	try {
 			Parent root = FXMLLoader.load(getClass().getResource("/boundary/RegistrazioneMenu.fxml"));
-			Stage signUp = (Stage) window.getScene().getWindow();
+			Stage signUp = (Stage) loginButton.getScene().getWindow();
 			Scene scene = new Scene(root,600,400);
 			signUp.setScene(scene);
 			signUp.show();
@@ -158,5 +168,4 @@ public class Login_Controller {
 		
 	}
 
-	
 }

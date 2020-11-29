@@ -1,6 +1,16 @@
 package entity;
 
 public class Email_entity {
+	private int id_email;
+	public int getId_email() {
+		return id_email;
+	}
+
+	public void setId_email(int id_email) {
+		this.id_email = id_email;
+	}
+
+
 	private String email_mittente;
 	private String email_destinatario;
 	private String messaggio;
@@ -12,25 +22,32 @@ public class Email_entity {
 		this.email_destinatario = id_u;
 		this.messaggio = mes;
 		this.oggetto = ogg;
+		this.id_email = 0;
+	}
+	
+	public Email_entity(int id_email, String messaggio, String oggetto) {
+		this.id_email = id_email;
+		this.messaggio = messaggio;
+		this.oggetto = oggetto;
 	}
 
 
-	public String getId_caritas() {
+	public String getId_mittente() {
 		return email_mittente;
 	}
 
 
-	public void setId_caritas(String id_caritas) {
+	public void setId_mittente(String id_caritas) {
 		this.email_mittente = id_caritas;
 	}
 
 
-	public String getId_utente() {
+	public String getId_destinatario() {
 		return email_destinatario;
 	}
 
 
-	public void setId_utente(String id_utente) {
+	public void setId_destinatario(String id_utente) {
 		this.email_destinatario = id_utente;
 	}
 

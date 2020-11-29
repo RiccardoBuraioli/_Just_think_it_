@@ -2,7 +2,7 @@ package dao;
 
 import java.util.*;
 
-import controller.Connector;
+import connector.Connector;
 import entity.CaritasUser;
 import java.sql.*;
 

@@ -33,6 +33,11 @@ public class Registrazione_Menu_Controller {
     @FXML
     private Button dettagliNegozio;
 
+    
+    public Registrazione_Menu_Controller() {
+    	
+    }
+    
 
     @FXML
     void caritasButtonPressed(ActionEvent event) {

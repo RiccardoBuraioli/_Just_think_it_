@@ -83,6 +83,14 @@ public class Registrazione_Caritas_Controller implements Initializable{
 
     @FXML
     private PasswordField confermaPassCaritas;
+    
+    
+    public Registrazione_Caritas_Controller() {
+    	
+    }
+    
+    
+    
 
     @FXML
     void backButtonPressed(ActionEvent event) {

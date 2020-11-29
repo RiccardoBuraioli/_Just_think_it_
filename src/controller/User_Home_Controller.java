@@ -55,6 +55,11 @@ public class User_Home_Controller extends Application implements Initializable{
 	}
 	
 	
+	
+	public User_Home_Controller() {
+		
+	}
+	
 	@FXML
     private Text nomeCognome;
 	

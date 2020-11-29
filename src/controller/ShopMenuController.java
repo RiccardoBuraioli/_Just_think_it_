@@ -32,6 +32,8 @@ public class ShopMenuController {
 
     @FXML
     private Button Indietro;
+    
+
 
     @FXML
     void CercaCaritas(ActionEvent event) {

@@ -134,6 +134,11 @@ public class Caritas_home_controller {
 	        // handle the event here
 	    }
 
+	    
+	    
+	    public Caritas_home_controller() {
+	    	
+	    }
 
 
 	private Image img1 = new Image("file:/C:/Users/PRX/Desktop/TZEDAKAH/DragoInizio/DragoForestain.PNG");

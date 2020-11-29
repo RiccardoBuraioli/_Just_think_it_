@@ -47,6 +47,11 @@ public class Shop_home_controller implements Initializable {
 		}
 	 
 
+	public Shop_home_controller() {
+		
+	}
+		
+		
     @FXML
     private ResourceBundle resources;
 

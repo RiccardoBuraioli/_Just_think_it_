@@ -4,7 +4,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import controller.Connector;
+import connector.Connector;
 import entity.ShopUser;
 
 public class ShopRepository {

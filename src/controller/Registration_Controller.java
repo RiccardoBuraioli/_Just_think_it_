@@ -20,6 +20,12 @@ public class Registration_Controller {
 	
 	private Login_Controller loginController;
 	
+	
+	public Registration_Controller() {
+		
+	}
+	
+	
 	public Registration_Controller(Login_Controller loginController) {
 		this.loginController = loginController;
 		primary = new Stage();

@@ -19,6 +19,13 @@ public class Details_Page_Controller implements Initializable {
     @FXML
     private Button backButtonDettagli;
 
+    
+    public Details_Page_Controller() {
+    	
+    }
+    
+    
+    
     @FXML
     void backButtonDettagliPressed(ActionEvent event) {
     	

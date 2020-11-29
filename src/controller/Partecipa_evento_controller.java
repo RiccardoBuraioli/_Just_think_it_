@@ -40,6 +40,12 @@ public class Partecipa_evento_controller {
     @FXML
     private Button indietro;
 
+    
+    public Partecipa_evento_controller() {
+    	
+    }
+    
+    
     @FXML
     void indietro(ActionEvent event) {
 
