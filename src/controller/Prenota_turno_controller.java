@@ -1,6 +1,5 @@
 package controller;
 
-
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -21,146 +20,65 @@ public class Prenota_turno_controller {
 	private int id_utente;
 
 	private int id_caritas;
-	
+
 	private String[] giorni;
-	
+
+	private Turno turno;
 
 	private Prenota_dao check_turni_possibili;
-	
-	
+
 	private partecipa_turno partecipazione;
-	
-    @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
-
-    @FXML
-    private ChoiceBox<String> Turni;
-
-    @FXML
-    private ChoiceBox<String> cb_ora_inizio;
-
-    @FXML
-    private ChoiceBox<String> cb_ora_fine;
-
-    @FXML
-    private TextField CV;
-
-    @FXML
-    private Button indietro;
-
-    @FXML
-    private Button prenota;
 
 	private List<Orario> oraArrayList;
 
+	
+	public void indietro(ActionEvent event) {
 
-    @FXML
-    void indietro(ActionEvent event) {
+	}
 
-    }
+	public Prenota_turno_controller() {
 
-    
-    
-    public Prenota_turno_controller() {
-    	
-    }
+	}
 
-
-
-
-
-
-
-
-public boolean checker() {
-    	
-    	 
-		//Controlla che non ci siano campi lasciati vuoti
-    	
-			if (CV.getText().isEmpty()) {
-				
-				return false;
-			}
-		return true;
-    	
-  }
-    
-    
-    
-    
-    @FXML
-    boolean prenota_turno(ActionEvent event) {
+	public boolean prenota_turno(String giorno, String ora_in, String ora_fin, String cv) {
 		boolean error;
-
-		error = checker();
 
 		int id_turno = 0;
 
-		Turno turno = new Turno(Turni.getValue().toString(), cb_ora_inizio.getValue().toString(), cb_ora_fine.getValue().toString());
-		
+		turno = new Turno(giorno ,ora_in, ora_fin);
+
 		id_turno = check_turni_possibili.trova_turno(turno);
 
-		partecipazione = new partecipa_turno(id_utente, id_turno, id_caritas, CV.getText());
+		partecipazione = new partecipa_turno(id_utente, id_turno, id_caritas, cv);
 
 		error = check_turni_possibili.partecipazione_turno(partecipazione);
 
-		
-		
-		
 		return error;
 
-    }
-    
-    
-    
-  public void setData(int id_car, int id_ute) {
-  	this.id_caritas = id_car;
-  	this.id_utente = id_ute;
-  }
-  
-
-    @FXML
-    void initialize() {
-    	this.giorni = new String[8];
+	}
 	
-    	check_turni_possibili = new Prenota_dao();
-    	giorni = check_turni_possibili.visualizza_giorni();
-   
-    	
-    	for(int i=0; i<8; i++) {
-    		Turni.getItems().add(giorni[i]);
-    	}
-    	
-    	
-    	oraArrayList = check_turni_possibili.visualizza_orario2();
-    	//ora = (Orario[]) oraArrayList.toArray();
-    	
-    	int i = 0;
-    	while(i<oraArrayList.size()) {
-    
-	    	cb_ora_inizio.getItems().add(oraArrayList.get(i).getOra_fine());
-	    	
-	    	cb_ora_fine.getItems().add(oraArrayList.get(i).getOra_inizio());
-	    	
-	    	i++;
-	    	
-    	}
-    	
-    	
-    	
-      /*  assert Turni != null : "fx:id=\"Turni\" was not injected: check your FXML file 'Prenota_turno_volontariato.fxml'.";
-        assert ora_inizio != null : "fx:id=\"ora_inizio\" was not injected: check your FXML file 'Prenota_turno_volontariato.fxml'.";
-        assert ora_fine != null : "fx:id=\"ora_fine\" was not injected: check your FXML file 'Prenota_turno_volontariato.fxml'.";
-        assert CV != null : "fx:id=\"CV\" was not injected: check your FXML file 'Prenota_turno_volontariato.fxml'.";
-        assert indietro != null : "fx:id=\"indietro\" was not injected: check your FXML file 'Prenota_turno_volontariato.fxml'.";
-        assert prenota != null : "fx:id=\"prenota\" was not injected: check your FXML file 'Prenota_turno_volontariato.fxml'.";
-*/
-    }
+	
+
+	public void setData_controller(int id_car, int id_ute) {
+		this.id_caritas = id_car;
+		this.id_utente = id_ute;
+	}
+
+	public String[] inizializza_giorni() {
+		this.giorni = new String[8];
+
+		check_turni_possibili = new Prenota_dao();
+		giorni = check_turni_possibili.visualizza_giorni();
+		return giorni;
+	}
+
+	
+	public  List<Orario> initializza_orari() {
+		
+		oraArrayList = check_turni_possibili.visualizza_orario2();
+		
+		return oraArrayList;
+		// ora = (Orario[]) oraArrayList.toArray();
+
+	}
 }
-
-
-
-

@@ -9,29 +9,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 
 public class Registrazione_Menu_Controller {
-	
-	@FXML
-    private Button caritasButton;
-
-    @FXML
-    private Button volontarioButton;
-
-    @FXML
-    private Button negozioButton;
-    
-    @FXML
-	private Button backButton;
-    
-    @FXML
-    private Button dettagliCaritas;
-
-    @FXML
-    private Button dettagliVolontario;
-
-    @FXML
-    private Button dettagliNegozio;
 
     
     public Registrazione_Menu_Controller() {
@@ -39,12 +19,12 @@ public class Registrazione_Menu_Controller {
     }
     
 
-    @FXML
-    void caritasButtonPressed(ActionEvent event) {
+ 
+   public void caritasButtonPressed(Window window) {
     	
 	    try {
 			Parent root = FXMLLoader.load(getClass().getResource("/boundary/RegistrazioneCaritas.fxml"));
-			Stage signUp = (Stage) caritasButton.getScene().getWindow();
+			Stage signUp = (Stage) window.getScene().getWindow();
 			Scene scene = new Scene(root,600,450);
 			signUp.setScene(scene);
 			signUp.show();
@@ -55,12 +35,12 @@ public class Registrazione_Menu_Controller {
 
     }
 
-    @FXML
-    void negozioButtonPressed(ActionEvent event) {
+    
+   public void negozioButtonPressed(Window window) {
     	
 	    try {
 			Parent root = FXMLLoader.load(getClass().getResource("/boundary/RegistrazioneShopManager.fxml"));
-			Stage signUp = (Stage) negozioButton.getScene().getWindow();
+			Stage signUp = (Stage) window.getScene().getWindow();
 			Scene scene = new Scene(root,600,450);
 			signUp.setScene(scene);
 			signUp.show();
@@ -71,12 +51,12 @@ public class Registrazione_Menu_Controller {
 
     }
 
-    @FXML
-    void volontarioButtonPressed(ActionEvent event) {
+   
+    public void volontarioButtonPressed(Window window) {
     	
 	    try {
 			Parent root = FXMLLoader.load(getClass().getResource("/boundary/RegistrazioneVolontario.fxml"));
-			Stage signUp = (Stage) volontarioButton.getScene().getWindow();
+			Stage signUp = (Stage) window.getScene().getWindow();
 			Scene scene = new Scene(root,600,450);
 			signUp.setScene(scene);
 			signUp.show();
@@ -88,14 +68,13 @@ public class Registrazione_Menu_Controller {
     }
 	
 		
-		
-	@FXML
-	void backButtonPressed(ActionEvent event) {
+	
+	public void backButtonPressed(Window window) {
 		
 	    try {
-			Parent root = FXMLLoader.load(getClass().getResource("/buondary/Login_boundary.fxml"));
-			Stage signUp = (Stage) negozioButton.getScene().getWindow();
-			Scene scene = new Scene(root,600,385);
+			Parent root = FXMLLoader.load(getClass().getResource("../boundary/Login_boundary.fxml"));
+			Stage signUp = (Stage) window.getScene().getWindow();
+			Scene scene = new Scene(root,600,380);
 			signUp.setScene(scene);
 			signUp.show();
 			signUp.setResizable(false);
@@ -105,12 +84,12 @@ public class Registrazione_Menu_Controller {
 
 	}
 	
-	@FXML
-    void dettagliCaritasPressed(ActionEvent event) {
+	
+    public void dettagliCaritasPressed(Window window) {
 		
 	    try {
 			Parent root = FXMLLoader.load(getClass().getResource("/buondary/Details.fxml"));
-			Stage signUp = (Stage) backButton.getScene().getWindow();
+			Stage signUp = (Stage) window.getScene().getWindow();
 			Scene scene = new Scene(root,600,400);
 			signUp.setScene(scene);
 			signUp.show();
@@ -121,12 +100,12 @@ public class Registrazione_Menu_Controller {
 
     }
 
-    @FXML
-    void dettagliNegozioPressed(ActionEvent event) {
+    
+    public void dettagliNegozioPressed(Window window) {
     	
 	    try {
 			Parent root = FXMLLoader.load(getClass().getResource("/boundary/Details.fxml"));
-			Stage signUp = (Stage) backButton.getScene().getWindow();
+			Stage signUp = (Stage) window.getScene().getWindow();
 			Scene scene = new Scene(root,600,400);
 			signUp.setScene(scene);
 			signUp.show();
@@ -137,12 +116,12 @@ public class Registrazione_Menu_Controller {
 
     }
 
-    @FXML
-    void dettagliVolontarioPressed(ActionEvent event) {
+   
+    public void dettagliVolontarioPressed(Window window) {
     	
 	    try {
 			Parent root = FXMLLoader.load(getClass().getResource("/boundary/Details.fxml"));
-			Stage signUp = (Stage) backButton.getScene().getWindow();
+			Stage signUp = (Stage) window.getScene().getWindow();
 			Scene scene = new Scene(root,600,400);
 			signUp.setScene(scene);
 			signUp.show();

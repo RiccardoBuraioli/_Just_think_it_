@@ -12,13 +12,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 
-public class Details_Page_Controller implements Initializable {
+public class Details_Page_Controller {
 	
-
-    @FXML
-    private Button backButtonDettagli;
-
     
     public Details_Page_Controller() {
     	
@@ -26,12 +23,12 @@ public class Details_Page_Controller implements Initializable {
     
     
     
-    @FXML
-    void backButtonDettagliPressed(ActionEvent event) {
+  
+    public void backButtonDettagliPressed_c(Window window) {
     	
 	    try {
 			Parent root = FXMLLoader.load(getClass().getResource("/boundary/RegistrazioneMenu.fxml"));
-			Stage signUp = (Stage) backButtonDettagli.getScene().getWindow();
+			Stage signUp = (Stage) window.getScene().getWindow();
 			Scene scene = new Scene(root,600,400);
 			signUp.setScene(scene);
 			signUp.show();
@@ -42,10 +39,5 @@ public class Details_Page_Controller implements Initializable {
 
     }
 
-	@Override
-	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
-		
-	}
 
 }

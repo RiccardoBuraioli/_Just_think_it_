@@ -1,15 +1,12 @@
 package controller;
-import entity.VolunteerUser;
+
 import entity.partecipa_evento;
-import entity.Donazione;
-import entity.ShopUser;
+
 
 import java.net.URL;
 import java.util.ResourceBundle;
-
-import dao.Donation_dao;
+import bean.Partecipa_eventoBoundary;
 import dao.Evento_dao;
-import dao.Prenota_dao;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -17,8 +14,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 
 public class Partecipa_evento_controller {
-	TextField[] textFields;
-	partecipa_evento partecipaz;
+	
+	private partecipa_evento partecipaz;
+	private Partecipa_eventoBoundary parte_b;
 	
 	
     @FXML
@@ -46,38 +44,17 @@ public class Partecipa_evento_controller {
     }
     
     
-    @FXML
-    void indietro(ActionEvent event) {
+   
+    public void indietro(ActionEvent event) {
 
     }
     
-    
-  public int checker() {
-    	
-    	//Controlla che non ci siano campi lasciati vuoti
-    	for (int i = 0; i < textFields.length; i++) {
-			if (textFields[i].getText().isEmpty()) {
-				
-				return -1;
-			}
-	
-		}
-		return 0;
-    	
-  }
 
+    public int partecipa_evento(float importo) {
+    	
+    	int error = 0;
 
-    @FXML
-    int partecipa_evento(ActionEvent event) {
-    	
-	int error;
-    	
-    	error = checker();
-    	float f = Float.parseFloat(importo.getText());
-    	
-    	
-    	
-    	partecipaz.setImport(f);
+    	partecipaz.setImport(importo);
     	
     	Evento_dao partecipazione = new Evento_dao();
     	partecipazione.Crea_partecipazione(partecipaz);
@@ -86,28 +63,19 @@ public class Partecipa_evento_controller {
     	return error;
 
     }
-
-
     
     
-    public void setData(int id_evento, int id_volontario) {
-    	 partecipaz =  new partecipa_evento(id_evento,id_volontario);
+    public void setData_controller() {
+    	parte_b = new Partecipa_eventoBoundary();
+    	partecipaz =  new partecipa_evento(parte_b.getId_evento(),parte_b.getId_utente());
 
     	
-    }
-    
-    
-    
- 
 
+   }
 
-	public void initialize(URL location, ResourceBundle resources) {
-		
-		
-		textFields = new TextField[] {importo, cdc};
-		
-		
-	}
+    
+   
+    
     
     
     

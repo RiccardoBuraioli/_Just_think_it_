@@ -8,7 +8,7 @@ import javafx.scene.control.TextField;
 
 public class LoginBoundary {
 
-	private Login_Controller login_c;
+	private Login_Controller login_c = new Login_Controller();
 	
 	@FXML
     private TextField usernameField;
@@ -24,7 +24,7 @@ public class LoginBoundary {
     
     @FXML
     void loginPressed(ActionEvent event) {
-    	login_c = new Login_Controller();
+    
     	login_c.LoginAccess(loginButton.getScene().getWindow(), usernameField.getText(), passwordField.getText());
     	
     	
@@ -33,12 +33,10 @@ public class LoginBoundary {
     
     @FXML
     void registrazionePressed(ActionEvent event) {
+    	
     	login_c.registrazionePressed(registerButton.getScene().getWindow());
     	
     }
 	
-	@FXML
-	void inizialize() {
-		login_c = new Login_Controller();
-	}
+
 }

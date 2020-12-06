@@ -2,6 +2,9 @@ package controller;
 
 import java.io.IOException;
 
+import bean.Caritas_Home_Boundary;
+import bean.Shop_Home_Boundary;
+import bean.User_Home_Boundary;
 import dao.CaritasRepository;
 import dao.ShopRepository;
 import dao.VolunteerRepository;
@@ -58,9 +61,9 @@ public class Login_Controller {
     			try {
         			FXMLLoader loader = new FXMLLoader(getClass().getResource("/boundary/UserHomePage.fxml"));
         			Parent root = loader.load();
-        			User_Home_Controller userHomeController = loader.getController();
-        			userHomeController.initData(loggedUser);
-        			userHomeController.setIdUtente(userID);
+        			User_Home_Boundary userHomeBoundary = loader.getController();
+        			userHomeBoundary.initData(loggedUser);
+        			userHomeBoundary.setIdUtente(userID);
         			Stage home = (Stage) window.getScene().getWindow();
         			home.setScene(new Scene(root, 800, 600));
         			
@@ -87,8 +90,8 @@ public class Login_Controller {
     			try {
         			FXMLLoader loader = new FXMLLoader(getClass().getResource("/boundary/ShopHomePage.fxml"));
         			Parent root = loader.load();
-        			Shop_home_controller ShopHomeController = loader.getController();
-        			ShopHomeController.initData(loggedShop);
+        			Shop_Home_Boundary ShopHomeBoundary = loader.getController();
+        			ShopHomeBoundary.initData(loggedShop);
         			Stage home = (Stage) window.getScene().getWindow();
         			home.setScene(new Scene(root, 800, 600));
         			
@@ -115,7 +118,7 @@ public class Login_Controller {
     			try {
         			FXMLLoader loader = new FXMLLoader(getClass().getResource("/boundary/CaritasHomePage.fxml"));
         			Parent root = loader.load();
-        			Caritas_home_controller CaritasHomeController = loader.getController();
+        			Caritas_Home_Boundary CaritasHomeController = loader.getController();
         			CaritasHomeController.initData(loggedShop);
         			Stage home = (Stage) window.getScene().getWindow();
         			home.setScene(new Scene(root, 800, 600));

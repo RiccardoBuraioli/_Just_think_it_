@@ -2,6 +2,7 @@ package controller;
 
 import java.io.IOException;
 
+import bean.User_Home_Boundary;
 import entity.VolunteerUser;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,8 +15,8 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class Profile_Controller {
-	
-	VolunteerUser currentUser;
+	private User_Home_Boundary userHomeBoundary;
+	private VolunteerUser currentUser;
 
     public VolunteerUser getCurrentUser() {
 		return currentUser;
@@ -52,14 +53,19 @@ public class Profile_Controller {
     @FXML
     private Text telefonoEdit;
 
+    
+    public Profile_Controller() {
+    	userHomeBoundary = new User_Home_Boundary();
+    }
+    
     @FXML
     void backHomeButtonPressed(ActionEvent event) {
     	
     	try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/boundary/UserHomePage.fxml"));
 			Parent root = loader.load();
-			User_Home_Controller userHomeController = loader.getController();
-			userHomeController.initData(currentUser);
+			userHomeBoundary = loader.getController();
+			userHomeBoundary.initData(currentUser);
 			Stage home = (Stage) telefonoEdit.getScene().getWindow();
 			home.setScene(new Scene(root, 800, 600));
 			

@@ -28,12 +28,12 @@ public class EmailBoundary {
 
     @FXML
     public int send_message(ActionEvent event) {
-    	int i;
+    	int i = 0;
     	
-    	i =email_c.send_message_controller(destinatario.getText(), destinatario.getText(), messaggio.getText(), oggetto.getText());
+   	i =email_c.send_message_controller(destinatario.getText(), destinatario.getText(), messaggio.getText(), oggetto.getText());
 
    
-    	return i;
+  	return i;
     	
     }
     
