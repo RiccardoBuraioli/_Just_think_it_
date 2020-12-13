@@ -1,14 +1,21 @@
 package bean;
 
+import java.io.IOException;
+
 import controller.Login_Controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 public class LoginBoundary {
 
 	private Login_Controller login_c = new Login_Controller();
+
 	
 	@FXML
     private TextField usernameField;
@@ -34,7 +41,16 @@ public class LoginBoundary {
     @FXML
     void registrazionePressed(ActionEvent event) {
     	
-    	login_c.registrazionePressed(registerButton.getScene().getWindow());
+     	try {
+			Parent root = FXMLLoader.load(getClass().getResource("/boundary/RegistrazioneMenu.fxml"));
+			Stage signUp = (Stage) registerButton.getScene().getWindow();
+			Scene scene = new Scene(root,600,400);
+			signUp.setScene(scene);
+			signUp.show();
+			signUp.setResizable(false);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
     	
     }
 	

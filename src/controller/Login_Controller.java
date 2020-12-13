@@ -39,10 +39,11 @@ public class Login_Controller {
     	String loginResult = login.checkLogin(user,pass);
     	if (loginResult!= null) {
     		
+    		
     		//OK MANDA ALLA HOME CORRETTA
     		System.out.println("Login succesfull");
     		System.out.println(login.getTableUser());
-    		
+    	
     		//Volontario
     		if (login.getTableUser().equals("Volontario") == true) {
     			
@@ -57,13 +58,11 @@ public class Login_Controller {
     			VolunteerUser loggedUser = vrep.getVolunteerByID(userID);
     			System.out.println(loggedUser.getCognome());
     			
-    			//Manda alla home user
     			try {
         			FXMLLoader loader = new FXMLLoader(getClass().getResource("/boundary/UserHomePage.fxml"));
         			Parent root = loader.load();
-        			User_Home_Boundary userHomeBoundary = loader.getController();
-        			userHomeBoundary.initData(loggedUser);
-        			userHomeBoundary.setIdUtente(userID);
+        			User_Home_Boundary UserHomeBoundary = loader.getController();
+        			UserHomeBoundary.initData(loggedUser);
         			Stage home = (Stage) window.getScene().getWindow();
         			home.setScene(new Scene(root, 800, 600));
         			
@@ -71,6 +70,8 @@ public class Login_Controller {
         		} catch (IOException e) {
         			e.printStackTrace();
         		}
+    			//Manda alla home user
+    	
     		}
     		
     		//Caritas

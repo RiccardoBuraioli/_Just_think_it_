@@ -1,9 +1,15 @@
 package bean;
 
+import java.io.IOException;
+
 import controller.Registrazione_Menu_Controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.stage.Stage;
 
 public class Registrazione_menu_Boundary {
 	
@@ -33,37 +39,105 @@ public class Registrazione_menu_Boundary {
 
     @FXML
     void backButtonPressed(ActionEvent event) {
-    	reg.backButtonPressed(backButton.getScene().getWindow());
+    	
+	    try {
+			Parent root = FXMLLoader.load(getClass().getResource("../boundary/Login_boundary.fxml"));
+			Stage signUp = (Stage) backButton.getScene().getWindow();
+			Scene scene = new Scene(root,600,380);
+			signUp.setScene(scene);
+			signUp.show();
+			signUp.setResizable(false);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
     }
 
     @FXML
     void caritasButtonPressed(ActionEvent event) {
-    	reg.caritasButtonPressed(caritasButton.getScene().getWindow());
-    }
+    	
+	    try {
+			Parent root = FXMLLoader.load(getClass().getResource("/boundary/RegistrazioneCaritas.fxml"));
+			Stage signUp = (Stage) caritasButton.getScene().getWindow();
+			Scene scene = new Scene(root,600,450);
+			signUp.setScene(scene);
+			signUp.show();
+			signUp.setResizable(false);
+		} catch (IOException e) {
+			e.printStackTrace();
+			}
+    	
+	    }
 
     @FXML
     void dettagliCaritasPressed(ActionEvent event) {
-    	reg.dettagliCaritasPressed(dettagliCaritas.getScene().getWindow());
-    }
+    	   try {
+   			Parent root = FXMLLoader.load(getClass().getResource("/buondary/Details.fxml"));
+   			Stage signUp = (Stage) caritasButton.getScene().getWindow();
+   			Scene scene = new Scene(root,600,400);
+   			signUp.setScene(scene);
+   			signUp.show();
+   			signUp.setResizable(false);
+   			} catch (IOException e) {
+   				e.printStackTrace();
+   				}     
+    	}
 
     @FXML
     void dettagliNegozioPressed(ActionEvent event) {
-    	reg.dettagliNegozioPressed(dettagliNegozio.getScene().getWindow());
+        try {
+    			Parent root = FXMLLoader.load(getClass().getResource("/boundary/Details.fxml"));
+    			Stage signUp = (Stage) dettagliNegozio.getScene().getWindow();
+    			Scene scene = new Scene(root,600,400);
+    			signUp.setScene(scene);
+    			signUp.show();
+    			signUp.setResizable(false);
+    		} catch (IOException e) {
+    			e.printStackTrace();
+    		}
     }
 
     @FXML
     void dettagliVolontarioPressed(ActionEvent event) {
-    	reg.dettagliVolontarioPressed(dettagliVolontario.getScene().getWindow());
+    	  try {
+  			Parent root = FXMLLoader.load(getClass().getResource("/boundary/Details.fxml"));
+  			Stage signUp = (Stage) dettagliVolontario.getScene().getWindow();
+  			Scene scene = new Scene(root,600,400);
+  			signUp.setScene(scene);
+  			signUp.show();
+  			signUp.setResizable(false);
+  		} catch (IOException e) {
+  			e.printStackTrace();
+  		}
+
+      
     }
 
     @FXML
     void negozioButtonPressed(ActionEvent event) {
-    	reg.negozioButtonPressed(negozioButton.getScene().getWindow());
+    	  try {
+  			Parent root = FXMLLoader.load(getClass().getResource("/boundary/RegistrazioneShopManager.fxml"));
+  			Stage signUp = (Stage) negozioButton.getScene().getWindow();
+  			Scene scene = new Scene(root,600,450);
+  			signUp.setScene(scene);
+  			signUp.show();
+  			signUp.setResizable(false);
+  		} catch (IOException e) {
+  			e.printStackTrace();
+  		}
     }
 
     @FXML
     void volontarioButtonPressed(ActionEvent event) {
-    	reg.volontarioButtonPressed(volontarioButton.getScene().getWindow());
+    	 try {
+ 			Parent root = FXMLLoader.load(getClass().getResource("/boundary/RegistrazioneVolontario.fxml"));
+ 			Stage signUp = (Stage) volontarioButton.getScene().getWindow();
+ 			Scene scene = new Scene(root,600,450);
+ 			signUp.setScene(scene);
+ 			signUp.show();
+ 			signUp.setResizable(false);
+ 		} catch (IOException e) {
+ 			e.printStackTrace();
+ 		}
     }
     
     public Registrazione_menu_Boundary() {

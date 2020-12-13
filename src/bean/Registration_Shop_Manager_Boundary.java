@@ -1,18 +1,24 @@
 package bean;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 import controller.Registration_Shop_Manager_Controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
-public class Registration_Shop_Manager_Boundary {
+public class Registration_Shop_Manager_Boundary implements Initializable{
 
 	private Registration_Shop_Manager_Controller reg;
 	private TextField[] textFields;	
@@ -65,12 +71,23 @@ public class Registration_Shop_Manager_Boundary {
 
     @FXML
     private Text passwordMatch;
+    
+    
 
     @FXML
     void backButtonNegPressed(ActionEvent event) {
     	
-    	
-    	reg.backButtonNegPressed(backButtonNeg.getScene().getWindow());
+    	try {
+			Parent root = FXMLLoader.load(getClass().getResource("/boundary/RegistrazioneMenu.fxml"));
+			Stage signUp = (Stage) backButtonNeg.getScene().getWindow();
+			Scene scene = new Scene(root, 600, 400);
+			signUp.setScene(scene);
+			signUp.show();
+			signUp.setResizable(false);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
     }
 
     @FXML
@@ -78,9 +95,19 @@ public class Registration_Shop_Manager_Boundary {
     	int i = checker();
     	if ( i == -1) {
     		System.out.println("errore fratello");
-    	}else {
-    	reg.registraNegozioPressed(registraNegozio.getScene().getWindow(), tipo , nomeNeg.getText(), passwordNeg.getText(), viaNeg.getText() + " "+civicoNeg.getText() , telNeg.getText(), mailNeg.getText(), cittaResNeg.getText());
-    	
+    	}else if(reg.registraNegozioPressed( tipo , nomeNeg.getText(), passwordNeg.getText(), viaNeg.getText() + " "+civicoNeg.getText() , telNeg.getText(), mailNeg.getText(), cittaResNeg.getText())==0) {
+ 
+    	try {
+    		
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/boundary/ShopHomePage.fxml"));
+			Parent root = loader.load();
+			Stage home = (Stage) registraNegozio.getScene().getWindow();
+			home.setScene(new Scene(root, 800, 600));
+
+			home.show();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
     	}
     }
     
@@ -98,13 +125,13 @@ public class Registration_Shop_Manager_Boundary {
 		//	else if (type.isSelected() || type2.isSelected()) {
 			else if(typeCiboNeg.isSelected()) {
 				 tipo = 1;
-	    		return 0; //Almeno uno dei tipi deve essere selezionato
+	    		 //Almeno uno dei tipi deve essere selezionato
 	    		
 	    		
 			}else if(typeVestNeg.isSelected()) {
 				tipo = 2;
 				
-				return 1; //Almeno uno dei tipi deve essere selezionato
+				 //Almeno uno dei tipi deve essere selezionato
 			}else {
 				passwordMatch.setText("Alcuni campi sono vuoti 2");
 				passwordMatch.setVisible(true);
@@ -128,8 +155,8 @@ public class Registration_Shop_Manager_Boundary {
     	}
     }
     
-
-	public void initialize(URL location, ResourceBundle resources) {
+   @Override
+   public void initialize(URL location, ResourceBundle resources) {
 		
 		passwordMatch.setVisible(false);
 		textFields = new TextField[] {cittaResNeg,viaNeg,civicoNeg,telNeg,nomeNegzio,mailNeg,nomeNeg,cognomeNeg};
