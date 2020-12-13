@@ -1,10 +1,10 @@
 package entity;
 
 public class partecipa_evento {
-	int codice_part;
-	int codice_evento;
-	int codice_volontario;
-	float importo;
+	private int codice_part;
+	private int codice_evento;
+	private int codice_volontario;
+	private float importo;
 	
 	
 	
@@ -24,7 +24,7 @@ public class partecipa_evento {
 		this.codice_volontario = codice_volontario;
 	}
 	
-	
+
 	
 	public int getEvento() {
 		return this.codice_evento;

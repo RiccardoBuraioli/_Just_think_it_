@@ -13,6 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 
 public class Profile_Controller {
 	private User_Home_Boundary userHomeBoundary;
@@ -58,15 +59,15 @@ public class Profile_Controller {
     	userHomeBoundary = new User_Home_Boundary();
     }
     
-    @FXML
-    void backHomeButtonPressed(ActionEvent event) {
+   
+   public void backHomeButtonPressed(Window window) {
     	
     	try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/boundary/UserHomePage.fxml"));
 			Parent root = loader.load();
 			userHomeBoundary = loader.getController();
 			userHomeBoundary.initData(currentUser);
-			Stage home = (Stage) telefonoEdit.getScene().getWindow();
+			Stage home = (Stage) window.getScene().getWindow();
 			home.setScene(new Scene(root, 800, 600));
 			
 			home.show();
@@ -76,17 +77,10 @@ public class Profile_Controller {
 
     }
 
-    @FXML
-    void editButtonPressed(ActionEvent event) {
+    
+   public void editButtonPressed(ActionEvent event) {
 
     }
     
-    public void initData(VolunteerUser user) {
-    	setCurrentUser(user);
-    	emailEdit.setText(user.getEmail());
-    	cittaEdit.setText(user.getIndirizzo());
-    	telefonoEdit.setText(user.getRecapitoTel());
-    	nomeCognomeEdit.setText(user.getNome() + " " + user.getCognome());
-    }
 
 }

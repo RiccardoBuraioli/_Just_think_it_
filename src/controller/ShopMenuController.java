@@ -18,41 +18,40 @@ import javafx.stage.Stage;
 public class ShopMenuController {
 	Stage primary;
 	
-	@FXML
-    private Label NomeLocale;
 
-    @FXML
-    private Button ModificaInformazioni;
-
-    @FXML
-    private Button GestisciEventi;
-
-    @FXML
-    private Button CercaCaritas;
-
-    @FXML
-    private Button Indietro;
-    
-
-
-    @FXML
-    void CercaCaritas(ActionEvent event) {
+   public void CercaCaritas(ActionEvent event) {
     	RicercaCaritasNegozioController Rcnc = new RicercaCaritasNegozioController();
     	Rcnc.showStage();
     }
 
-    @FXML
-    void GestEventi(ActionEvent event) {
+ 
+    public void GestEventi(ActionEvent event) {
+    	
+    	try {
+    		 FXMLLoader loader = new FXMLLoader(getClass().getResource("../boundary/Gestisci_eventi.fxml"));
+
+                // Set this class as the controller
+          
+
+                // Load the scene
+                primary.setScene(new Scene(loader.load()));
+
+                // Setup the window/stage
+                primary.setTitle("Shop Menù");
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+    	
+    }
+
+  
+   public void Indietro(ActionEvent event) {
 
     }
 
-    @FXML
-    void Indietro(ActionEvent event) {
-
-    }
-
-    @FXML
-    void ModInfo(ActionEvent event) {
+   
+   public void ModInfo(ActionEvent event) {
 
     }
 

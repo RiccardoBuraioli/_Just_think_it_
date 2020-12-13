@@ -102,8 +102,20 @@ private VolunteerUser currentUser;
 
     @FXML
     void profileButtonPressed(ActionEvent event) {
-    	
-    	user_c.profileButtonPressed(profileButton.getScene().getWindow());
+    	Profile_Boundary profileController;
+    	try {
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/boundary/UserProfilePage.fxml"));
+			Parent root = loader.load();
+			profileController = loader.getController();
+			profileController.initData(getCurrentUser());
+			
+			Stage home = (Stage) profileButton.getScene().getWindow();
+			home.setScene(new Scene(root, 800, 600));
+			
+			home.show();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
     }
 
     @FXML
@@ -134,7 +146,15 @@ private VolunteerUser currentUser;
 
     	Optional<ButtonType> result = alert.showAndWait();
     	if (result.get() == ButtonType.OK){
-    		user_c.logoutButtonPressed(logoutButton.getScene().getWindow());
+    		try {
+    			FXMLLoader loader = new FXMLLoader(getClass().getResource("/boundary/Login_boundary.fxml"));
+    			Parent root = loader.load();
+    			Stage home = (Stage) logoutButton.getScene().getWindow();
+    			home.setScene(new Scene(root, 600, 385));
+    			home.show();
+    		} catch (IOException e) {
+    			e.printStackTrace();
+    		}
         	
     	} else {
     	    //nothing
@@ -183,11 +203,21 @@ private VolunteerUser currentUser;
     	        }
     	    }
     	}, 0, delay);
+    	
+    	user_c.setCurrentUser(user);
     }
     
     public void creadonazione(ActionEvent event) {
     	
-    	user_c.creadonazione(CreaPacco.getScene().getWindow());
+      	try {
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/boundary/donation.fxml"));
+			Parent root = loader.load();
+			Stage home = (Stage) CreaPacco.getScene().getWindow();
+			home.setScene(new Scene(root,825, 550));
+			home.show();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 
     
     }

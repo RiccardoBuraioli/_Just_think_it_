@@ -14,7 +14,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 
-public class Registrazione_Caritas_Controller implements Initializable {
+public class Registrazione_Caritas_Controller  {
 
 	private Caritas_Home_Boundary CaritasHomeBoundary;
 	private CaritasUser newUser;
@@ -65,10 +65,6 @@ public class Registrazione_Caritas_Controller implements Initializable {
 
 	}
 
-	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
 
-	}
 
 }

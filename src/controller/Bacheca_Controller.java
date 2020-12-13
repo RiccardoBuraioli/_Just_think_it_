@@ -22,71 +22,24 @@ public class Bacheca_Controller  {
 
 	private int id_caritas;
 	private int id_utente;
-	private DonationBoundary donationBoundary;
 	private List<Necessità> necessità;
 	private Bacheca_dao bacheca;
-	private EmailBoundary email_c;
 	
 	private Bacheca_entity bacheca_entity;
 	
 
 	
 	public Bacheca_Controller() {
-		this.email_c = new EmailBoundary();
 	}
 	
 
 	
 	public void crea_donazione() {
-		try {
-
-	        FXMLLoader fxmlLoader = new FXMLLoader();
-	        Parent rootNode = fxmlLoader.load(getClass().getResourceAsStream("/boundary/Donation.fxml"));
-	       
-	        donationBoundary = fxmlLoader.getController();
-	        
-	        Stage stage = new Stage();
-    		stage.setTitle("Donazione");
-    		donationBoundary.initBoundary(id_caritas, id_utente);
-    		stage.setScene(new Scene(rootNode, 800, 500));
-    		stage.setResizable(false);
-    		stage.show();
-    		
-    		
-    		
-    		
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
+	
 	}
 
 	public void crea_email() {
-    	try {     
-	        FXMLLoader fxmlLoader = new FXMLLoader();
-
-	        Parent rootNode = fxmlLoader.load(getClass().getResourceAsStream("/boundary/Email.fxml"));
-	        
-	        email_c = fxmlLoader.getController();
-	        
-	        Stage stage = new Stage();
-    		stage.setTitle("Email");
-    		
-    		stage.setScene(new Scene(rootNode, 800, 500));
-    		stage.setResizable(false);
-    	
-    		
-    		
-    		 
-    		stage.show();
-    		
-    		
-    		
-    		
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
+    
 		
 	}
 

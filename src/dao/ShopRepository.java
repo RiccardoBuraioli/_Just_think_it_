@@ -148,7 +148,7 @@ public class ShopRepository {
 
     public ShopUser getShopByID(int id) {
 
-        String sql = "SELECT ID, NomeNegozio, IndirizzoNeg, Civico, Tipologia, RecapitoTel FROM negozi WHERE ID=?";
+        String sql = "SELECT NomeNegozio, IndirizzoNeg, Tipologia, RecapitoTel FROM negozi WHERE ID=?";
         ResultSet rs = null;
         ShopUser shopUser = new ShopUser();
 
@@ -159,10 +159,10 @@ public class ShopRepository {
             rs = pstmt.executeQuery();
 
             while (rs.next()) {
-
+            	shopUser.setId(id);
                 shopUser.setNomeShop(rs.getString("NomeNegozio"));
               
-                shopUser.setIndirizzoShop(rs.getString("IndirizzoNegozio"));
+                shopUser.setIndirizzoShop(rs.getString("IndirizzoNeg"));
                 shopUser.setTipologia(rs.getInt("Tipologia"));
                 shopUser.setRecapitoTelefonico(rs.getString("RecapitoTel"));
             

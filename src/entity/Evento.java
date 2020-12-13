@@ -1,34 +1,48 @@
 package entity;
 
-import com.sothawo.mapjfx.Coordinate;
+import javafx.beans.property.SimpleStringProperty;
 
 public class Evento {
 	
-	String NomeEvento;
-	String TipoEvento;
-	String NoteEvento;
-	float PrezzoEvento;
-	int id_negozio;
-	String coord;
+	private SimpleStringProperty NomeEvento;
+	private String TipoEvento;
+	private String NoteEvento;
+	private float PrezzoEvento;
+	private int id_negozio;
+	private String coord;
+	private int id_caritas;
 
 	
 	
-	public Evento(String NomeEvento,String TipoEvento,String NoteEvento,float PrezzoEvento,int id_negozio,String coord) {
+	public Evento(String NomeEvento,String TipoEvento,String NoteEvento,float PrezzoEvento,int id_negozio,String coord, int id_caritas) {
 		
-		this.NomeEvento = NomeEvento;
+		this.NomeEvento = new SimpleStringProperty(NomeEvento);
 		this.TipoEvento = TipoEvento;
-		this.NomeEvento = NomeEvento;
+		
 		this.PrezzoEvento = PrezzoEvento;
 		this.id_negozio = id_negozio;
 		this.coord = coord;
+		this.id_caritas = id_caritas;
+	}
+	
+	public Evento(String NomeEvento,String TipoEvento,String NoteEvento,float PrezzoEvento,int id_negozio, int id_caritas) {
+		this.NomeEvento = new SimpleStringProperty(NomeEvento);
+		this.TipoEvento = TipoEvento;
+	
+		this.PrezzoEvento = PrezzoEvento;
+		this.id_negozio = id_negozio;
+		this.id_caritas = id_caritas;
 	}
 	
 	
-	
-	
-	public String getNome() {
-		return this.NomeEvento;
+	public String getNomeEvento() {
+		return NomeEvento.get();
 	}
+
+	public void setNomeEvento(String nomeEvento) {
+		NomeEvento.set(nomeEvento);
+	}
+
 	public String getTipo() {
 		return this.TipoEvento;
 	}
@@ -50,4 +64,14 @@ public class Evento {
 	public void setCoord(String coordinate) {
 		 this.coord = coordinate;
 	}
+
+	public int getId_caritas() {
+		return id_caritas;
+	}
+
+	public void setId_caritas(int id_caritas) {
+		this.id_caritas = id_caritas;
+	}
+	
+	
 }

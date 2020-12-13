@@ -2,6 +2,8 @@ package controller;
 
 import java.io.IOException;
 import com.sothawo.mapjfx.Projection;
+
+import bean.Profile_Boundary;
 //import com.sothawo.mapjfxdemo.Controller;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -11,11 +13,9 @@ import javafx.stage.Window;
 import entity.VolunteerUser;
 
 
-
-
-
-
 public  class User_Home_Controller{
+	
+	
 	
 	private VolunteerUser currentUser;
 	
@@ -46,18 +46,7 @@ public  class User_Home_Controller{
    
    public void profileButtonPressed(Window event) {
     	
-    	try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("/boundary/UserProfilePage.fxml"));
-			Parent root = loader.load();
-			Profile_Controller profileController = loader.getController();
-			profileController.initData(getCurrentUser());
-			Stage home = (Stage) event.getScene().getWindow();
-			home.setScene(new Scene(root, 800, 600));
-			
-			home.show();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+    
 
     }
 
@@ -70,15 +59,7 @@ public  class User_Home_Controller{
     
     public void logoutButtonPressed(Window event) {
     	
-    	try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("/boundary/Login_boundary.fxml"));
-			Parent root = loader.load();
-			Stage home = (Stage) event.getScene().getWindow();
-			home.setScene(new Scene(root, 600, 385));
-			home.show();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+    
 
 	}
 
@@ -125,16 +106,6 @@ public  class User_Home_Controller{
 
     public void creadonazione(Window event) {
     	
-    	
-      	try {
-    			FXMLLoader loader = new FXMLLoader(getClass().getResource("/boundary/donation.fxml"));
-    			Parent root = loader.load();
-    			Stage home = (Stage) event.getScene().getWindow();
-    			home.setScene(new Scene(root,825, 550));
-    			home.show();
-    		} catch (IOException e) {
-    			e.printStackTrace();
-    		}
 
     
     }

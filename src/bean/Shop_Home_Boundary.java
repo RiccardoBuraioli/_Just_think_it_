@@ -28,6 +28,7 @@ import javafx.stage.Stage;
 public class Shop_Home_Boundary implements Initializable {
 	
 	private Shop_home_controller Shop_c;
+	private Gestisci_eventi_Boundary gestisci_b;
 	private Image img1;
 	private Image img2;
 	private Image img3;
@@ -35,7 +36,7 @@ public class Shop_Home_Boundary implements Initializable {
 	private int currentImage;
 	
 	
-	 ShopUser currentUser;
+	private ShopUser currentUser;
 	 
 		public ShopUser getCurrentUser() {
 			return currentUser;
@@ -54,7 +55,9 @@ public class Shop_Home_Boundary implements Initializable {
 		Shop_c = new Shop_home_controller();
 	}
 		
-		
+    @FXML
+    private Button gest_event;
+
     @FXML
     private ResourceBundle resources;
 
@@ -151,6 +154,9 @@ public class Shop_Home_Boundary implements Initializable {
 
     @FXML
     void gestisci_eventi(ActionEvent event) {
+    	Shop_c.setCurrentUser(currentUser);
+     
+    	Shop_c.gestisci_eventi(gest_event.getScene().getWindow());
     }
 
     @FXML

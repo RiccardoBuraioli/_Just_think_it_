@@ -19,25 +19,7 @@ public class Partecipa_evento_controller {
 	private Partecipa_eventoBoundary parte_b;
 	
 	
-    @FXML
-    private ResourceBundle resources;
-
-
-    @FXML
-    private TextField importo;
-
-    @FXML
-    private TextField cdc;
-
-    @FXML
-    private ImageView imgEvento;
-
-    @FXML
-    private Button partecipa;
-
-    @FXML
-    private Button indietro;
-
+  
     
     public Partecipa_evento_controller() {
     	

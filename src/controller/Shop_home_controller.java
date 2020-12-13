@@ -7,6 +7,8 @@ import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import bean.DonationBoundary;
+import bean.Gestisci_eventi_Boundary;
 import entity.ShopUser;
 import entity.VolunteerUser;
 import javafx.event.ActionEvent;
@@ -28,20 +30,20 @@ import javafx.stage.Window;
 
 public class Shop_home_controller implements Initializable {
 
+	private Gestisci_eventi_Boundary gestisci_b;
 
-
-	ShopUser currentUser;
+	private ShopUser currentUser;
 
 	public ShopUser getCurrentUser() {
 		return currentUser;
 	}
-
+	
 	public void setCurrentUser(ShopUser currentUser) {
 		this.currentUser = currentUser;
 	}
 
 	public Shop_home_controller() {
-
+		gestisci_b = new Gestisci_eventi_Boundary();
 	}
 
 	public void cerca_caritas(Window event) {
@@ -64,6 +66,31 @@ public class Shop_home_controller implements Initializable {
 	}
 
 	public void gestisci_eventi(Window event) {
+		try {
+
+			int id = currentUser.getID();
+
+	        FXMLLoader fxmlLoader = new FXMLLoader();
+	        Parent rootNode = fxmlLoader.load(getClass().getResourceAsStream("/boundary/Eventi2.fxml"));
+	       
+	       // donationController = fxmlLoader.getController();
+	       gestisci_b = fxmlLoader.getController();
+	        
+	   //    Stage stage = new Stage();
+			Stage stage = (Stage) event.getScene().getWindow();
+
+    		stage.setTitle("Donazione");
+    		
+    		gestisci_b.load_shop(id);
+    		
+    		stage.setScene(new Scene(rootNode, 800, 500));
+    		stage.setResizable(false);
+    		stage.show();
+    		
+    		
+    				} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void helpButtonPressed(Window event) {
