@@ -1,5 +1,6 @@
 package bean;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
@@ -8,14 +9,16 @@ import controller.Registrazione_Caritas_Controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 public class Registra_Caritas_Boundary implements Initializable {
 
@@ -23,7 +26,7 @@ public class Registra_Caritas_Boundary implements Initializable {
 
 	private TextField[] textFields;
 
-	private int tipo;
+	private String tipo;
 
 	@FXML
 	private TextField cittadiResidenza;
@@ -87,11 +90,22 @@ public class Registra_Caritas_Boundary implements Initializable {
 	public void completaButtonPressed(ActionEvent event) throws SQLException {
 		int resCheck = checker();
 		if (resCheck == 0) {
-			reg_c.completaButtonPressed(completaButton.getScene().getWindow(), nomeCaritas.getText(),
+			reg_c.completaButtonPressed( nomeCaritas.getText(),
 					passwordCaritas.getText(), via.getText(), tipo, telefono.getText(), email.getText(),
 					cittadiResidenza.getText());
 		}
+		try {
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/boundary/CaritasHomePage.fxml"));
+			Parent root = loader.load();
+			Caritas_Home_Boundary CaritasHomeBoundary = loader.getController();
 
+			Stage home = (Stage) completaButton.getScene().getWindow();
+			home.setScene(new Scene(root, 800, 600));
+
+			home.show();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public int checker() {
@@ -105,11 +119,11 @@ public class Registra_Caritas_Boundary implements Initializable {
 			}
 			// else if (type.isSelected() || type2.isSelected()) {
 			else if (type.isSelected()) {
-				tipo = 1;
+				tipo = "Vestiti";
 				return 0; // Almeno uno dei tipi deve essere selezionato
 
 			} else if (type2.isSelected()) {
-				tipo = 2;
+				tipo = "Cibo";
 				passwordMatch.setText("Alcuni campi sono vuoti 2");
 				passwordMatch.setVisible(true);
 				return 0; // Almeno uno dei tipi deve essere selezionato

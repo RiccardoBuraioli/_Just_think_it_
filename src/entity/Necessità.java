@@ -1,15 +1,17 @@
 package entity;
 
+import javafx.beans.property.SimpleStringProperty;
+
 public class Necessità {
-	private String Tipologia;
-	private String Descrizione;
-	private String urgenza;
+	private SimpleStringProperty Tipologia;
+	private SimpleStringProperty Descrizione;
+	private SimpleStringProperty Urgenza;
 
 	
 	public Necessità(String tipo, String descr, String urg) {
-		this.Descrizione= descr;
-		this.Tipologia = tipo;
-		this.urgenza = urg;
+		this.Descrizione= new SimpleStringProperty(descr);
+		this.Tipologia = new SimpleStringProperty(tipo);
+		this.Urgenza = new SimpleStringProperty(urg);
 	}
 
 
@@ -19,31 +21,31 @@ public class Necessità {
 
 
 	public String getTipologia() {
-		return Tipologia;
+		return Tipologia.get();
 	}
 
 
 	public void setTipologia(String tipologia) {
-		Tipologia = tipologia;
+		Tipologia.set(tipologia);
 	}
 
 
 	public String getDescrizione() {
-		return Descrizione;
+		return Descrizione.get();
 	}
 
 
 	public void setDescrizione(String descrizione) {
-		Descrizione = descrizione;
+		Descrizione.set(descrizione);
 	}
 
 
 	public String getUrgenza() {
-		return urgenza;
+		return Urgenza.get();
 	}
 
 
 	public void setUrgenza(String urgenza) {
-		this.urgenza = urgenza;
+		this.Urgenza.set(urgenza);
 	}
 }

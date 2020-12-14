@@ -26,15 +26,15 @@ public class CaritasRepository {
 
             try (Connection conn = connector.getConnection();
                  PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-
+            	System.out.println(caritasUser.getEmail() + caritasUser.getIndirizzoCaritas());
             	pstmt.setString(1,caritasUser.getEmail());
             	pstmt.setString(2, caritasUser.getPassword());
-            	pstmt.setInt(3, 3 );
-                pstmt.setString(4, caritasUser.getNomeCaritas());
-                pstmt.setString(5, caritasUser.getIndirizzoCaritas());
-                pstmt.setString(6,caritasUser.getRecapitoTelefonico());
-                pstmt.setInt(7, caritasUser.getTipologia());
-                pstmt.setString(8, caritasUser.getCittà());
+                pstmt.setString(3, caritasUser.getNomeCaritas());
+                pstmt.setString(4, caritasUser.getIndirizzoCaritas());
+                pstmt.setString(5,caritasUser.getRecapitoTelefonico());
+                pstmt.setString(6, caritasUser.getTipologia());
+                pstmt.setString(7, caritasUser.getCittà());
+                pstmt.setString(8, "Caritas");
                 
             int rowAffected = pstmt.executeUpdate();
             if (rowAffected == 1) {
@@ -102,9 +102,9 @@ public class CaritasRepository {
             while (rs.next()) {
 
                 carUsr.setNomeCaritas(rs.getString("NomeCaritas"));
-               
+                carUsr.setId(id);
                 carUsr.setIndirizzoCaritas(rs.getString("IndirizzoCaritas"));
-                carUsr.setTipologia(rs.getInt("Tipologia"));
+                carUsr.setTipologia(rs.getString("Tipologia"));
                 carUsr.setRecapitoTelefonico(rs.getString("RecapitoTel"));
                
             }

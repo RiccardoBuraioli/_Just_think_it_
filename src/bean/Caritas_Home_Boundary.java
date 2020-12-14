@@ -1,5 +1,6 @@
 package bean;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.Timer;
@@ -8,11 +9,15 @@ import java.util.TimerTask;
 import entity.CaritasUser;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 public class Caritas_Home_Boundary {
 
@@ -22,7 +27,9 @@ public class Caritas_Home_Boundary {
 	private Image[] images = { img1, img2, img3 };
 	private int currentImage = 0;
 
-	CaritasUser currentUser;
+	private CaritasUser currentUser;
+
+	private Bacheca_Personale_Boundary bacheca;
 
 	@FXML // ResourceBundle that was given to the FXMLLoader
 	private ResourceBundle resources;
@@ -67,13 +74,13 @@ public class Caritas_Home_Boundary {
 	private Button rightArrowButton; // Value injected by FXMLLoader
 
 	@FXML
-	private Button searchCaritasButton; // Value injected by FXMLLoader
+	private Button v_bacheca; // Value injected by FXMLLoader
 
 	@FXML 
 	private Text textOverImages; // Value injected by FXMLLoader
 
 	public Caritas_Home_Boundary() {
-
+		bacheca = new Bacheca_Personale_Boundary();
 	}
 
 	@FXML
@@ -91,10 +98,26 @@ public class Caritas_Home_Boundary {
 		// handle the event here
 	}
 
-	@FXML
+	@FXML  // dobbiamo far fare un controllo alla bacheca_controller nel quale a seconda di chi entra ( carita o altri ) il tasto indietro porta alla schermata giusta.
 	void Visualizza_bacheca(ActionEvent event) {
-		// handle the event here
+		try {     
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/boundary/Bacheca_Personale.fxml"));
+			Parent root = loader.load();
+
+			Stage home = (Stage) v_bacheca.getScene().getWindow();
+			home.setScene(new Scene(root,725, 450));
+			home.show();
+    		
+    		 bacheca = loader.getController();
+
+    		bacheca.loadFormBoundary(currentUser.getID());
+
+    		
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
+	
 
 	@FXML
 	void deleteAccountButtonPressed(ActionEvent event) {
@@ -158,32 +181,6 @@ public class Caritas_Home_Boundary {
 
 	@FXML
 	void initialize() {
-		assert CreaPacco != null : "fx:id=\"CreaPacco\" was not injected: check your FXML file 'CaritasHomePage.fxml'.";
-		assert arrowLeft != null : "fx:id=\"arrowLeft\" was not injected: check your FXML file 'CaritasHomePage.fxml'.";
-		assert arrowRight != null
-				: "fx:id=\"arrowRight\" was not injected: check your FXML file 'CaritasHomePage.fxml'.";
-		assert deleteAccountButton != null
-				: "fx:id=\"deleteAccountButton\" was not injected: check your FXML file 'CaritasHomePage.fxml'.";
-		assert helpButton != null
-				: "fx:id=\"helpButton\" was not injected: check your FXML file 'CaritasHomePage.fxml'.";
-		assert imagePresentation != null
-				: "fx:id=\"imagePresentation\" was not injected: check your FXML file 'CaritasHomePage.fxml'.";
-		assert leftArrowButton != null
-				: "fx:id=\"leftArrowButton\" was not injected: check your FXML file 'CaritasHomePage.fxml'.";
-		assert logoutButton != null
-				: "fx:id=\"logoutButton\" was not injected: check your FXML file 'CaritasHomePage.fxml'.";
-		assert nomeCognome != null
-				: "fx:id=\"nomeCognome\" was not injected: check your FXML file 'CaritasHomePage.fxml'.";
-		assert profileButton != null
-				: "fx:id=\"profileButton\" was not injected: check your FXML file 'CaritasHomePage.fxml'.";
-		assert profileImage != null
-				: "fx:id=\"profileImage\" was not injected: check your FXML file 'CaritasHomePage.fxml'.";
-		assert rightArrowButton != null
-				: "fx:id=\"rightArrowButton\" was not injected: check your FXML file 'CaritasHomePage.fxml'.";
-		assert searchCaritasButton != null
-				: "fx:id=\"searchCaritasButton\" was not injected: check your FXML file 'CaritasHomePage.fxml'.";
-		assert textOverImages != null
-				: "fx:id=\"textOverImages\" was not injected: check your FXML file 'CaritasHomePage.fxml'.";
 
 	}
 

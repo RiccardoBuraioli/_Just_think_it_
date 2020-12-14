@@ -117,7 +117,7 @@ public class BachecaBoundary {
 		this.id_car = id_car;
 		this.id_ute = id_ute;
 		bacheca_controller = new Bacheca_Controller();
-		necessità =bacheca_controller.loadForm(id_car, id_ute);
+		necessità = bacheca_controller.loadForm(id_car, id_ute);
 		
 		
 		for (int i = 0; i < necessità.size(); i++) {
@@ -144,4 +144,7 @@ public class BachecaBoundary {
 
 	}
 
+	
+			
+	
 }

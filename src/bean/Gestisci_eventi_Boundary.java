@@ -18,6 +18,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 
 public class Gestisci_eventi_Boundary {
 
@@ -49,6 +50,40 @@ public class Gestisci_eventi_Boundary {
 	private TableColumn<EventTab, Integer> num_partecipanti;
 	@FXML
 	private TableColumn<EventTab, Float> importo;
+	  @FXML
+	    private Button modifica_e;
+
+	    @FXML
+	    private Button Elimina_e;
+
+	    @FXML
+	    private Button back;
+
+	    @FXML
+	    void backButtonPressed(ActionEvent event) {
+
+	    }
+
+	    @FXML
+	    void contatta_caritas(ActionEvent event) {
+
+	    }
+
+	    @FXML
+	    void elimina_evento(ActionEvent event) {
+
+	    }
+
+	    @FXML
+	    void modifica_evento(ActionEvent event) {
+
+	    }
+
+	    @FXML
+	    void prendi_evento(MouseEvent event) {
+
+	    }
+
 
 	public Gestisci_eventi_Boundary() {
 

@@ -6,7 +6,7 @@ public class CaritasUser {
     private String nomeCaritas;
     private String password;
     private String indirizzoCaritas;
-    private int tipologia;
+    private String tipologia;
     private String recapitoTelefonico;
     private String email;
     private String città;
@@ -16,7 +16,7 @@ public class CaritasUser {
     public CaritasUser() {
     }
 
-    public CaritasUser(String nomeCaritas, String passwordCaritas, String indirizzoCaritas, int tipologia, String recapitoTelefonico, String email, String città) {
+    public CaritasUser(String nomeCaritas, String passwordCaritas, String indirizzoCaritas, String tipologia, String recapitoTelefonico, String email, String città) {
         this.nomeCaritas = nomeCaritas;
         this.password = passwordCaritas;
         this.indirizzoCaritas = indirizzoCaritas;
@@ -59,7 +59,7 @@ public class CaritasUser {
         return indirizzoCaritas;
     }
 
-    public int getTipologia() {
+    public String getTipologia() {
         return tipologia;
     }
 
@@ -79,8 +79,8 @@ public class CaritasUser {
         this.indirizzoCaritas = indirizzoCaritas;
     }
 
-    public void setTipologia(int tipologia) {
-        this.tipologia = tipologia;
+    public void setTipologia(String string) {
+        this.tipologia = string;
     }
 
     public void setRecapitoTelefonico(String recapitoTelefonico) {

@@ -1,10 +1,17 @@
 package controller;
 
+import java.io.IOException;
+
+import bean.BachecaBoundary;
 import entity.CaritasUser;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
+import javafx.stage.Stage;
 import javafx.stage.Window;
 
 /**
@@ -14,8 +21,7 @@ import javafx.stage.Window;
 
 public class Caritas_home_controller {
 
-
-	CaritasUser currentUser;
+	private CaritasUser currentUser;
 
 	public Caritas_home_controller() {
 	
@@ -38,11 +44,6 @@ public class Caritas_home_controller {
 		// handle the event here
 	}
 
-	// Handler for Button[fx:id="searchCaritasButton"] onAction
-
-	public void Visualizza_bacheca(Window event) {
-		// handle the event here
-	}
 
 	// Handler for Button[fx:id="deleteAccountButton"] onAction
 

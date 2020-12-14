@@ -39,7 +39,7 @@ public class Registrazione_Caritas_Controller  {
 
 	}
 
-	public void completaButtonPressed(Window event, String nomeCaritas, String passwordCaritas, String via, int tipo,
+	public void completaButtonPressed( String nomeCaritas, String passwordCaritas, String via, String tipo,
 		
 		String telefono, String email, String cittàdiResidenza) throws SQLException {
 	
@@ -48,20 +48,10 @@ public class Registrazione_Caritas_Controller  {
 			CaritasRepository crep = new CaritasRepository();
 			int id = crep.insertCaritas(newUser);
 			newUser.setId(id);
-	
+            
+
 			// Manda alla home Caritas
-			try {
-				FXMLLoader loader = new FXMLLoader(getClass().getResource("/boundary/CaritasHomePage.fxml"));
-				Parent root = loader.load();
-				CaritasHomeBoundary = loader.getController();
-	
-				Stage home = (Stage) event.getScene().getWindow();
-				home.setScene(new Scene(root, 800, 600));
-	
-				home.show();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+		
 
 	}
 

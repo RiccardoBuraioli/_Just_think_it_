@@ -30,12 +30,12 @@ public class ShopRepository {
              PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
            
         	pstmt.setString(1,shopUser.getEmail());
-        	pstmt.setString(2, shopUser.getPassword());
-        	pstmt.setInt(3, 2);
-        	pstmt.setString(4, shopUser.getNomeShop());
-        	pstmt.setString(5, shopUser.getIndirizzoShop());
-        	pstmt.setString(6, shopUser.getcittà());
-            pstmt.setInt(7,shopUser.getTipologia());
+        	pstmt.setString(2, shopUser.getPassword());        	
+        	pstmt.setString(3, shopUser.getNomeShop());
+        	pstmt.setString(4, shopUser.getIndirizzoShop());
+        	pstmt.setString(5, shopUser.getcittà());
+            pstmt.setInt(6,shopUser.getTipologia());
+            pstmt.setString(7,"Negozio");
             pstmt.setString(8,shopUser.getRecapitoTelefonico());
        
 
