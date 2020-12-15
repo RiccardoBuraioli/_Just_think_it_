@@ -26,44 +26,53 @@ public class Registrazione_Volontario_Boundary implements Initializable {
 
 	TextField[] textFields;
 
-	@FXML // fx:id="cittadiResidenza"
-	private TextField cittadiResidenza; // Value injected by FXMLLoader
 
-	@FXML // fx:id="via"
-	private TextField via; // Value injected by FXMLLoader
+	    @FXML
+	    private TextField cittaRes;
 
-	@FXML // fx:id="civico"
-	private TextField civico; // Value injected by FXMLLoader
+	    @FXML
+	    private TextField via;
 
-	@FXML // fx:id="telefono"
-	private TextField telefono; // Value injected by FXMLLoader
+	    @FXML
+	    private TextField civico;
 
-	@FXML // fx:id="backButton"
-	private Button backButton; // Value injected by FXMLLoader
+	    @FXML
+	    private TextField tel;
 
-	@FXML // fx:id="email"
-	private TextField email; // Value injected by FXMLLoader
+	    @FXML
+	    private TextField mail;
 
-	@FXML // fx:id="nome"
-	private TextField nome; // Value injected by FXMLLoader
+	    @FXML
+	    private TextField nome;
 
-	@FXML // fx:id="cognome"
-	private TextField cognome; // Value injected by FXMLLoader
+	    @FXML
+	    private TextField cognome;
 
-	@FXML // fx:id="completaButton"
-	private Button completaButton; // Value injected by FXMLLoader
+	    @FXML
+	    private Button completaReg;
 
-	@FXML // fx:id="passwordCaritas"
-	private PasswordField passwordVolontario; // Value injected by FXMLLoader
+	    @FXML
+	    private TextField codiceFisc;
 
-	@FXML // fx:id="confermaPassCaritas"
-	private PasswordField confermaPassVolontario; // Value injected by FXMLLoader
+	    @FXML
+	    private Button backButton;
 
-	@FXML // fx:id="passwordMatch"
-	private Text passwordMatch; // Value injected by FXMLLoader
+	    @FXML
+	    private PasswordField password;
 
-	@FXML
-	private DatePicker Date;
+	    @FXML
+	    private PasswordField confermaPass;
+
+	    @FXML
+	    private Text passwordMatch;
+
+
+	    @FXML
+	    private TextField Date;
+	  
+
+
+
 
 	public Registrazione_Volontario_Boundary() {
 		Reg_c = new Registrazione_Volontario_Controller();
@@ -77,13 +86,27 @@ public class Registrazione_Volontario_Boundary implements Initializable {
 	}
 
 	@FXML
-	void completaButtonPressed(ActionEvent event) {
+	void registraVolontarioPressed(ActionEvent event) {
 
 		if (checker() == 0) {
-			Date date2 = java.sql.Date.valueOf(Date.getValue());
-			Reg_c.completaButtonPressed(completaButton.getScene().getWindow(), nome.getText(), cognome.getText(),
-					passwordVolontario.getText(), via.getText(), telefono.getText(), email.getText(), date2,
-					cittadiResidenza.getText());
+			//Date date2 = java.sql.Date.valueOf(Date.getValue());
+		VolunteerUser id =	Reg_c.completaButtonPressed( nome.getText(), cognome.getText(),
+					password.getText(), via.getText(), tel.getText(), mail.getText(), Date.getText(),
+					cittaRes.getText());
+		
+			try {
+    			FXMLLoader loader = new FXMLLoader(getClass().getResource("/boundary/UserHomePage.fxml"));
+    			Parent root = loader.load();
+    			User_Home_Boundary userHomeBoundary = loader.getController();
+    			userHomeBoundary.initData(id);
+    			Stage home = (Stage) completaReg.getScene().getWindow();
+    			home.setScene(new Scene(root, 800, 600));
+    			
+    			home.show();
+    		} catch (IOException e) {
+    			e.printStackTrace();
+    		}
+    	
 
 		}
 
@@ -102,7 +125,7 @@ public class Registrazione_Volontario_Boundary implements Initializable {
 
 		// Valida che i campi password e conferma password siano uguali
 
-		if (passwordVolontario.getText().equals(confermaPassVolontario.getText())) {
+		if (password.getText().equals(confermaPass.getText())) {
 			passwordMatch.setVisible(false);
 			System.out.println("Password confirmed");
 			return 0;
@@ -117,7 +140,7 @@ public class Registrazione_Volontario_Boundary implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 
 		passwordMatch.setVisible(false);
-		textFields = new TextField[] { nome, email, cittadiResidenza, cognome, civico, via, telefono };
+		textFields = new TextField[] { nome, mail, cittaRes, cognome, civico, via, tel };
 		// Per rendere opzionale un campo basta rimuoverlo da questa lista
 	}
 

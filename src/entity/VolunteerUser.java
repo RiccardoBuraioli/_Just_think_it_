@@ -13,7 +13,7 @@ public class VolunteerUser {
     private String recapitoTel;
     private String email;
     private String cartaDiCredito;
-    private Date nascita;
+    private String nascita;
     private String città;
     private final String TABLE_NAME = "volontari";
 
@@ -29,7 +29,7 @@ public class VolunteerUser {
     }
     
     
-    public VolunteerUser( String nome, String cognome, String password, String indirizzo, String recapitoTel, String email, String cartaDiCredito,Date nascita, String città) {
+    public VolunteerUser( String nome, String cognome, String password, String indirizzo, String recapitoTel, String email, String cartaDiCredito,String nascita, String città) {
         this.nome = nome;
         this.cognome = cognome;
         this.password = password;
@@ -49,7 +49,7 @@ public class VolunteerUser {
         return id;
     }
 
-    public Date getNascita() {
+    public String getNascita() {
     	return nascita;
     }
 
@@ -90,7 +90,7 @@ public class VolunteerUser {
     	this.città = newcity;
     }
 
-    public void setNascita(Date nascita) {
+    public void setNascita(String nascita) {
     	this.nascita = nascita;
     }
     

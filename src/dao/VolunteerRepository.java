@@ -40,7 +40,7 @@ public class VolunteerRepository {
                 String recapitoTel = rs.getString("recapitoTel");
                 String email = rs.getString("email");
                 String cartaDiCredito = rs.getString("cartaDiCredito");
-                Date nascita = rs.getDate("DataNascita");
+                String nascita = rs.getString("DataNascita");
                 String città = rs.getString("città");
                 VolunteerUser vUser = new VolunteerUser( nome, cognome,  password, indirizzo, recapitoTel, email, cartaDiCredito, nascita, città);
                 vUser.setID(rs.getInt("ID"));
@@ -134,7 +134,7 @@ public class VolunteerRepository {
         	pstmt.setString(1, volunteerUser.getEmail());
         	pstmt.setString(2, volunteerUser.getPassword());
         	pstmt.setInt(3, 1);
-        	pstmt.setDate(4, (Date) volunteerUser.getNascita());
+        	pstmt.setString(4,  volunteerUser.getNascita());
         	pstmt.setString(5, volunteerUser.getCognome());
         	pstmt.setString(6, volunteerUser.getRecapitoTel());
         	pstmt.setString(7, volunteerUser.getIndirizzo());

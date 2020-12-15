@@ -17,10 +17,9 @@ import java.util.Date;
 
 public class Registrazione_Volontario_Controller implements Initializable {
 
-    private User_Home_Boundary userHomeBoundary;
 
     public Registrazione_Volontario_Controller() {
-    	userHomeBoundary = new User_Home_Boundary();
+    
     }
 
 
@@ -42,7 +41,7 @@ public class Registrazione_Volontario_Controller implements Initializable {
     }
 
 
-   public void completaButtonPressed(Window event, String nome, String cognome, String passwordVolontario, String via, String telefono, String email, Date date2, String cittadiResidenza) {
+   public VolunteerUser completaButtonPressed( String nome, String cognome, String passwordVolontario, String via, String telefono, String email, String date2, String cittadiResidenza) {
 
     		
         	VolunteerUser newUser = new VolunteerUser(nome, cognome, passwordVolontario, via, telefono, email, null,date2,cittadiResidenza );
@@ -50,20 +49,9 @@ public class Registrazione_Volontario_Controller implements Initializable {
         	int id = vrep.insertVolunteer(newUser);
         	newUser.setID(id);
         	
+        	return newUser;
         	//Manda alla home dopo la registrazione
-        	try {
-    			FXMLLoader loader = new FXMLLoader(getClass().getResource("/boundary/UserHomePage.fxml"));
-    			Parent root = loader.load();
-    			userHomeBoundary = loader.getController();
-    			userHomeBoundary.initData(newUser);
-    			Stage home = (Stage) event.getScene().getWindow();
-    			home.setScene(new Scene(root, 800, 600));
-    			
-    			home.show();
-    		} catch (IOException e) {
-    			e.printStackTrace();
-    		}
-    	
+        	
     	
 
     }
