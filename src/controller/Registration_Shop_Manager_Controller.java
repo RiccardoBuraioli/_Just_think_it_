@@ -22,7 +22,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 
-public abstract class Registration_Shop_Manager_Controller implements Initializable {
+public  class Registration_Shop_Manager_Controller implements Initializable {
 
 	private ShopUser shop;
 	private ShopRepository crep;
@@ -37,7 +37,7 @@ public abstract class Registration_Shop_Manager_Controller implements Initializa
 	
 	}
 
-	public int registraNegozioPressed( int tipo, String nome, String pass, String via, String tel,String mail, String città) {
+	public int registraNegozioPressed( String tipo, String nome, String pass, String via, String tel,String mail, String città) {
 
 		shop = new ShopUser(nome, pass, via, tipo, tel, mail, città);
 		crep = new ShopRepository();
@@ -48,6 +48,12 @@ public abstract class Registration_Shop_Manager_Controller implements Initializa
 	
 
 		return 0;
+	}
+
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

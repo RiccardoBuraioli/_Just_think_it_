@@ -55,7 +55,6 @@ public class DonationBoundary implements Initializable {
 		checker();		
 		controller.setIndirizzo(this.indirizzo.getText());
 		controller.setDescrizione(this.descrizione.getText());
-
 		int error = controller.creaDonazione();
 
 	}

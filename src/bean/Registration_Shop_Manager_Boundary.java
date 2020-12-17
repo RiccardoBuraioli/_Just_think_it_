@@ -3,8 +3,8 @@ package bean;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-
 import controller.Registration_Shop_Manager_Controller;
+import controller.Registrazione_Caritas_Controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,10 +19,10 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class Registration_Shop_Manager_Boundary implements Initializable{
+	private Registration_Shop_Manager_Controller regNeg;
 
-	private Registration_Shop_Manager_Controller reg;
 	private TextField[] textFields;	
-	private int tipo;
+	private String tipo;
 	
     @FXML
     private TextField cittaResNeg;
@@ -73,6 +73,11 @@ public class Registration_Shop_Manager_Boundary implements Initializable{
     private Text passwordMatch;
     
     
+    
+    public Registration_Shop_Manager_Boundary() {
+    	this.regNeg = new Registration_Shop_Manager_Controller();
+    }
+    
 
     @FXML
     void backButtonNegPressed(ActionEvent event) {
@@ -93,9 +98,13 @@ public class Registration_Shop_Manager_Boundary implements Initializable{
     @FXML
     void registraNegozioPressed(ActionEvent event) {
     	int i = checker();
+    	
+ 
     	if ( i == -1) {
     		System.out.println("errore fratello");
-    	}else if(reg.registraNegozioPressed( tipo , nomeNeg.getText(), passwordNeg.getText(), viaNeg.getText() + " "+civicoNeg.getText() , telNeg.getText(), mailNeg.getText(), cittaResNeg.getText())==0) {
+    	}
+    
+    	regNeg.registraNegozioPressed( tipo , nomeNeg.getText(), passwordNeg.getText(), viaNeg.getText() + " "+civicoNeg.getText() , telNeg.getText(), mailNeg.getText(), cittaResNeg.getText());
  
     	try {
     		
@@ -108,8 +117,8 @@ public class Registration_Shop_Manager_Boundary implements Initializable{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-    	}
     }
+    
     
    public int checker() {
 	   
@@ -124,12 +133,12 @@ public class Registration_Shop_Manager_Boundary implements Initializable{
 			}
 		//	else if (type.isSelected() || type2.isSelected()) {
 			else if(typeCiboNeg.isSelected()) {
-				 tipo = 1;
+				 tipo = "Vestiti";
 	    		 //Almeno uno dei tipi deve essere selezionato
 	    		
 	    		
 			}else if(typeVestNeg.isSelected()) {
-				tipo = 2;
+				tipo = "Cibo";
 				
 				 //Almeno uno dei tipi deve essere selezionato
 			}else {
@@ -143,8 +152,8 @@ public class Registration_Shop_Manager_Boundary implements Initializable{
     	
     	//Valida che i campi password e conferma password siano uguali
     	
-    	if (passwordNeg.getText().equals(confermaPassNeg.getText())) {
-    		passwordMatch.setVisible(true);
+    	if (passwordNeg.getText().equalsIgnoreCase(confermaPassNeg.getText())) {
+    	//	passwordMatch.setVisible(true);
     		System.out.println("Password confirmed");
     		return 0;
     	}
@@ -161,7 +170,7 @@ public class Registration_Shop_Manager_Boundary implements Initializable{
 		passwordMatch.setVisible(false);
 		textFields = new TextField[] {cittaResNeg,viaNeg,civicoNeg,telNeg,nomeNegzio,mailNeg,nomeNeg,cognomeNeg};
 		
-		
+
 	}
     
 

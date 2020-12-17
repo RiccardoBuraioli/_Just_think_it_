@@ -34,7 +34,7 @@ public class ShopRepository {
         	pstmt.setString(3, shopUser.getNomeShop());
         	pstmt.setString(4, shopUser.getIndirizzoShop());
         	pstmt.setString(5, shopUser.getcittà());
-            pstmt.setInt(6,shopUser.getTipologia());
+            pstmt.setString(6,shopUser.getTipologia());
             pstmt.setString(7,"Negozio");
             pstmt.setString(8,shopUser.getRecapitoTelefonico());
        
@@ -129,7 +129,7 @@ public class ShopRepository {
                 String nomeShop = rs.getString("NomeNegozio");
                 String password = rs.getString("Password");
                 String indirizzoNegozio = rs.getString("IndirizzoNegozio");
-                int tipologia = rs.getInt("Tipologia");
+                String tipologia = rs.getString("Tipologia");
                 String recapitoTel = rs.getString("RecapitoTel");
                 String email = rs.getString("Email");
                 String città = rs.getString("città");
@@ -163,7 +163,7 @@ public class ShopRepository {
                 shopUser.setNomeShop(rs.getString("NomeNegozio"));
               
                 shopUser.setIndirizzoShop(rs.getString("IndirizzoNeg"));
-                shopUser.setTipologia(rs.getInt("Tipologia"));
+                shopUser.setTipologia(rs.getString("Tipologia"));
                 shopUser.setRecapitoTelefonico(rs.getString("RecapitoTel"));
             
             }

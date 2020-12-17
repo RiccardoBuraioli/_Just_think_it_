@@ -6,16 +6,14 @@ public class ShopUser {
     private String nomeShop;
     private String password;
     private String indirizzoShop;
-    private int tipologia;
+    private String tipologia;
     private String recapitoTelefonico;
     private String email;
     private String città;
     private final String TABLE_NAME = "negozi";
 
-    public ShopUser() {
-    }
-
-    public ShopUser(String nomeShop, String password, String indirizzoShop, int tipologia, String recapitoTelefonico, String email, String città) {
+   
+    public ShopUser(String nomeShop, String password, String indirizzoShop, String tipologia, String recapitoTelefonico, String email, String città) {
         this.nomeShop = nomeShop;
         this.password = password;
         this.indirizzoShop = indirizzoShop;
@@ -25,7 +23,11 @@ public class ShopUser {
         this.città = città;
     }
 
-    public int getID() {
+    public ShopUser() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public int getID() {
         return id;
     }
 
@@ -58,11 +60,11 @@ public class ShopUser {
         this.indirizzoShop = indirizzoShop;
     }
 
-    public int getTipologia() {
+    public String getTipologia() {
         return tipologia;
     }
 
-    public void setTipologia(int tipologia) {
+    public void setTipologia(String tipologia) {
         this.tipologia = tipologia;
     }
 
