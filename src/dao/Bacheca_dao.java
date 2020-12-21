@@ -56,6 +56,37 @@ public class Bacheca_dao {
 		
 	}
 	
-	
+	public int crea_necessità(Necessità necessità, int cod_caritas) {
+		 ResultSet rs = null;
+	        int NecID = 0;
+
+	        String sql = "call crea_necessità(?,?,?,?)";
+
+	        try (Connection conn = connector.getConnection();
+	             PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+	           
+	        	pstmt.setString(1,necessità.getTipologia());
+	        	pstmt.setString(2, necessità.getUrgenza());        	
+	        	pstmt.setString(3, necessità.getDescrizione());
+	        	pstmt.setInt(4, cod_caritas);
+
+	            int rowAffected = pstmt.executeUpdate();
+	            if (rowAffected == 1) {
+
+	                rs = pstmt.getGeneratedKeys();
+	                if (rs.next())
+	                    NecID = rs.getInt(1);
+	            }
+	        } catch (SQLException ex) {
+	            System.out.println(ex.getMessage());
+	        } finally {
+	            try {
+	                if (rs != null) rs.close();
+	            } catch (SQLException e) {
+	                System.out.println(e.getMessage());
+	            }
+	        }
+	        return NecID;
+	}
 	
 }
