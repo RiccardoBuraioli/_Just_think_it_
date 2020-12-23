@@ -13,7 +13,7 @@ public class Email_controller {
 
 	private Email_dao email_d;
 	private Email_entity email_e;
-
+	private String[] email_list;
 	
     public int send_message_controller(String mit, String dest, String mess, String ogg) {
     	
@@ -26,7 +26,12 @@ public class Email_controller {
     	
     }
     
-    
+    public String[] load_mittente_destinatario_c(int id_dest, int id_mit) {
+    	email_d = new Email_dao();
+    	email_list = email_d.visualizza_mittente_destinatario(id_dest, id_mit);
+    	return email_list;
+    	
+    }
     
     
     

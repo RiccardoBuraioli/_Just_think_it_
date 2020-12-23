@@ -1,20 +1,24 @@
 package bean;
 
+import java.io.IOException;
+
 import controller.Profile_Controller;
 import entity.VolunteerUser;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 
 public class Profile_Boundary {
 	
 	private VolunteerUser currentUser;
-
-  
-
+	private User_Home_Boundary userHomeBoundary;
 	private Profile_Controller Prof_c;
 	
 	@FXML
@@ -46,7 +50,19 @@ public class Profile_Boundary {
     
  @FXML  
  void backHomeButtonPressed(ActionEvent event) {
-	 Prof_c.backHomeButtonPressed(backHomeButton.getScene().getWindow());
+	 try {
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/boundary/UserHomePage.fxml"));
+			Parent root = loader.load();
+			userHomeBoundary = loader.getController();
+			userHomeBoundary.initData(currentUser);
+			Stage home = (Stage) backHomeButton.getScene().getWindow();
+			home.setScene(new Scene(root, 800, 600));
+			
+			home.show();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
 
     }
 

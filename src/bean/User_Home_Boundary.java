@@ -65,9 +65,6 @@ private VolunteerUser currentUser;
 	@FXML
     private Text nomeCognome;
 	
-	@FXML 
-	private Button CreaPacco;
-
 	@FXML
     private Button profileButton;
 
@@ -177,9 +174,38 @@ private VolunteerUser currentUser;
 
     @FXML
     void searchCaritasButtonPressed(ActionEvent event) {
-    	
-    	user_c.searchCaritasButtonPressed(searchCaritasButton.getScene().getWindow());
+    	try {
 
+    		
+	        String fxmlFile = "/boundary/Cerca_caritas.fxml";
+	      
+	        FXMLLoader fxmlLoader = new FXMLLoader();
+	        Parent rootNode = fxmlLoader.load(getClass().getResourceAsStream(fxmlFile));
+	       
+	        final Cerca_caritas controller = fxmlLoader.getController();
+	        final Projection projection = /*getParameters().getUnnamed().contains("wgs84")
+	            ? Projection.WGS_84 : */Projection.WEB_MERCATOR;
+	        controller.initMapAndControls(projection);
+	        controller.setIdUtente(currentUser.getID());
+
+	        Scene scene = new Scene(rootNode);
+	        Stage primaryStage = (Stage) searchCaritasButton.getScene().getWindow();
+
+	        primaryStage.setTitle("sothawo mapjfx demo application");
+	        primaryStage.setScene(scene);
+	      
+	        primaryStage.show();
+	        
+	        
+	        
+
+	     
+		
+	} catch (IOException e) {
+		e.printStackTrace();
+	}
+	
+  
    
     }
  
@@ -207,20 +233,6 @@ private VolunteerUser currentUser;
     	user_c.setCurrentUser(user);
     }
     
-    public void creadonazione(ActionEvent event) {
-    	
-      	try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("/boundary/donation.fxml"));
-			Parent root = loader.load();
-			Stage home = (Stage) CreaPacco.getScene().getWindow();
-			home.setScene(new Scene(root,825, 550));
-			home.show();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
-    
-    }
     
 
 

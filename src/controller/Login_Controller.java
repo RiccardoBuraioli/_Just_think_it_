@@ -57,6 +57,7 @@ public class Login_Controller {
     			
     			VolunteerUser loggedUser = vrep.getVolunteerByID(userID);
     			System.out.println(loggedUser.getCognome());
+    			loggedUser.setID(userID);
     			
     			try {
         			FXMLLoader loader = new FXMLLoader(getClass().getResource("/boundary/UserHomePage.fxml"));
@@ -87,7 +88,7 @@ public class Login_Controller {
     			
     			ShopUser loggedShop = srep.getShopByID(userID);
     			System.out.println(loggedShop.getNomeShop());
-    			
+    			loggedShop.setId(userID);
     			try {
         			FXMLLoader loader = new FXMLLoader(getClass().getResource("/boundary/ShopHomePage.fxml"));
         			Parent root = loader.load();
@@ -113,14 +114,15 @@ public class Login_Controller {
     				System.out.println("Errore nel ritornare l'ID");
     			}
     			
-    			CaritasUser loggedShop = srep.getCaritasByID(userID);
-    			System.out.println(loggedShop.getNomeCaritas());
-    			
+    			CaritasUser loggedCaritas = srep.getCaritasByID(userID);
+    			System.out.println(loggedCaritas.getNomeCaritas());
+    			loggedCaritas.setId(userID);
+
     			try {
         			FXMLLoader loader = new FXMLLoader(getClass().getResource("/boundary/CaritasHomePage.fxml"));
         			Parent root = loader.load();
         			Caritas_Home_Boundary CaritasHomeController = loader.getController();
-        			CaritasHomeController.initData(loggedShop);
+        			CaritasHomeController.initData(loggedCaritas);
         			Stage home = (Stage) window.getScene().getWindow();
         			home.setScene(new Scene(root, 800, 600));
         			

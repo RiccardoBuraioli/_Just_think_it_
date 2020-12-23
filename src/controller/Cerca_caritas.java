@@ -317,7 +317,7 @@ import java.sql.SQLException;
 	    
 	    
 	    
-	    private void vediNecessità(int id_car){
+	    private void vediNecessità(int id_car, int id_ut){
 	    	try {     
 		        FXMLLoader fxmlLoader = new FXMLLoader();
 
@@ -331,13 +331,13 @@ import java.sql.SQLException;
 		        Stage stage = new Stage();
 	    		stage.setTitle("Bacheca");
 	    		
-	    		stage.setScene(new Scene(rootNode, 800, 500));
+	    		stage.setScene(new Scene(rootNode, 700, 450));
 	    		stage.setResizable(false);
 	    	
 	    		
 	    		 bacheca = fxmlLoader.getController();
 	
-	    		 bacheca.loadFormBoundary(id_car, idUtente);
+	    		 bacheca.loadFormBoundary(id_car, id_ut);
 	    		 
 	    		stage.show();
 	    		
@@ -391,7 +391,7 @@ import java.sql.SQLException;
     	        Stage stage = new Stage();
 	    		stage.setTitle("Prenota Turno");
 	    		prenotaController.setData(id_car, id_ut);
-	    		stage.setScene(new Scene(rootNode, 575, 400));
+	    		stage.setScene(new Scene(rootNode, 630,400));
 	    		stage.setResizable(false);
 	    		stage.show();
 	    		
@@ -413,7 +413,7 @@ import java.sql.SQLException;
     	        Stage stage = new Stage();
 	    		stage.setTitle("Prenota Turno");
 	    		partecipaEvent.setData(id_event, id_ut);
-	    		stage.setScene(new Scene(rootNode, 575, 400));
+	    		stage.setScene(new Scene(rootNode, 700,450));
 	    		stage.setResizable(false);
 	    		stage.show();
 		} catch (IOException e) {
@@ -532,7 +532,7 @@ import java.sql.SQLException;
 	        // wire up the location buttons
 	        buttonDonazione.setOnAction(event -> apriDonazione(idCaritas,idUtente ));
 	        buttonTurnoVolontariato.setOnAction(event ->prenotaTurno(idCaritas,idUtente ));
-	        buttonBacheca.setOnAction(event -> vediNecessità(idCaritas));
+	        buttonBacheca.setOnAction(event -> vediNecessità(idCaritas,idUtente));
 	        buttonEvento.setOnAction(event -> partecipaEvento(idEvento, idUtente));
 
 	        buttonAllLocations.setOnAction(event -> {

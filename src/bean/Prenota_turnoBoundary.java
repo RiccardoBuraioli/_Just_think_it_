@@ -14,6 +14,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 public class Prenota_turnoBoundary {
 		private int id_caritas;
@@ -63,7 +64,8 @@ public class Prenota_turnoBoundary {
 	    void prenota_turno(ActionEvent event) { 
 		
 	    	Prenota_c.prenota_turno(Turni.getValue().toString(), cb_ora_inizio.getValue().toString(), cb_ora_fine.getValue().toString(), CV.getText());
-
+	    	Stage st = (Stage) prenota.getScene().getWindow();
+	    	st.close();
 		}
 	    
 	    public boolean checker() {

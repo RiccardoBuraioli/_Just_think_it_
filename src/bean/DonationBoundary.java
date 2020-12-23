@@ -9,6 +9,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
@@ -56,6 +57,10 @@ public class DonationBoundary implements Initializable {
 		controller.setIndirizzo(this.indirizzo.getText());
 		controller.setDescrizione(this.descrizione.getText());
 		int error = controller.creaDonazione();
+		Stage st = (Stage) donazione.getScene().getWindow();
+		st.close();
+		
+		
 
 	}
 	

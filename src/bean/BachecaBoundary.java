@@ -85,7 +85,7 @@ public class BachecaBoundary {
     		stage.setScene(new Scene(rootNode, 800, 500));
     		stage.setResizable(false);
     	
-    		
+    		email_c.load_email(id_car, id_ute);
     		
     		 
     		stage.show();
@@ -101,10 +101,6 @@ public class BachecaBoundary {
 		
 	}
 
-	@FXML
-	void indietro(ActionEvent event) {
-
-	}
 
 	@FXML
 	void initialize() {

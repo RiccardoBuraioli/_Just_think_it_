@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
 
 public class Partecipa_eventoBoundary {
 	
@@ -45,7 +46,8 @@ public class Partecipa_eventoBoundary {
 	   void partecipa_evento(ActionEvent event) {
 	    	Parte_c = new Partecipa_evento_controller();
 	    	Parte_c.partecipa_evento(Float.parseFloat(importo.getText()));
-		
+	    	Stage st = (Stage) partecipa.getScene().getWindow();
+	    	st.close();
 
 	    }
 	    

@@ -1,5 +1,6 @@
 package dao;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -49,7 +50,9 @@ public class Email_dao {
           } catch (SQLException ex) {
               System.out.println((ex.getMessage()));
           }
-		return 0;
+		
+          
+          return 0;
          
       
 		
@@ -66,7 +69,8 @@ public class Email_dao {
 		ResultSet res = null;
 		try (Connection conn = connector.getConnection();
 	            PreparedStatement stmt = conn.prepareStatement(sql)) {
-	
+				stmt.setString(1,id_utente );
+
 	           res = stmt.executeQuery();
 	           
 	
@@ -93,6 +97,46 @@ public class Email_dao {
 		
 		
 		
+	}
+	
+	
+	public String[] visualizza_mittente_destinatario(int id_dest, int id_mit) {
+		
+		String sql = "call visualizza_mittente_destinatario(?,?,?,?) ";
+	   	int i = 0;
+	   	String[] Email_md = {"",""};
+		ResultSet res = null;
+		try (Connection conn = connector.getConnection();
+	            CallableStatement stmt = conn.prepareCall((sql))) {
+				stmt.setInt(1, id_mit );
+				stmt.setInt(2, id_dest );
+				stmt.registerOutParameter(3, java.sql.Types.VARCHAR);
+				stmt.registerOutParameter(4, java.sql.Types.VARCHAR);
+
+	          res = stmt.executeQuery(); 
+	         
+	           
+	           /* while (res.next()) {
+	        	
+	        	
+	           }*/
+	            Email_md[0] = stmt.getString("email_m");
+	            Email_md[1] = stmt.getString("email_d");
+	            
+	            
+	       } catch (SQLException ex) {
+	           System.out.println(ex.getMessage());
+	       } finally {
+	           try {
+	               if (res != null) res.close();
+	           } catch (SQLException e) {
+	               System.out.println(e.getMessage());
+	           }
+	       }
+	
+		
+	
+		return Email_md;
 	}
 	
 	
