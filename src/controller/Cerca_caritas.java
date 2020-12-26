@@ -765,13 +765,22 @@ import java.sql.SQLException;
 	            	 buttonDonazione.setVisible(true);
 	            	 buttonTurnoVolontariato.setVisible(true);
 	            	 buttonBacheca.setVisible(true);
-	            	 buttonEvento.setVisible(true);
 	            	 buttonAllLocations.setVisible(true);
+	            	 buttonEvento.setVisible(false);
+
 	            	 idCaritas = id_caritas[i];
 	     	      
-	       
-	     	 
 	            }
+	            }
+	            for(int i = 0; i<countEvent; i++) {
+	            	if ( marker.getId().equals(markerEvento[i].getId())) {
+	            		logger.debug("hai cliccato un evento");
+	            		buttonEvento.setVisible(true);
+	            		buttonDonazione.setVisible(false);
+	            		buttonTurnoVolontariato.setVisible(false);
+	            		buttonBacheca.setVisible(false);
+	            		buttonAllLocations.setVisible(false);
+	            	}
 	            }
 	            labelEvent.setText("Event: marker clicked: " + marker.getId());
 	        });

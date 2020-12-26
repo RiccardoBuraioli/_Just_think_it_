@@ -34,7 +34,7 @@ public class Shop_Home_Boundary implements Initializable {
 	private Image img3;
 	private Image[] images = {img1, img2, img3};
 	private int currentImage;
-	
+	private static Shop_Home_Boundary instance = null;
 	
 	private ShopUser currentUser;
 	 
@@ -45,7 +45,14 @@ public class Shop_Home_Boundary implements Initializable {
 		public void setCurrentUser(ShopUser currentUser) {
 			this.currentUser = currentUser;
 		}
-	 
+		
+		
+		public static Shop_Home_Boundary getInstance() {
+			if (instance == null) {
+				instance = new Shop_Home_Boundary();
+				}
+			return instance;
+		}
 
 	public Shop_Home_Boundary() {
 		img1 = new Image("file:/C:/Users/PRX/Desktop/TZEDAKAH/DragoInizio/DragoForestain.PNG");
@@ -64,8 +71,7 @@ public class Shop_Home_Boundary implements Initializable {
     @FXML
     private URL location;
 
-    @FXML
-    private Button CreaPacco;
+
 
     @FXML
     private ImageView arrowLeft;
@@ -111,21 +117,7 @@ public class Shop_Home_Boundary implements Initializable {
     void cerca_caritas(ActionEvent event) {
     }
 
-    @FXML
-    void crea_donazioni(ActionEvent event) {
-    	   	      	try {
-    	    			FXMLLoader loader = new FXMLLoader(getClass().getResource("/boundary/donation.fxml"));
-    	    			Parent root = loader.load();
-    	    			Stage home = (Stage) CreaPacco.getScene().getWindow();
-    	    			home.setScene(new Scene(root,825, 550));
-    	    			home.show();
-    	    		} catch (IOException e) {
-    	    			e.printStackTrace();
-    	    		}
-
-    	    
-    	    }
-    	    
+  
     public void initData(ShopUser user) {
     	setCurrentUser(user);
     	nomeCognome.setText(user.getNomeShop());
@@ -150,6 +142,15 @@ public class Shop_Home_Boundary implements Initializable {
 
     @FXML
     void deleteAccountButtonPressed(ActionEvent event) {
+    	
+    	Alert alert = new Alert(AlertType.CONFIRMATION);
+    	alert.setTitle("Logout");
+    	alert.setHeaderText("Se cancelli il tuo account verrano cancellati anche le tue attività in corso e potresti ricevere delle sanzioni");
+    	alert.setContentText("Sei sicuro di voler cancellare il tuo account?");
+    	Optional<ButtonType> result = alert.showAndWait();
+    	if (result.get() == ButtonType.OK){
+    		
+    	}
     }
 
     @FXML
@@ -186,17 +187,24 @@ public class Shop_Home_Boundary implements Initializable {
 
     	Optional<ButtonType> result = alert.showAndWait();
     	if (result.get() == ButtonType.OK){
-    		Shop_c.logoutButtonPressed(logoutButton.getScene().getWindow());
+    		try {
+				FXMLLoader loader = new FXMLLoader(getClass().getResource("/boundary/Login_boundary.fxml"));
+				Parent root = loader.load();
+				Stage home = (Stage) logoutButton.getScene().getWindow();
+				home.setScene(new Scene(root, 600, 385));
+				home.show();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
         	
-    	} else {
-    	    //nothing
-    	}
+    	} 
     	
 	}
 
 
     @FXML
     void profileButtonPressed(ActionEvent event) {
+ 	
     }
 
     @FXML
@@ -212,25 +220,6 @@ public class Shop_Home_Boundary implements Initializable {
     	}
     }
 
-    @FXML
-    void initialize() {
-        assert CreaPacco != null : "fx:id=\"CreaPacco\" was not injected: check your FXML file 'ShopHomePage.fxml'.";
-        assert arrowLeft != null : "fx:id=\"arrowLeft\" was not injected: check your FXML file 'ShopHomePage.fxml'.";
-        assert arrowRight != null : "fx:id=\"arrowRight\" was not injected: check your FXML file 'ShopHomePage.fxml'.";
-        assert deleteAccountButton != null : "fx:id=\"deleteAccountButton\" was not injected: check your FXML file 'ShopHomePage.fxml'.";
-        assert helpButton != null : "fx:id=\"helpButton\" was not injected: check your FXML file 'ShopHomePage.fxml'.";
-        assert imagePresentation != null : "fx:id=\"imagePresentation\" was not injected: check your FXML file 'ShopHomePage.fxml'.";
-        assert leftArrowButton != null : "fx:id=\"leftArrowButton\" was not injected: check your FXML file 'ShopHomePage.fxml'.";
-        assert logoutButton != null : "fx:id=\"logoutButton\" was not injected: check your FXML file 'ShopHomePage.fxml'.";
-        assert nomeCognome != null : "fx:id=\"nomeCognome\" was not injected: check your FXML file 'ShopHomePage.fxml'.";
-        assert profileButton != null : "fx:id=\"profileButton\" was not injected: check your FXML file 'ShopHomePage.fxml'.";
-        assert profileImage != null : "fx:id=\"profileImage\" was not injected: check your FXML file 'ShopHomePage.fxml'.";
-        assert rightArrowButton != null : "fx:id=\"rightArrowButton\" was not injected: check your FXML file 'ShopHomePage.fxml'.";
-        assert searchCaritasButton != null : "fx:id=\"searchCaritasButton\" was not injected: check your FXML file 'ShopHomePage.fxml'.";
-        assert textOverImages != null : "fx:id=\"textOverImages\" was not injected: check your FXML file 'ShopHomePage.fxml'.";
-
-
-    }
 
 
 	@Override

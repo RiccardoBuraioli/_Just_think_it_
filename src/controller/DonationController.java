@@ -6,7 +6,7 @@ import entity.Donazione;
 
 public class DonationController {
 
-	private static DonationController instance;
+	private static DonationController instance = null;
 	
 	private Donazione donazione;
 	private Donation_dao donazione_dao;

@@ -17,6 +17,12 @@ public class Utilities {
     public Utilities(Connector connector) {
         this.connector = connector;
     }
+    
+    
+    
+    
+    
+    
 
     public boolean checkIfBanned(String email) {
         String sql = "SELECT Email FROM bannedUser WHERE Email = ? ";

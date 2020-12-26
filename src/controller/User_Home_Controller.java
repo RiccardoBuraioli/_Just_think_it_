@@ -67,38 +67,7 @@ public  class User_Home_Controller{
   
     public void searchCaritasButtonPressed(Window event) {
     	
-    	try {
-
-    	    		
-    	        String fxmlFile = "/boundary/Cerca_caritas.fxml";
-    	      
-    	        FXMLLoader fxmlLoader = new FXMLLoader();
-    	        Parent rootNode = fxmlLoader.load(getClass().getResourceAsStream(fxmlFile));
-    	       
-    	        final Cerca_caritas controller = fxmlLoader.getController();
-    	        final Projection projection = /*getParameters().getUnnamed().contains("wgs84")
-    	            ? Projection.WGS_84 : */Projection.WEB_MERCATOR;
-    	        controller.initMapAndControls(projection);
-    	        controller.setIdUtente(this.idUtente);
-
-    	        Scene scene = new Scene(rootNode);
-    	        Stage primaryStage = (Stage) event.getScene().getWindow();
-
-    	        primaryStage.setTitle("sothawo mapjfx demo application");
-    	        primaryStage.setScene(scene);
-    	      
-    	        primaryStage.show();
-    	        
-    	        
-    	        
-
-    	     
-    		
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-    	
-      
+   
    
     }
  

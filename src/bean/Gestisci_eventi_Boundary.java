@@ -1,5 +1,6 @@
 package bean;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -14,11 +15,15 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
 public class Gestisci_eventi_Boundary {
 
@@ -61,7 +66,20 @@ public class Gestisci_eventi_Boundary {
 
 	    @FXML
 	    void backButtonPressed(ActionEvent event) {
-
+	    	 try {
+	 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/boundary/UserHomePage.fxml"));
+	 			Parent root = loader.load();
+	 			User_Home_Boundary userHomeBoundary = User_Home_Boundary.getInstance();
+	 			userHomeBoundary = loader.getController();
+	 			Stage home = (Stage) back.getScene().getWindow();
+	 			home.setScene(new Scene(root, 800, 600));
+	 			
+	 			home.show();
+	 		} catch (IOException e) {
+	 			e.printStackTrace();
+	 		}
+	    	
+	    	
 	    }
 
 	    @FXML

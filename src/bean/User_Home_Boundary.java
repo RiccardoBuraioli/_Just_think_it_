@@ -1,6 +1,7 @@
 package bean;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -10,6 +11,7 @@ import java.util.TimerTask;
 import com.sothawo.mapjfx.Projection;
 
 import controller.Cerca_caritas;
+import controller.DonationController;
 import controller.Profile_Controller;
 import controller.User_Home_Controller;
 import entity.VolunteerUser;
@@ -30,7 +32,14 @@ import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-public class User_Home_Boundary extends Application implements Initializable{
+@SuppressWarnings("serial")
+public class User_Home_Boundary implements Serializable{
+/**
+	 * 
+	 */
+
+private static User_Home_Boundary instance = null;
+
 private VolunteerUser currentUser;
 	
 	private User_Home_Controller user_c ;
@@ -44,13 +53,19 @@ private VolunteerUser currentUser;
 	private int currentImage;
 	
 	public VolunteerUser getCurrentUser() {
-		return currentUser;
+		return this.currentUser;
 	}
 
 	public void setCurrentUser(VolunteerUser currentUser) {
 		this.currentUser = currentUser;
 	}
 	
+	public static User_Home_Boundary getInstance() {
+		if (instance == null) {
+			instance = new User_Home_Boundary();
+			}
+		return instance;
+	}
 	
 	
 	public User_Home_Boundary() {
@@ -106,7 +121,7 @@ private VolunteerUser currentUser;
 			profileController = loader.getController();
 			profileController.initData(getCurrentUser());
 			
-			Stage home = (Stage) profileButton.getScene().getWindow();
+			Stage home = (Stage) this.profileButton.getScene().getWindow();
 			home.setScene(new Scene(root, 800, 600));
 			
 			home.show();
@@ -117,7 +132,7 @@ private VolunteerUser currentUser;
 
     @FXML
     void helpButtonPressed(ActionEvent event) {
-    	user_c.helpButtonPressed(helpButton.getScene().getWindow());
+    	this.user_c.helpButtonPressed(this.helpButton.getScene().getWindow());
     }
 
     @FXML
@@ -212,40 +227,28 @@ private VolunteerUser currentUser;
 
 	public void initData(VolunteerUser user) {
     	setCurrentUser(user);
-    	nomeCognome.setText(user.getNome() + " "+ user.getCognome());
+    	this.nomeCognome.setText(user.getNome() + " "+ user.getCognome());
     	final Circle clip = new Circle();
     	clip.setCenterX(25);
     	clip.setCenterY(58);
     	clip.setRadius(200);
-        profileImage.setClip(clip);
+        this.profileImage.setClip(clip);
     	long delay = 3000; //update once per 3 seconds.
     	new Timer().schedule(new TimerTask() {
 
     	    @Override
     	    public void run() {
-    	        imagePresentation.setImage(images[currentImage++]);
-    	        if (currentImage >= images.length) {
-    	            currentImage = 0;
+    	        User_Home_Boundary.this.imagePresentation.setImage(images[User_Home_Boundary.this.currentImage++]);
+    	        if (User_Home_Boundary.this.currentImage >= User_Home_Boundary.this.images.length) {
+    	            User_Home_Boundary.this.currentImage = 0;
     	        }
     	    }
     	}, 0, delay);
     	
-    	user_c.setCurrentUser(user);
+    	this.user_c.setCurrentUser(user);
     }
     
     
-
-
-	@Override
-	public void initialize(URL location, ResourceBundle resources) {
-		
-	}
-
-	@Override
-	public void start(Stage arg0) throws Exception {
-		// TODO Auto-generated method stub
-		
-	}
 
 	public void setIdUtente(int id_utente) {
 		this.idUtente = id_utente;

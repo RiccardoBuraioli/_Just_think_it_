@@ -1,8 +1,10 @@
 package bean;
 
 import java.io.IOException;
+import java.io.Serializable;
 
 import controller.Profile_Controller;
+import entity.ShopUser;
 import entity.VolunteerUser;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,11 +17,9 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 
-public class Profile_Boundary {
+public class Profile_Boundary{
 	
 	private VolunteerUser currentUser;
-	private User_Home_Boundary userHomeBoundary;
-	private Profile_Controller Prof_c;
 	
 	@FXML
     private ImageView profileImageEdit;
@@ -48,14 +48,16 @@ public class Profile_Boundary {
     @FXML
     private Text telefonoEdit;
     
- @FXML  
+
+@FXML  
  void backHomeButtonPressed(ActionEvent event) {
 	 try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/boundary/UserHomePage.fxml"));
 			Parent root = loader.load();
+			User_Home_Boundary userHomeBoundary  = User_Home_Boundary.getInstance();
 			userHomeBoundary = loader.getController();
-			userHomeBoundary.initData(currentUser);
-			Stage home = (Stage) backHomeButton.getScene().getWindow();
+			userHomeBoundary.initData(getCurrentUser());
+			Stage home = (Stage) this.backHomeButton.getScene().getWindow();
 			home.setScene(new Scene(root, 800, 600));
 			
 			home.show();
@@ -72,7 +74,7 @@ public class Profile_Boundary {
  }
 
  public VolunteerUser getCurrentUser() {
-		return currentUser;
+		return this.currentUser;
 	}
 
 	public void setCurrentUser(VolunteerUser currentUser) {
@@ -81,10 +83,12 @@ public class Profile_Boundary {
  
  public void initData(VolunteerUser user) {
  	setCurrentUser(user);
- 	cittaEdit.setText(user.getIndirizzo());
- 	telefonoEdit.setText(user.getRecapitoTel());
- 	nomeCognomeEdit.setText(user.getNome() + " " + user.getCognome());
+ 	this.cittaEdit.setText(user.getIndirizzo());
+ 	this.telefonoEdit.setText(user.getRecapitoTel());
+ 	this.nomeCognomeEdit.setText(user.getNome() + " " + user.getCognome());
  }
+
+
 
  
 }

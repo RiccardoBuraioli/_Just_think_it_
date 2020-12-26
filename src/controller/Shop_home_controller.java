@@ -93,21 +93,7 @@ public class Shop_home_controller implements Initializable {
 		}
 	}
 
-	public void helpButtonPressed(Window event) {
-	}
 
-	public void logoutButtonPressed(Window event) {
-			try {
-				FXMLLoader loader = new FXMLLoader(getClass().getResource("/boundary/Login_boundary.fxml"));
-				Parent root = loader.load();
-				Stage home = (Stage) event.getScene().getWindow();
-				home.setScene(new Scene(root, 600, 385));
-				home.show();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-
-		}
 
 	
 

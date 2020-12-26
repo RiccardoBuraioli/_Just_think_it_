@@ -26,6 +26,7 @@ public class Caritas_Home_Boundary {
 	private Image img3 = new Image("file:/C:/Users/PRX/Desktop/TZEDAKAH/DragoInizio/DragoForestaIniz.PNG");
 	private Image[] images = { img1, img2, img3 };
 	private int currentImage = 0;
+	private  static Caritas_Home_Boundary instance = null;
 
 	private CaritasUser currentUser;
 
@@ -78,6 +79,17 @@ public class Caritas_Home_Boundary {
 
 	@FXML 
 	private Text textOverImages; // Value injected by FXMLLoader
+	
+	
+	
+	public static Caritas_Home_Boundary getInstance() {
+		if (instance == null) {
+			instance = new Caritas_Home_Boundary();
+			}
+		return instance;
+	}
+	
+	
 
 	public Caritas_Home_Boundary() {
 		bacheca = new Bacheca_Personale_Boundary();
