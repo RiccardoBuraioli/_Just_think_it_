@@ -117,12 +117,12 @@ public class Caritas_Home_Boundary {
 			Parent root = loader.load();
 
 			Stage home = (Stage) v_bacheca.getScene().getWindow();
-			home.setScene(new Scene(root,725, 450));
+			home.setScene(new Scene(root,775, 500));
 			home.show();
     		
     		 bacheca = loader.getController();
-
-    		bacheca.loadFormBoundary(currentUser.getID());
+    		 bacheca.set_currentUser(this.currentUser);
+    		 bacheca.loadFormBoundary(currentUser.getID());
 
     		
 		} catch (IOException e) {

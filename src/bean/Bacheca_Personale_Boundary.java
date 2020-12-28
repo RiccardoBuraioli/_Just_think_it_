@@ -5,6 +5,7 @@ import java.util.List;
 
 import controller.Bacheca_Controller;
 import controller.Bacheca_Personale_Controller;
+import entity.CaritasUser;
 import entity.EventTab;
 import entity.Necessità;
 import javafx.collections.FXCollections;
@@ -24,6 +25,8 @@ public class Bacheca_Personale_Boundary {
 	private List<Necessità> necessità_l;
 	private int id_car;
 	private Bacheca_Personale_Controller bacheca_controller;
+	private Necessità nec;
+	private CaritasUser caritas;
 
 	@FXML
 	private TableView<Necessità> bacheca;
@@ -49,7 +52,21 @@ public class Bacheca_Personale_Boundary {
 
 	@FXML
 	void backPressed(ActionEvent event) {
+		try {
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/boundary/CaritasHomePage.fxml"));
+			Parent root = loader.load();
+			Caritas_Home_Boundary home_c = loader.getController();
+			home_c.setCurrentUser(caritas);
+			
+			Stage home = (Stage) back.getScene().getWindow();
+			home.setScene(new Scene(root,  800, 600));
 
+			home.show();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		
 	}
 
 	@FXML
@@ -60,7 +77,7 @@ public class Bacheca_Personale_Boundary {
 			Crea_Necessità_Boundary crea_nec = loader.getController();
 			crea_nec.set_caritas(id_car);
 			Stage home = (Stage) necessità.getScene().getWindow();
-			home.setScene(new Scene(root, 800, 600));
+			home.setScene(new Scene(root, 600, 500));
 
 			home.show();
 		} catch (IOException e) {
@@ -70,7 +87,8 @@ public class Bacheca_Personale_Boundary {
 
 	@FXML
 	void elimina_necessità(ActionEvent event) {
-
+		nec = bacheca.getSelectionModel().getSelectedItem();
+		bacheca_controller.elimina_annuncio(nec.getId_nece());
 	}
 
 
@@ -91,5 +109,15 @@ public class Bacheca_Personale_Boundary {
 		bacheca.setItems(data);
 
 	}
+	
+	
+	public void set_currentUser(CaritasUser user) {
+		this.caritas = user;
+	}
+	
+	public CaritasUser getcaritas() {
+		return this.caritas;
+	}
+	
 
 }

@@ -37,7 +37,7 @@ public class Bacheca_dao {
 	            res = stmt.executeQuery();
 	
 	           while (res.next()) {
-	        	   necessità.add(new Necessità(res.getString("tipologia"),res.getString("richiesta"), res.getString("urgenza")));
+	        	   necessità.add(new Necessità(res.getInt("id_necessità"), res.getString("tipologia"),res.getString("richiesta"), res.getString("urgenza")));
 	        	  
 	           }
 	       } catch (SQLException ex) {
@@ -87,6 +87,34 @@ public class Bacheca_dao {
 	            }
 	        }
 	        return NecID;
+	}
+	
+	
+	public boolean elimina_necessità(int nece) {
+		 ResultSet rs = null;
+		  
+		   int rowAffected;
+	        String sql = "call elimina_necessità(?)";
+
+	        try (Connection conn = connector.getConnection();
+	             PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+	           
+	        	pstmt.setInt(1,nece);
+	        	
+
+	            rowAffected = pstmt.executeUpdate();
+
+	            if (rowAffected == 1) {
+	                System.out.println("SUCCESS!");
+	            } else { System.out.println("FAIlED"); return false;}
+
+
+	        } catch (SQLException ex) {
+	            System.out.println((ex.getMessage()));
+	        }
+			    	
+	        return true;
+	        
 	}
 	
 }

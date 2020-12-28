@@ -20,7 +20,12 @@ public class Bacheca_Personale_Controller {
 	
 	
 	
+	public boolean elimina_annuncio(int nece) {
 	
+		return	bacheca.elimina_necessità(nece); 
+		
+		
+	}
 	
 	
 	

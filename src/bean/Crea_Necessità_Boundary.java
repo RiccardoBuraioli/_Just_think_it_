@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextArea;
+import javafx.stage.Stage;
 
 public class Crea_Necessità_Boundary {
 
@@ -40,8 +41,12 @@ public class Crea_Necessità_Boundary {
 	    void crea_annuncio_pressed(ActionEvent event) {
 	    	Crea_Necessità_Controller crea_nec_c = new Crea_Necessità_Controller();
 	    	crea_nec_c.inizializza(id_caritas);
-	    	crea_nec_c.crea_necessità(tipologia.getValue().toString(), Urgenza.getValue().toString(), descrizione.getText());
-	    	
+	    	int i = crea_nec_c.crea_necessità(tipologia.getValue().toString(), Urgenza.getValue().toString(), descrizione.getText());
+	    	if ( i == 0) {
+	    		Stage st = (Stage) crea_annuncio.getScene().getWindow();
+	    		st.close();
+	    	}
+	    	else System.out.println("errore nella creazione dell'annuncio");
 	    }
 
 	    
