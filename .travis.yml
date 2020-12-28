@@ -7,7 +7,6 @@ sonarcloud:
 	organization:RiccardoBuraioli
 	token: f64895682f9236d3e713e72dba6c052f98856e5b
 	
-
 script:
 -ant build
 -sonar-scanner
