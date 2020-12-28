@@ -4,7 +4,7 @@ jdk:
 script: ant build
 addons:
 sonarcloud:
-	organization:RiccardoBuraioli
+	organization:riccardoburaioli
 	token: f64895682f9236d3e713e72dba6c052f98856e5b
 	
 script:
