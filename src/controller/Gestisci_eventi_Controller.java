@@ -29,7 +29,14 @@ public class Gestisci_eventi_Controller {
 		
 	}
 	
+	public boolean elimina_evento(String nomeEvento) {
+		return event_dao.deliteEvent(nomeEvento);
+	}
 	
 	
+	public boolean modifica_note_evento(String noteEvento) {
+		return false;
+		
+	}
 	
 }

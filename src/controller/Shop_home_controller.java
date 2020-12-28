@@ -65,34 +65,6 @@ public class Shop_home_controller implements Initializable {
 	public void deleteAccountButtonPressed(Window event) {
 	}
 
-	public void gestisci_eventi(Window event) {
-		try {
-
-			int id = currentUser.getID();
-
-	        FXMLLoader fxmlLoader = new FXMLLoader();
-	        Parent rootNode = fxmlLoader.load(getClass().getResourceAsStream("/boundary/Eventi2.fxml"));
-	       
-	       // donationController = fxmlLoader.getController();
-	       gestisci_b = fxmlLoader.getController();
-	        
-	   //    Stage stage = new Stage();
-			Stage stage = (Stage) event.getScene().getWindow();
-
-    		stage.setTitle("Donazione");
-    		
-    		gestisci_b.load_shop(id);
-    		
-    		stage.setScene(new Scene(rootNode, 800, 500));
-    		stage.setResizable(false);
-    		stage.show();
-    		
-    		
-    				} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-
 
 
 	

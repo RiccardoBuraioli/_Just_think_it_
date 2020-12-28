@@ -15,7 +15,7 @@
          </font>
       </Text>
      
-      <TableView layoutX="14.0" layoutY="73.0" prefHeight="304.0" prefWidth="516.0">
+      <TableView fx:id="tab" layoutX="14.0" layoutY="73.0" onMouseClicked="#event_clicked" prefHeight="304.0" prefWidth="516.0">
         <columns>
           <TableColumn fx:id="Id_evento" prefWidth="87.0" text="Evento" />
           <TableColumn fx:id="nome_caritas" prefWidth="108.0" text="Caritas" />

@@ -41,7 +41,7 @@ public class Evento_dao {
 	            res = stmt.executeQuery();
 	
 	           while (res.next()) {
-	        	   list_ev.add(new EventTab(res.getString("NomeEvento"),res.getString("NomeCaritas"), res.getString("NoteEvento"), res.getFloat("PrezzoEvento"),res.getFloat("Importo"), res.getInt("numPartecipanti")));
+	        	   list_ev.add(new EventTab(res.getString("NomeEvento"),res.getString("NomeCaritas"), res.getString("NoteEvento"), res.getFloat("PrezzoEvento"),res.getFloat("Importo"), res.getInt("numPartecipanti"), res.getInt("CodiceCaritas"), res.getInt("Completato")));
 	        	  
 	           }
 	       } catch (SQLException ex) {
@@ -130,4 +130,33 @@ public class Evento_dao {
 	   
    }
     
+   
+   public boolean deliteEvent(String evento) {
+	   
+	   int rowAffected;
+ 		ResultSet rs = null;
+
+    	//Registra Caritas
+	    String sql = "call cancella_evento(?)";
+
+        try (Connection conn = connector.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+	       	  pstmt.setString(1, evento);
+      
+            rowAffected = pstmt.executeUpdate();
+
+            if (rowAffected == 1) {
+                System.out.println(SUCCESS);
+            } else { System.out.println(FAILED); return false;}
+
+
+        } catch (SQLException ex) {
+            System.out.println((ex.getMessage()));
+        }
+		    	
+        return true;
+        
+   }
+   
+   
 }

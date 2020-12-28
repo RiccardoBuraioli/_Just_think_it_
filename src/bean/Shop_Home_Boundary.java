@@ -155,9 +155,33 @@ public class Shop_Home_Boundary implements Initializable {
 
     @FXML
     void gestisci_eventi(ActionEvent event) {
-    	Shop_c.setCurrentUser(currentUser);
-     
-    	Shop_c.gestisci_eventi(gest_event.getScene().getWindow());
+    	try {
+
+
+	        FXMLLoader fxmlLoader = new FXMLLoader();
+	        Parent rootNode = fxmlLoader.load(getClass().getResourceAsStream("/boundary/Eventi2.fxml"));
+	       
+	       // donationController = fxmlLoader.getController();
+	        gestisci_b = fxmlLoader.getController();
+	        
+	   //    Stage stage = new Stage();
+			Stage stage = (Stage) gest_event.getScene().getWindow();
+
+    		stage.setTitle("Gestisci Eventi");
+    		
+    		
+    		gestisci_b.setShop(currentUser);
+    		gestisci_b.load_shop(currentUser.getID());
+    		
+    		stage.setScene(new Scene(rootNode, 800, 500));
+    		stage.setResizable(false);
+    		stage.show();
+    		
+    		
+    				} catch (IOException e) {
+			e.printStackTrace();
+		}
+    	
     }
 
     @FXML
